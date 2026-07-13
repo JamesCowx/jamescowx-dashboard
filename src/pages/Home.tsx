@@ -53,7 +53,7 @@ export default function Home() {
                   <span className="text-[var(--color-text-secondary)]">Available for new projects</span>
                 </span>
                 <span className="px-3 py-1 rounded-full text-[11px] font-medium bg-white/[0.02] border border-white/[0.04] text-[var(--color-text-muted)]">
-                  Based in SF
+                  Based in Canada
                 </span>
               </div>
 
