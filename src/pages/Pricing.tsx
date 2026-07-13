@@ -75,9 +75,9 @@ export default function Pricing() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           {tiers.map((tier, i) => (
             <SlideUp key={tier.name} delay={i * 0.1}>
-              <GlassPanel className={`relative flex flex-col h-full ${tier.popular ? 'ring-2 ring-[var(--color-accent-blue)]' : ''}`}>
+              <GlassPanel className={`relative flex flex-col h-full ${tier.popular ? 'ring-2 ring-[var(--color-accent-blue)] overflow-visible' : ''}`}>
                 {tier.popular && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-[var(--color-accent-blue)] text-white text-[10px] font-bold uppercase tracking-wider">
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-[var(--color-accent-blue)] text-white text-[10px] font-bold uppercase tracking-wider z-10">
                     Most Popular
                   </span>
                 )}
@@ -87,7 +87,6 @@ export default function Pricing() {
                     <span className="text-4xl font-extrabold gradient-text-mixed">
                       {symbols[currency]}{convert(tier.price).toLocaleString()}
                     </span>
-                    <span className="text-sm text-[var(--color-text-muted)]">CAD</span>
                   </div>
                   <ul className="space-y-3 mb-8">
                     {tier.features.map((f) => (
