@@ -72,7 +72,7 @@ export default function About() {
                   <span className="text-[11px] px-2 py-0.5 rounded-md bg-[#34d399]/10 text-[#34d399] border border-[#34d399]/20">DevOps</span>
                 </div>
                 <p className="text-[var(--color-text-secondary)] leading-relaxed text-sm">
-                  I'm a full-stack developer and open-source enthusiast based in San Francisco. I specialize in building
+                  I'm a full-stack developer and open-source enthusiast based in Canada. I specialize in building
                   scalable web applications, designing robust APIs, and creating intuitive user experiences. When I'm not
                   coding, I write technical blog posts and contribute to open-source projects. I believe in clean code,
                   continuous learning, and sharing knowledge with the developer community.
