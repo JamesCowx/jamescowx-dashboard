@@ -17,10 +17,10 @@ const contactInfo = [
 ];
 
 const socialLinks = [
-  { label: 'GitHub', handle: '@jamescowx', color: '#60a5fa' },
-  { label: 'LinkedIn', handle: 'in/jamescowx', color: '#f472b6' },
-  { label: 'Twitter', handle: '@jamescowx', color: '#38bdf8' },
-  { label: 'Discord', handle: 'jamescowx', color: '#a78bfa' },
+  { label: 'GitHub', handle: '@jamescowx', color: '#60a5fa', href: 'https://github.com/JamesCowx' },
+  { label: 'LinkedIn', handle: 'in/jamescowx', color: '#f472b6', href: 'https://linkedin.com/in/jamescowx' },
+  { label: 'Bluesky', handle: '@jamescowx', color: '#0085ff', href: 'https://bsky.app/profile/jamescowx' },
+  { label: 'Discord', handle: 'jamescowx', color: '#a78bfa', href: '#' },
 ];
 
 const FORMSPREE = 'https://formspree.io/f/xaqryngo';
@@ -183,7 +183,7 @@ export default function Contact() {
                 </div>
                 <div className="space-y-2.5">
                   {socialLinks.map((sl) => (
-                    <a key={sl.label} href="#"
+                    <a key={sl.label} href={sl.href} target="_blank" rel="noopener noreferrer"
                       className="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-white/[0.02] border border-white/[0.04] hover:border-white/[0.08] transition-all group">
                       <span className="w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold" style={{ backgroundColor: sl.color + '15', color: sl.color }}>
                         {sl.label.slice(0, 2)}
