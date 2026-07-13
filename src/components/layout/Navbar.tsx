@@ -7,6 +7,7 @@ const links = [
   { to: '/projects', label: 'Projects' },
   { to: '/blog', label: 'Blog' },
   { to: '/about', label: 'About' },
+  { to: '/websites', label: 'Websites' },
   { to: '/contact', label: 'Contact' },
 ];
 
@@ -79,6 +80,10 @@ export default function Navbar() {
             <a href="https://linkedin.com/in/jamescowx" target="_blank" rel="noopener noreferrer"
               className="w-8 h-8 rounded-lg bg-white/[0.02] border border-white/[0.04] flex items-center justify-center text-[10px] font-bold text-[var(--color-text-muted)] hover:text-white hover:bg-white/[0.06] hover:border-white/[0.1] transition-all"
             >LI</a>
+            <a href="https://buymeacoffee.com/jamescowx" target="_blank" rel="noopener noreferrer"
+              className="w-8 h-8 rounded-lg bg-[#FFDD00]/10 border border-[#FFDD00]/20 flex items-center justify-center text-[12px] text-[#FFDD00] hover:bg-[#FFDD00]/20 hover:border-[#FFDD00]/30 transition-all font-bold"
+              title="Buy Me a Coffee"
+            >☕</a>
             <div className="w-px h-5 bg-white/[0.06] mx-1" />
             <Link to="/contact">
               <motion.span
@@ -137,6 +142,10 @@ export default function Navbar() {
                   <a href="https://linkedin.com/in/jamescowx" target="_blank" rel="noopener noreferrer"
                     className="w-8 h-8 rounded-lg bg-white/[0.03] border border-white/[0.06] flex items-center justify-center text-[10px] font-bold text-[var(--color-text-muted)] hover:text-white transition-all"
                   >LI</a>
+                  <a href="https://buymeacoffee.com/jamescowx" target="_blank" rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-lg bg-[#FFDD00]/10 border border-[#FFDD00]/20 flex items-center justify-center text-[12px] text-[#FFDD00] hover:bg-[#FFDD00]/20 hover:border-[#FFDD00]/30 transition-all font-bold"
+                    title="Buy Me a Coffee"
+                  >☕</a>
                 </div>
                 <Link to="/contact" onClick={() => setMobileOpen(false)}
                   className="block w-full text-center px-4 py-2.5 rounded-xl text-sm font-semibold bg-[#4f8fde] text-white"

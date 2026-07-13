@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import FadeIn from '@/components/animations/FadeIn';
 import SlideUp from '@/components/animations/SlideUp';
@@ -25,7 +26,16 @@ const socialLinks = [
 const FORMSPREE = 'https://formspree.io/f/xaqryngo';
 
 export default function Contact() {
-  const [form, setForm] = useState<FormData>({ name: '', email: '', subject: '', message: '' });
+  const [searchParams] = useSearchParams();
+  const [form, setForm] = useState<FormData>(() => {
+    const pkg = searchParams.get('package');
+    return {
+      name: '',
+      email: '',
+      subject: pkg ? `Interested in the ${pkg} package` : '',
+      message: pkg ? `Hi James, I'm interested in the **${pkg}** package. Let's discuss!` : '',
+    };
+  });
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
