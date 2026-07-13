@@ -6,29 +6,6 @@ import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
 import { Link } from 'react-router-dom';
 
-const timeline = [
-  {
-    year: '2025', title: 'Senior Full-Stack Engineer', company: 'TechCorp Inc.',
-    description: 'Leading development of microservices architecture serving 10M+ users. Spearheading migration to Kubernetes and implementing CI/CD pipelines.',
-  },
-  {
-    year: '2023', title: 'Full-Stack Developer', company: 'StartupXYZ',
-    description: 'Built and launched two SaaS products from scratch. Implemented real-time features using WebSockets and developed REST APIs consumed by mobile apps.',
-  },
-  {
-    year: '2021', title: 'Frontend Developer', company: 'DigitalAgency Co.',
-    description: 'Created responsive web applications for Fortune 500 clients. Introduced component libraries and established frontend best practices across the team.',
-  },
-  {
-    year: '2019', title: 'Junior Developer', company: 'WebStudio',
-    description: 'Started professional career building WordPress sites and custom themes. Quickly progressed to React development and modern JavaScript tooling.',
-  },
-  {
-    year: '2017', title: 'Computer Science Degree', company: 'State University',
-    description: 'Graduated with honors. Focused on software engineering, data structures, and algorithms. Built first open-source project during final year.',
-  },
-];
-
 const skills = [
   { name: 'React / Next.js', level: 95 },
   { name: 'TypeScript', level: 92 },
@@ -105,40 +82,8 @@ export default function About() {
           </GlassPanel>
         </SlideUp>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-16">
-          <div className="lg:col-span-3">
-            <SlideUp>
-              <h2 className="text-xl font-bold mb-8">
-                <span className="flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-lg bg-[var(--color-accent-blue)]/10 flex items-center justify-center text-[10px]">◈</span>
-                  Experience
-                </span>
-              </h2>
-            </SlideUp>
-
-            <div className="space-y-0">
-              {timeline.map((item, index) => (
-                <SlideUp key={index} delay={index * 0.08}>
-                  <div className="flex gap-4">
-                    <div className="flex flex-col items-center">
-                      <div className={`w-3 h-3 rounded-full shrink-0 mt-1.5 ring-2 ${index === 0 ? 'bg-[var(--color-accent-blue)] ring-[var(--color-accent-blue)]/30' : 'bg-[var(--color-border-default)] ring-transparent'}`} />
-                      {index < timeline.length - 1 && (
-                        <div className="w-px flex-1 bg-gradient-to-b from-white/[0.06] to-transparent my-1.5" />
-                      )}
-                    </div>
-                    <div className="pb-8">
-                      <span className="text-[10px] font-mono text-[var(--color-accent-blue)] bg-[var(--color-accent-blue)]/5 px-2 py-0.5 rounded-md">{item.year}</span>
-                      <h3 className="text-base font-semibold mt-1.5">{item.title}</h3>
-                      <p className="text-sm text-[var(--color-accent-pink)] mb-1.5">{item.company}</p>
-                      <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">{item.description}</p>
-                    </div>
-                  </div>
-                </SlideUp>
-              ))}
-            </div>
-          </div>
-
-          <div className="lg:col-span-2">
+        <div className="mb-16">
+          <div>
             <SlideUp delay={0.1}>
               <h2 className="text-xl font-bold mb-8">
                 <span className="flex items-center gap-2">
