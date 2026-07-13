@@ -19,7 +19,7 @@ const contactInfo = [
 const socialLinks = [
   { label: 'GitHub', handle: '@jamescowx', color: '#60a5fa', href: 'https://github.com/JamesCowx' },
   { label: 'LinkedIn', handle: 'in/jamescowx', color: '#f472b6', href: 'https://linkedin.com/in/jamescowx' },
-  { label: 'Bluesky', handle: '@jamescowx', color: '#0085ff', href: 'https://bsky.app/profile/jamescowx' },
+  { label: 'Bluesky', handle: '@jamescowx', color: '#0085ff', href: 'https://bsky.app/profile/jamescowx.bsky.social' },
   { label: 'Discord', handle: 'jamescowx', color: '#a78bfa', href: '#' },
 ];
 
