@@ -2,57 +2,46 @@
 title: Lessons Learned from Plantsome Retail Inc
 date: 2026-07-13
 author: James Cowx
-excerpt: What I learned building and running an e-commerce startup in the plant space — the hard way.
+excerpt: What I learned working with Plantsome Retail Inc — a case study in unprofessionalism and how not to run a business.
 tags: Startups, E-Commerce, Lessons Learned
 category: Tech News
 ---
 
 ## The Beginning
 
-Plantsome started as a simple idea: make it easy to buy plants online. What followed was a crash course in e-commerce, operations, and the realities of running a small business.
+[Plantsome Retail Inc](https://plantsome.ca/) presented itself as a promising e-commerce company in the plant space. The reality of working with them was a masterclass in what professional standards should not look like.
 
-## What Went Wrong
+## The Unprofessionalism
 
-### 1. Underestimating Operations
+### 1. Communication Breakdown
 
-Selling physical goods is nothing like selling software. We underestimated shipping logistics, inventory management, and the sheer complexity of getting live plants to customers in good condition. Plants die in transit. They get delayed. Customers get upset.
+Promises were made and broken repeatedly. Emails went unanswered for weeks. Deadlines came and went with no updates. When you're running a business that sells to real customers, silence is not an acceptable strategy. It creates stress, erodes trust, and leaves partners in the dark.
 
-**Lesson:** Operations is the product when you're selling physical goods. Spend as much time on your supply chain as you do on your website.
+A simple "I don't know" or "I need more time" is infinitely more professional than ignoring messages entirely.
 
-### 2. Building Before Validating
+### 2. Lack of Accountability
 
-We spent months building custom features — a sizing tool, a care schedule system, personalized recommendations — before we knew what customers actually wanted. Most of those features went unused.
+Mistakes happen — that's normal. What's not normal is refusing to take ownership. Throughout our engagement, errors were deflected, blame was shifted, and commitments were conveniently forgotten. A professional owns their mistakes, apologizes, and fixes them.
 
-**Lesson:** Ship the simplest version that proves people will pay you. Build the bells and whistles after you have revenue.
+### 3. Disorganized Operations
 
-### 3. Hiring Too Fast, Too Early
+Basic business processes were chaotic. Orders were mishandled. Customer inquiries fell through the cracks. Internal communication was inconsistent at best. It became clear that the company lacked the operational discipline needed to deliver on its promises.
 
-Early hires define company culture. We hired for enthusiasm over experience and paid for it in rework, miscommunication, and turnover. A small team needs people who can execute independently, not people who need to be managed.
+### 4. Poor Treatment of Partners
 
-**Lesson:** Hire slow, fire fast. One bad hire in a 5-person team is 20% of your company.
+Vendors, contractors, and collaborators were treated as disposable. Agreements were not honored. Payment terms were stretched or ignored. The attitude seemed to be that partners were lucky to be involved, rather than valued contributors who needed to be respected.
 
-### 4. Ignoring Unit Economics
+## The Website
 
-We chased top-line revenue without understanding our true costs. Marketing spend, payment processing, packaging, returns, and refunds added up fast. We were unprofitable on most orders and didn't realize it until we ran the numbers.
+Visit [plantsome.ca](https://plantsome.ca/) yourself. A company's website often reflects its internal standards — and the gaps in professionalism behind the scenes show up in the customer-facing experience too.
 
-**Lesson:** Know your unit economics before you scale. Growth without profitability is just burning money.
+## Lessons for Anyone Building a Business
 
-### 5. Poor Communication with Customers
-
-When things went wrong — and they did — our customer support was reactive instead of proactive. We'd wait for complaints instead of sending updates. Trust eroded quickly.
-
-**Lesson:** Over-communicate. Customers forgive mistakes if you're transparent and responsive.
-
-## What I'd Do Differently
-
-- Start with a pop-up or farmers market stall to validate demand before building a website
-- Use off-the-shelf e-commerce tools instead of building custom
-- Hire a operations person before a second developer
-- Focus on a single city before expanding nationally
-- Set up proper dashboards for unit economics from day one
+- **Respond to people.** Even bad news is better than no news.
+- **Take responsibility.** Your mistakes define your character more than your successes.
+- **Respect your partners.** They're not lucky to work with you — you're lucky to have them.
+- **Get your operations right.** A pretty website means nothing if you can't deliver.
 
 ## Final Thoughts
 
-Building Plantsome was expensive, stressful, and ultimately not sustainable — but it taught me more about business than any job ever could. If you're thinking about starting an e-commerce company, do it. Just don't make the same mistakes I did.
-
-The biggest takeaway? **Talk to your customers before you write a line of code.**
+Plantsome Retail Inc is a cautionary tale. If you're building a company, do the opposite of what I experienced. Be responsive. Be accountable. Be professional. It's not complicated — it just requires caring enough to do it right.
