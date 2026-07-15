@@ -33,7 +33,11 @@ Vendors, contractors, and collaborators were treated as disposable. Agreements w
 
 ## The Website
 
-Visit [plantsome.ca](https://plantsome.ca/) yourself. A company's website often reflects its internal standards — and the gaps in professionalism behind the scenes show up in the customer-facing experience too.
+Take a look at [plantsome.ca](https://plantsome.ca/) yourself — it's a perfect reflection of the company behind it. The site is clunky, slow to load, and filled with broken elements. Navigation is confusing, product pages feel unfinished, and the overall user experience is far below what customers expect from a modern e-commerce store.
+
+From a technical standpoint, the performance is poor — slow page loads, unoptimized images, and what feels like minimal attention to frontend best practices. It gives the impression that the site was rushed out the door and never properly maintained. In e-commerce, every second of load time costs you sales, and every broken link erodes trust.
+
+A company's website is often the first impression a customer gets. When that impression is sluggish and broken, it sets the tone for the entire relationship. In this case, the site matches the backend operations perfectly — unpolished, unreliable, and underwhelming.
 
 ## Lessons for Anyone Building a Business
 
