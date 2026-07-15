@@ -1,6 +1,6 @@
 ---
 title: Lessons Learned from Plantsome Retail Inc
-date: 2026-07-13
+date: 2026-07-15
 author: James Cowx
 excerpt: What I learned working with Plantsome Retail Inc — a case study in unprofessionalism and how not to run a business.
 tags: Startups, E-Commerce, Lessons Learned
@@ -9,7 +9,7 @@ category: Tech News
 
 ## The Beginning
 
-[Plantsome Retail Inc](https://plantsome.ca/) presented itself as a promising e-commerce company in the plant space. The reality of working with them was a masterclass in what professional standards should not look like.
+[Plantsome Retail Inc](https://www.plantsome.ca/) presented itself as a promising e-commerce company in the plant space. The reality of working with them was a masterclass in what professional standards should not look like.
 
 ## The Unprofessionalism
 
@@ -33,7 +33,7 @@ Vendors, contractors, and collaborators were treated as disposable. Agreements w
 
 ## The Website
 
-Take a look at [plantsome.ca](https://plantsome.ca/) yourself — it's a perfect reflection of the company behind it. The site is clunky, slow to load, and filled with broken elements. Navigation is confusing, product pages feel unfinished, and the overall user experience is far below what customers expect from a modern e-commerce store.
+Take a look at [www.plantsome.ca](https://www.plantsome.ca/) yourself — it's a perfect reflection of the company behind it. The site is clunky, slow to load, and filled with broken elements. Navigation is confusing, product pages feel unfinished, and the overall user experience is far below what customers expect from a modern e-commerce store.
 
 From a technical standpoint, the performance is poor — slow page loads, unoptimized images, and what feels like minimal attention to frontend best practices. It gives the impression that the site was rushed out the door and never properly maintained. In e-commerce, every second of load time costs you sales, and every broken link erodes trust.
 
