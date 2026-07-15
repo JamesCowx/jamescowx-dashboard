@@ -1,5 +1,5 @@
 ---
-title: Lessons Learned Building Plantsome Retail Inc
+title: Lessons Learned from Plantsome Retail Inc
 date: 2026-07-13
 author: James Cowx
 excerpt: What I learned building and running an e-commerce startup in the plant space — the hard way.
