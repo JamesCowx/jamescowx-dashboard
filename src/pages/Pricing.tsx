@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import FadeIn from '@/components/animations/FadeIn';
 import SlideUp from '@/components/animations/SlideUp';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import Button from '@/components/ui/Button';
@@ -18,7 +17,7 @@ const tiers = [
   {
     name: 'Starter',
     price: 999,
-    monthly: 29,
+    monthly: 79,
     description: 'A single-page landing page to establish your online presence.',
     features: ['Responsive design', 'Contact form', '1 revision round', 'Hosting setup & config', 'Basic SEO'],
     cta: 'Choose Starter',
@@ -27,7 +26,7 @@ const tiers = [
   {
     name: 'Standard',
     price: 2499,
-    monthly: 49,
+    monthly: 149,
     description: 'A multi-page business website with a CMS so you can manage content yourself.',
     features: ['Everything in Starter', 'CMS (Sanity or WordPress)', 'Up to 5 pages', 'Blog setup', '2 revision rounds'],
     cta: 'Choose Standard',
@@ -36,7 +35,7 @@ const tiers = [
   {
     name: 'Pro',
     price: 5999,
-    monthly: 99,
+    monthly: 299,
     description: 'A full e-commerce or booking platform with payments and an admin dashboard.',
     features: ['Everything in Standard', 'E-commerce or booking', 'Payment gateway integration', 'Admin dashboard', '3 revision rounds + priority'],
     cta: 'Choose Pro',
@@ -277,35 +276,33 @@ export default function Pricing() {
       <main className="py-24 px-4 relative" id="main-content">
         <FloatingOrbs />
         <div className="max-w-6xl mx-auto relative z-10">
-          <FadeIn>
-            <div className="text-center mb-16">
-              <motion.span
-                initial={{ opacity: 0, y: -8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="text-xs text-[var(--color-accent-blue)] font-semibold uppercase tracking-[0.15em]"
-              >
-                Pricing
-              </motion.span>
-              <motion.h1
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="text-3xl sm:text-5xl font-bold mt-4 mb-4 text-white"
-              >
-                Websites for <span className="gradient-text-mixed">every stage</span>
-              </motion.h1>
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.35 }}
-                className="text-[var(--color-text-muted)] max-w-xl mx-auto leading-relaxed"
-              >
-                Fixed-price project fees starting at $999 CAD. Each package includes responsive&nbsp;design,
-                hosting&nbsp;setup, and&nbsp;SEO — no hidden costs.
-              </motion.p>
-            </div>
-          </FadeIn>
+          <div className="text-center mb-16">
+            <motion.span
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-xs text-[var(--color-accent-blue)] font-semibold uppercase tracking-[0.15em]"
+            >
+              Pricing
+            </motion.span>
+            <motion.h1
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.4 }}
+              className="text-3xl sm:text-5xl font-bold mt-4 mb-4 text-white"
+            >
+              Websites for <span className="gradient-text-mixed">every stage</span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.35, duration: 0.4 }}
+              className="text-[var(--color-text-muted)] max-w-xl mx-auto leading-relaxed"
+            >
+              Fixed-price project fees starting at $999 CAD. Each package includes responsive&nbsp;design,
+              hosting&nbsp;setup, and&nbsp;SEO — no hidden costs.
+            </motion.p>
+          </div>
 
           <motion.nav
             initial={{ opacity: 0, y: 12 }}
