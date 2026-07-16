@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import FadeIn from '@/components/animations/FadeIn';
 import SlideUp from '@/components/animations/SlideUp';
-import GlassPanel from '@/components/ui/GlassPanel';
 import Button from '@/components/ui/Button';
 
 type Currency = 'CAD' | 'USD' | 'EUR';
@@ -15,66 +14,65 @@ const tiers = [
   {
     name: 'Starter',
     price: 999,
+    monthly: 29,
     description: 'A single-page landing page to establish your online presence.',
-    features: ['Responsive design', 'Contact form', '1 revision', 'Hosting setup', 'SEO basics'],
+    features: ['Responsive design', 'Contact form', '1 revision round', 'Hosting setup & config', 'Basic SEO'],
     cta: 'Choose Starter',
     popular: false,
   },
   {
     name: 'Standard',
     price: 2499,
+    monthly: 49,
     description: 'A multi-page business website with a CMS so you can manage content yourself.',
-    features: ['Everything in Starter', 'CMS (Sanity/WordPress)', 'Up to 5 pages', 'Blog setup', '2 revisions'],
+    features: ['Everything in Starter', 'CMS (Sanity or WordPress)', 'Up to 5 pages', 'Blog setup', '2 revision rounds'],
     cta: 'Choose Standard',
     popular: true,
   },
   {
     name: 'Pro',
     price: 5999,
-    description: 'A full-featured e-commerce or booking platform with payments and an admin dashboard.',
-    features: ['Everything in Standard', 'E-commerce / booking', 'Payment integration', 'Admin dashboard', '3 revisions + priority support'],
+    monthly: 99,
+    description: 'A full e-commerce or booking platform with payments and an admin dashboard.',
+    features: ['Everything in Standard', 'E-commerce or booking', 'Payment gateway integration', 'Admin dashboard', '3 revision rounds + priority'],
     cta: 'Choose Pro',
     popular: false,
   },
 ];
 
-const currencyOptions = ['CAD', 'USD', 'EUR'] as Currency[];
+const allFeatures = [
+  { name: 'Responsive design', starter: true, standard: true, pro: true },
+  { name: 'Contact form', starter: true, standard: true, pro: true },
+  { name: 'Basic SEO setup', starter: true, standard: true, pro: true },
+  { name: 'Hosting configuration', starter: true, standard: true, pro: true },
+  { name: 'Revision rounds', starter: '1', standard: '2', pro: '3 + priority' },
+  { name: 'Content management (CMS)', starter: false, standard: true, pro: true },
+  { name: 'Number of pages', starter: '1', standard: '5', pro: 'Unlimited' },
+  { name: 'Blog setup', starter: false, standard: true, pro: true },
+  { name: 'E-commerce or booking', starter: false, standard: false, pro: true },
+  { name: 'Payment integration', starter: false, standard: false, pro: true },
+  { name: 'Admin dashboard', starter: false, standard: false, pro: true },
+  { name: 'Priority support', starter: false, standard: false, pro: true },
+];
 
 const faqs = [
-  { q: 'How long does it take?', a: 'Most projects deliver in 2–4 weeks depending on scope. You\'ll get a timeline before we start.' },
-  { q: 'Do you offer hosting?', a: 'Yes. Every package includes hosting setup and configuration. Ongoing hosting is $15/month.' },
-  { q: 'What if I need changes after launch?', a: 'Each package includes revisions during development. Post-launch support and maintenance are available separately.' },
-  { q: 'Can I upgrade later?', a: 'Absolutely. You can start with Starter and upgrade to Standard or Pro as your needs grow.' },
+  { q: 'How long does a project take?', a: 'Most projects deliver in 2–4 weeks. You\'ll receive a clear timeline before we begin.' },
+  { q: 'Is hosting included?', a: 'Every package includes hosting setup and configuration. Ongoing hosting & maintenance is $15–30/month depending on the plan.' },
+  { q: 'What if I need changes after launch?', a: 'Each package includes revision rounds during development. Post-launch support and content updates are available through a maintenance retainer.' },
+  { q: 'Can I upgrade plans later?', a: 'Yes — you can start with Starter and upgrade to Standard or Pro as your needs grow. We\'ll only charge the difference.' },
+  { q: 'Do you work with clients outside Canada?', a: 'Absolutely. We\'ve worked with clients across North America and Europe. Everything is handled remotely.' },
 ];
 
 const steps = [
-  { step: '01', title: 'Discovery Call', desc: 'We discuss your goals, timeline, and requirements.' },
-  { step: '02', title: 'Proposal & Contract', desc: 'I outline the scope, deliverables, and pricing. You approve and we begin.' },
-  { step: '03', title: 'Design & Development', desc: 'I build your site with regular updates and feedback loops.' },
-  { step: '04', title: 'Launch & Handoff', desc: 'We deploy, test, and hand over everything you need to manage your site.' },
+  { step: '01', title: 'Discovery', desc: 'A 30-minute call to discuss your goals, audience, and timeline.' },
+  { step: '02', title: 'Proposal', desc: 'A detailed scope document with deliverables, milestones, and pricing.' },
+  { step: '03', title: 'Development', desc: 'I build your site with regular check-ins and revision rounds.' },
+  { step: '04', title: 'Launch', desc: 'Deployment, final testing, and a full handoff with documentation.' },
 ];
-
-function AnimatedPrice({ value, symbol }: { value: number; symbol: string }) {
-  return (
-    <div className="relative h-11 overflow-hidden">
-      <AnimatePresence mode="popLayout">
-        <motion.span
-          key={value}
-          initial={{ y: 16, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -16, opacity: 0 }}
-          transition={{ type: 'spring', stiffness: 250, damping: 22 }}
-          className="text-4xl font-bold text-white absolute left-0 whitespace-nowrap tabular-nums"
-        >
-          {symbol}{value.toLocaleString()}
-        </motion.span>
-      </AnimatePresence>
-    </div>
-  );
-}
 
 export default function Pricing() {
   const [currency, setCurrency] = useState<Currency>('CAD');
+  const [annual, setAnnual] = useState(false);
 
   function convert(price: number) {
     return Math.round(price * rates[currency]);
@@ -85,70 +83,89 @@ export default function Pricing() {
       <div className="max-w-6xl mx-auto">
         <FadeIn>
           <div className="text-center mb-16">
-            <span className="text-[11px] text-[var(--color-accent-blue)] font-semibold uppercase tracking-[0.2em]">
-              Websites & Web Apps
+            <span className="text-xs text-[var(--color-accent-blue)] font-semibold uppercase tracking-[0.15em]">
+              Pricing
             </span>
-            <h1 className="text-3xl sm:text-5xl font-bold mt-3 mb-4">
-              Custom websites built for <span className="gradient-text-mixed">your business</span>
+            <h1 className="text-3xl sm:text-5xl font-bold mt-4 mb-4 text-white">
+              Websites for <span className="gradient-text-mixed">every stage</span>
             </h1>
-            <p className="text-[var(--color-text-muted)] max-w-2xl mx-auto text-lg leading-relaxed">
-              Every project includes responsive design, hosting setup, SEO basics, and a dedicated revision process.
+            <p className="text-[var(--color-text-muted)] max-w-xl mx-auto leading-relaxed">
+              Fixed-price project fees with no hidden costs. Each package includes responsive&nbsp;design,
+              hosting&nbsp;setup, and&nbsp;SEO.
             </p>
           </div>
         </FadeIn>
 
-        <div className="flex items-center justify-center mb-14">
-          <div className="inline-flex items-center gap-1 p-0.5 rounded-xl bg-white/[0.03] border border-white/[0.06]">
-            {currencyOptions.map((c) => (
-              <motion.button
+        <div className="flex flex-wrap items-center justify-center gap-4 mb-14">
+          <div className="inline-flex items-center gap-1 p-0.5 rounded-lg bg-white/[0.04] border border-white/[0.06]">
+            {(['CAD', 'USD', 'EUR'] as Currency[]).map((c) => (
+              <button
                 key={c}
                 onClick={() => setCurrency(c)}
-                className={`relative px-4 py-2 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
-                  currency === c ? 'text-white' : 'text-[var(--color-text-muted)] hover:text-white'
+                className={`relative px-3.5 py-1.5 rounded-md text-xs font-medium transition-colors cursor-pointer ${
+                  currency === c
+                    ? 'bg-white/[0.08] text-white'
+                    : 'text-[var(--color-text-muted)] hover:text-white'
                 }`}
               >
-                {currency === c && (
-                  <motion.div
-                    layoutId="currency-pill"
-                    className="absolute inset-0 rounded-lg bg-white/[0.07]"
-                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                  />
-                )}
-                <span className="relative z-10">{c}</span>
-              </motion.button>
+                {c}
+              </button>
             ))}
+          </div>
+          <div className="flex items-center gap-2 text-xs text-[var(--color-text-muted)]">
+            <span className={annual ? 'text-[var(--color-text-muted)]' : 'text-white font-medium'}>One-time</span>
+            <button
+              onClick={() => setAnnual(!annual)}
+              className={`relative inline-flex h-5 w-9 shrink-0 rounded-full border border-white/[0.08] transition-colors cursor-pointer ${
+                annual ? 'bg-white/[0.1]' : 'bg-white/[0.04]'
+              }`}
+            >
+              <span
+                className={`inline-block h-3.5 w-3.5 rounded-full bg-white/50 shadow-sm transform transition-transform mt-[1.5px] ml-[2px] ${
+                  annual ? 'translate-x-[15px]' : 'translate-x-0'
+                }`}
+              />
+            </button>
+            <span className={annual ? 'text-white font-medium' : 'text-[var(--color-text-muted)]'}>Monthly</span>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-24">
           {tiers.map((tier, i) => (
             <SlideUp key={tier.name} delay={i * 0.08}>
-              <motion.div
-                whileHover={{ y: -4 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-                className="relative group h-full"
-              >
-                <GlassPanel className={`relative flex flex-col h-full p-7 ${
-                  tier.popular ? 'ring-1 ring-[var(--color-accent-blue)]/40 overflow-visible' : ''
-                }`}>
+              <div className="relative group h-full">
+                <div className={`relative flex flex-col h-full rounded-2xl border bg-white/[0.02] ${
+                  tier.popular
+                    ? 'border-[var(--color-accent-blue)]/30 shadow-[0_0_30px_-8px_rgba(96,165,250,0.15)]'
+                    : 'border-white/[0.06] hover:border-white/[0.12]'
+                } transition-colors p-7`}>
                   {tier.popular && (
-                    <span className="absolute -top-[9px] left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-[var(--color-accent-blue)] text-white text-[9px] font-semibold uppercase tracking-[0.12em] z-10">
-                      Most Popular
+                    <div className="absolute -top-px left-6 right-6 h-px bg-gradient-to-r from-transparent via-[var(--color-accent-blue)]/60 to-transparent" />
+                  )}
+                  {tier.popular && (
+                    <span className="absolute -top-3 left-7 px-2.5 py-0.5 rounded-md bg-[var(--color-accent-blue)] text-white text-[10px] font-semibold">
+                      Most popular
                     </span>
                   )}
                   <div className="flex-1">
-                    <div className="mb-5">
+                    <div className="mb-6">
                       <h3 className="text-base font-semibold text-white mb-1">{tier.name}</h3>
                       <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">{tier.description}</p>
                     </div>
-                    <div className="mb-7">
-                      <div className="flex items-baseline gap-1.5">
-                        <AnimatedPrice value={convert(tier.price)} symbol={symbols[currency]} />
-                        <span className="text-sm text-[var(--color-text-muted)]">CAD</span>
+                    <div className="mb-8">
+                      <div className="flex items-baseline gap-1">
+                        <span className="text-4xl font-bold text-white tabular-nums">
+                          {symbols[currency]}{convert(annual ? tier.monthly : tier.price).toLocaleString()}
+                        </span>
+                        <span className="text-sm text-[var(--color-text-muted)]">
+                          {annual ? '/mo' : ` ${currency}`}
+                        </span>
                       </div>
-                      <p className="text-[11px] text-[var(--color-text-muted)] mt-1">One-time project fee</p>
+                      <p className="text-xs text-[var(--color-text-muted)] mt-1">
+                        {annual ? 'Monthly retainer — cancel anytime' : 'One-time project fee'}
+                      </p>
                     </div>
-                    <div className="space-y-2.5 mb-8">
+                    <div className="space-y-3 mb-8">
                       <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-[var(--color-text-muted)]">
                         What's included
                       </p>
@@ -168,32 +185,78 @@ export default function Pricing() {
                       className="w-full text-sm"
                     >
                       {tier.cta}
-                      <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                      </svg>
                     </Button>
                   </Link>
-                </GlassPanel>
-              </motion.div>
+                </div>
+              </div>
             </SlideUp>
           ))}
         </div>
 
         <FadeIn>
-          <div className="mb-20">
+          <div className="mb-24">
             <div className="text-center mb-12">
-              <span className="text-[11px] text-[var(--color-accent-pink)] font-semibold uppercase tracking-[0.2em]">How It Works</span>
-              <h2 className="text-2xl sm:text-3xl font-bold mt-3 mb-3">The process</h2>
-              <p className="text-[var(--color-text-muted)] max-w-md mx-auto">
-                From idea to launch in four straightforward steps.
-              </p>
+              <span className="text-xs text-[var(--color-accent-pink)] font-semibold uppercase tracking-[0.15em]">
+                Compare
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-bold mt-3 text-white">
+                Feature comparison
+              </h2>
+            </div>
+            <div className="rounded-2xl border border-white/[0.06] overflow-hidden">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-white/[0.06]">
+                    <th className="text-left py-4 px-5 text-[var(--color-text-muted)] font-medium">Feature</th>
+                    <th className="text-center py-4 px-5 text-[var(--color-text-primary)] font-medium">Starter</th>
+                    <th className="text-center py-4 px-5 text-[var(--color-accent-blue)] font-medium bg-white/[0.02]">Standard</th>
+                    <th className="text-center py-4 px-5 text-[var(--color-text-primary)] font-medium">Pro</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {allFeatures.map((f, i) => (
+                    <tr key={f.name} className={`border-b border-white/[0.04] ${i % 2 === 0 ? 'bg-white/[0.01]' : ''}`}>
+                      <td className="py-3.5 px-5 text-[var(--color-text-secondary)]">{f.name}</td>
+                      {(['starter', 'standard', 'pro'] as const).map((tier) => {
+                        const val = f[tier];
+                        return (
+                          <td key={tier} className={`text-center py-3.5 px-5 ${tier === 'standard' ? 'bg-white/[0.02]' : ''}`}>
+                            {val === true ? (
+                              <svg className="w-4 h-4 mx-auto text-green-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                                <polyline points="20 6 9 17 4 12" />
+                              </svg>
+                            ) : val === false ? (
+                              <span className="text-[var(--color-text-muted)]">&mdash;</span>
+                            ) : (
+                              <span className="text-[var(--color-text-secondary)]">{val}</span>
+                            )}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </FadeIn>
+
+        <FadeIn>
+          <div className="mb-24">
+            <div className="text-center mb-12">
+              <span className="text-xs text-[var(--color-accent-blue)] font-semibold uppercase tracking-[0.15em]">
+                Process
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-bold mt-3 text-white">
+                How it works
+              </h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {steps.map((s, i) => (
                 <SlideUp key={s.step} delay={i * 0.08}>
-                  <div className="liquid-glass rounded-2xl p-6 border border-white/[0.04] h-full">
-                    <span className="text-[10px] font-mono text-[var(--color-accent-blue)] font-semibold">{s.step}</span>
-                    <h3 className="text-sm font-semibold text-white mt-2 mb-1.5">{s.title}</h3>
+                  <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 h-full transition-colors hover:border-white/[0.12]">
+                    <span className="text-[10px] font-mono text-[var(--color-accent-blue)] font-semibold tracking-wide">{s.step}</span>
+                    <h3 className="text-sm font-semibold text-white mt-3 mb-1.5">{s.title}</h3>
                     <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">{s.desc}</p>
                   </div>
                 </SlideUp>
@@ -203,37 +266,43 @@ export default function Pricing() {
         </FadeIn>
 
         <FadeIn>
-          <div className="mb-20">
+          <div className="mb-24 max-w-3xl mx-auto">
             <div className="text-center mb-12">
-              <span className="text-[11px] text-[var(--color-accent-blue)] font-semibold uppercase tracking-[0.2em]">Questions</span>
-              <h2 className="text-2xl sm:text-3xl font-bold mt-3 mb-3">Frequently asked</h2>
+              <span className="text-xs text-[var(--color-accent-pink)] font-semibold uppercase tracking-[0.15em]">
+                FAQ
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-bold mt-3 text-white">
+                Frequently asked questions
+              </h2>
             </div>
-            <div className="max-w-3xl mx-auto space-y-3">
+            <div className="space-y-2">
               {faqs.map((faq) => (
-                <div key={faq.q} className="liquid-glass rounded-2xl p-5 border border-white/[0.04]">
-                  <h3 className="text-sm font-semibold text-white mb-1.5">{faq.q}</h3>
-                  <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">{faq.a}</p>
-                </div>
+                <details key={faq.q} className="group rounded-xl border border-white/[0.06] bg-white/[0.01] open:bg-white/[0.02] transition-colors">
+                  <summary className="flex items-center justify-between px-5 py-4 cursor-pointer text-sm font-medium text-white list-none">
+                    {faq.q}
+                    <svg className="w-4 h-4 text-[var(--color-text-muted)] transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </summary>
+                  <div className="px-5 pb-4 text-sm text-[var(--color-text-muted)] leading-relaxed">
+                    {faq.a}
+                  </div>
+                </details>
               ))}
             </div>
           </div>
         </FadeIn>
 
         <FadeIn>
-          <div className="liquid-glass-elevated rounded-3xl p-12 text-center relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-48 h-48 bg-[#60a5fa]/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#f472b6]/10 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+          <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-12 text-center relative overflow-hidden">
             <div className="relative z-10">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-3">Not sure which package fits?</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-3 text-white">Not sure which plan fits?</h2>
               <p className="text-[var(--color-text-muted)] mb-6 max-w-lg mx-auto leading-relaxed">
-                Tell me about your project and I'll recommend the right approach — no obligation, no pressure.
+                Tell me about your project and I'll recommend the right approach — no commitment needed.
               </p>
               <Link to="/contact">
                 <Button accent="blue" size="lg">
-                  Get a Recommendation
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
+                  Get a recommendation
                 </Button>
               </Link>
             </div>
