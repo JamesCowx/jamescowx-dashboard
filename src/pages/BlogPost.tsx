@@ -1,4 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { getPostBySlug, getAllPosts } from '@/lib/blog';
@@ -15,17 +16,32 @@ export default function BlogPost() {
 
   if (!post) {
     return (
-      <div className="min-h-[60vh] flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold mb-4">Post Not Found</h1>
-          <Link to="/blog" className="text-[var(--color-accent-pink)] hover:underline">Back to blog</Link>
+      <>
+        <Helmet>
+          <title>Post Not Found — James Cowx</title>
+        </Helmet>
+        <div className="min-h-[60vh] flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold mb-4">Post Not Found</h1>
+            <Link to="/blog" className="text-[var(--color-accent-pink)] hover:underline">Back to blog</Link>
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 
   return (
-    <div className="py-20 px-4">
+    <>
+      <Helmet>
+        <title>{post.title} — James Cowx</title>
+        <meta name="description" content={post.excerpt} />
+        <link rel="canonical" href={`https://jamescowx.com/blog/${post.slug}`} />
+        <meta property="og:title" content={`${post.title} — James Cowx`} />
+        <meta property="og:description" content={post.excerpt} />
+        <meta property="og:url" content={`https://jamescowx.com/blog/${post.slug}`} />
+        <meta name="author" content="James Cowx" />
+      </Helmet>
+      <div className="py-20 px-4">
       <div className="max-w-3xl mx-auto">
         <FadeIn>
           <Link
@@ -113,5 +129,6 @@ export default function BlogPost() {
         )}
       </div>
     </div>
+    </>
   );
 }

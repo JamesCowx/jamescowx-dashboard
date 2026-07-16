@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { projects, categories } from '@/data/projects';
 import SlideUp from '@/components/animations/SlideUp';
 import { StaggerContainer, StaggerItem } from '@/components/animations/ScrollReveal';
@@ -51,7 +52,16 @@ export default function Projects() {
   }, [activeCategory, activeDemo, search]);
 
   return (
-    <div className="py-20 px-4">
+    <>
+      <Helmet>
+        <title>Projects & Portfolio — James Cowx | Web Developer Canada</title>
+        <meta name="description" content="Explore 30 interactive project demos by James Cowx. Full-stack web applications, AI tools, developer tools, and more built with React, TypeScript, Node.js, and cloud technologies." />
+        <link rel="canonical" href="https://jamescowx.com/projects" />
+        <meta property="og:title" content="Projects & Portfolio — James Cowx" />
+        <meta property="og:description" content="30 interactive project demos showcasing full-stack development, AI, DevOps, and more." />
+        <meta property="og:url" content="https://jamescowx.com/projects" />
+      </Helmet>
+      <div className="py-20 px-4">
       <div className="max-w-7xl mx-auto">
         <SlideUp>
           <div className="text-center mb-12">
@@ -201,5 +211,6 @@ export default function Projects() {
         </AnimatePresence>
       </div>
     </div>
+    </>
   );
 }

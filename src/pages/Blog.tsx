@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { getAllPosts } from '@/lib/blog';
 import SlideUp from '@/components/animations/SlideUp';
 import { StaggerContainer, StaggerItem } from '@/components/animations/ScrollReveal';
@@ -22,7 +23,16 @@ export default function Blog() {
   }, [activeCategory, search]);
 
   return (
-    <div className="py-20 px-4">
+    <>
+      <Helmet>
+        <title>Blog — James Cowx | Tech Insights & Web Development Tutorials</title>
+        <meta name="description" content="Read tech articles, tutorials, and insights by James Cowx. Topics include web development, DevOps, IT tips, and open source software." />
+        <link rel="canonical" href="https://jamescowx.com/blog" />
+        <meta property="og:title" content="Blog — James Cowx | Tech Insights & Tutorials" />
+        <meta property="og:description" content="Tech articles and tutorials by James Cowx on web development, DevOps, and open source." />
+        <meta property="og:url" content="https://jamescowx.com/blog" />
+      </Helmet>
+      <div className="py-20 px-4">
       <div className="max-w-5xl mx-auto">
         <SlideUp>
           <div className="text-center mb-12">
@@ -120,5 +130,6 @@ export default function Blog() {
         )}
       </div>
     </div>
+    </>
   );
 }

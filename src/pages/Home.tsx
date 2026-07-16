@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { useTypewriter } from '@/hooks/useTypewriter';
 import { useCountUp } from '@/hooks/useCountUp';
 import { useGithubStats } from '@/hooks/useGithubStats';
@@ -10,6 +11,36 @@ import { StaggerContainer, StaggerItem } from '@/components/animations/ScrollRev
 import Card from '@/components/ui/Card';
 import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
+
+const SITE_URL = 'https://jamescowx.com';
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${SITE_URL}/#person`,
+      name: 'James Cowx',
+      url: SITE_URL,
+      sameAs: [
+        'https://github.com/JamesCowx',
+        'https://linkedin.com/in/jamescowx',
+        'https://bsky.app/profile/jamescowx.bsky.social',
+        'https://jamescowx.github.io/',
+      ],
+      jobTitle: 'Full-Stack Developer',
+      description: 'Full-stack web developer and open source enthusiast based in Canada. Specializing in React, TypeScript, Node.js, and cloud infrastructure.',
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: 'James Cowx — Full-Stack Developer',
+      description: 'Portfolio and blog of James Cowx, a full-stack developer and open source enthusiast based in Canada.',
+      publisher: { '@id': `${SITE_URL}/#person` },
+    },
+  ],
+};
 
 const techStack = [
   { name: 'React', icon: '⚛' }, { name: 'TypeScript', icon: 'TS' }, { name: 'Next.js', icon: 'N' },
@@ -37,7 +68,22 @@ export default function Home() {
   const latestPosts = getAllPosts().slice(0, 2);
 
   return (
-    <div>
+    <>
+      <Helmet>
+        <title>James Cowx — Full-Stack Developer & Open Source Enthusiast</title>
+        <meta name="description" content="Portfolio of James Cowx, a full-stack web developer and open source enthusiast based in Canada. Specializing in React, TypeScript, Node.js, and cloud-native applications." />
+        <meta name="keywords" content="James Cowx, jamescowx, full-stack developer, web developer Canada, React developer, TypeScript, open source" />
+        <link rel="canonical" href={SITE_URL} />
+        <meta property="og:title" content="James Cowx — Full-Stack Developer & Open Source Enthusiast" />
+        <meta property="og:description" content="Full-stack web developer and open source enthusiast based in Canada. Building exceptional digital experiences." />
+        <meta property="og:url" content={SITE_URL} />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="James Cowx — Full-Stack Developer" />
+        <meta name="twitter:description" content="Full-stack web developer and open source enthusiast based in Canada." />
+        <script type="application/ld+json">{JSON.stringify(personSchema)}</script>
+      </Helmet>
+      <div>
       <section className="relative min-h-screen flex items-center px-4">
         <div className="max-w-6xl mx-auto w-full relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
@@ -319,5 +365,6 @@ export default function Home() {
         </div>
       </section>
     </div>
+    </>
   );
 }

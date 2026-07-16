@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import FadeIn from '@/components/animations/FadeIn';
 import SlideUp from '@/components/animations/SlideUp';
 import GlassPanel from '@/components/ui/GlassPanel';
@@ -76,7 +77,16 @@ export default function Contact() {
   }
 
   return (
-    <div className="py-20 px-4">
+    <>
+      <Helmet>
+        <title>Contact James Cowx — Web Developer Canada</title>
+        <meta name="description" content="Get in touch with James Cowx. Have a project idea or collaboration opportunity? Send a message and I'll respond within 24 hours." />
+        <link rel="canonical" href="https://jamescowx.com/contact" />
+        <meta property="og:title" content="Contact James Cowx — Web Developer Canada" />
+        <meta property="og:description" content="Get in touch with James Cowx for web development projects, collaborations, or just to say hi." />
+        <meta property="og:url" content="https://jamescowx.com/contact" />
+      </Helmet>
+      <div className="py-20 px-4">
       <div className="max-w-5xl mx-auto">
         <FadeIn>
           <div className="text-center mb-12">
@@ -222,5 +232,6 @@ export default function Contact() {
         </div>
       </div>
     </div>
+    </>
   );
 }

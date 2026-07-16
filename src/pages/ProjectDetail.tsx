@@ -1,4 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { projects } from '@/data/projects';
 import { DemoComponent } from '@/components/demos';
 import FadeIn from '@/components/animations/FadeIn';
@@ -13,14 +14,19 @@ export default function ProjectDetail() {
 
   if (!project) {
     return (
-      <div className="min-h-[60vh] flex items-center justify-center">
-        <div className="text-center">
-          <span className="text-5xl block mb-4 opacity-30">◈</span>
-          <h1 className="text-4xl font-bold mb-4">Project Not Found</h1>
-          <p className="text-[var(--color-text-muted)] mb-6">The project you're looking for doesn't exist.</p>
-          <Link to="/projects" className="text-[var(--color-accent-blue)] hover:underline">← Back to projects</Link>
+      <>
+        <Helmet>
+          <title>Project Not Found — James Cowx</title>
+        </Helmet>
+        <div className="min-h-[60vh] flex items-center justify-center">
+          <div className="text-center">
+            <span className="text-5xl block mb-4 opacity-30">◈</span>
+            <h1 className="text-4xl font-bold mb-4">Project Not Found</h1>
+            <p className="text-[var(--color-text-muted)] mb-6">The project you're looking for doesn't exist.</p>
+            <Link to="/projects" className="text-[var(--color-accent-blue)] hover:underline">← Back to projects</Link>
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 
@@ -28,7 +34,16 @@ export default function ProjectDetail() {
   const next = projects.find((p) => p.id === project.id + 1);
 
   return (
-    <div className="py-20 px-4">
+    <>
+      <Helmet>
+        <title>{project.title} — James Cowx | Project Demo</title>
+        <meta name="description" content={`Interactive demo of ${project.title} by James Cowx. ${project.description}`} />
+        <link rel="canonical" href={`https://jamescowx.com/projects/${project.id}`} />
+        <meta property="og:title" content={`${project.title} — James Cowx`} />
+        <meta property="og:description" content={project.description} />
+        <meta property="og:url" content={`https://jamescowx.com/projects/${project.id}`} />
+      </Helmet>
+      <div className="py-20 px-4">
       <div className="max-w-5xl mx-auto">
         <FadeIn>
           <Link
@@ -136,5 +151,6 @@ export default function ProjectDetail() {
         ) : null}
       </div>
     </div>
+    </>
   );
 }

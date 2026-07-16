@@ -6,7 +6,7 @@ import SlideUp from '@/components/animations/SlideUp';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import Button from '@/components/ui/Button';
 
-const SITE_URL = 'https://jamescowx-dashboard.vercel.app';
+const SITE_URL = 'https://jamescowx.com';
 
 type Currency = 'CAD' | 'USD' | 'EUR';
 
