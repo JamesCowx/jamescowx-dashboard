@@ -17,6 +17,7 @@ const demoTypeLabels: Record<string, string> = {
   iot: 'IoT', codereview: 'Review', minigame: 'Game', dorametrics: 'DORA',
   journal: 'Journal', testresults: 'Tests', voice: 'Voice',   gantt: 'Gantt',
   torrent: 'Torrent Client',
+  vault: 'Password Vault',
 };
 
 const demoIcons: Record<string, string> = {
@@ -27,6 +28,7 @@ const demoIcons: Record<string, string> = {
   document: '📄', blockchain: '🔗', iot: '📡', codereview: '🔍', minigame: '🎮',
   dorametrics: '📉', journal: '📓', testresults: '🧪', voice: '🎙',   gantt: '📋',
   torrent: '⬇',
+  vault: '🔐',
 };
 
 const techColors: Record<string, string> = {

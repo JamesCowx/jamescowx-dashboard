@@ -26,6 +26,18 @@ export const projects: Project[] = [
     featured: true,
     demoType: 'torrent',
   },
+  {
+    id: 32, title: 'CowxPass',
+    description: 'Zero-knowledge password manager with AES-256 encryption, cloud sync, and autofill.',
+    longDescription: 'CowxPass is a modern password manager built with security and simplicity in mind. Every password is encrypted with AES-256-GCM before it leaves your device — zero-knowledge architecture means even we cannot access your data. Features include cloud sync across devices, one-click autofill, a cryptographically random password generator, secure notes, and dark web breach monitoring. No bloat, no lock-in, just serious security made simple.',
+    category: 'Web Apps', tags: ['Password Manager', 'Security', 'Encryption'],
+    tech: ['Node.js', 'TypeScript', 'React', 'PostgreSQL', 'Redis', 'Docker'],
+    image: '/projects/cowxpass.png',
+    sourceUrl: 'https://github.com/JamesCowx/cowxpass',
+    siteUrl: 'https://cowxpass-u48k.onrender.com/',
+    featured: true,
+    demoType: 'vault',
+  },
 ];
 
 export const categories = ['All', 'Web Apps'];
