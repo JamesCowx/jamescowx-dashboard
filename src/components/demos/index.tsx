@@ -32,7 +32,7 @@ const JournalDemo = lazy(() => import('./JournalDemo'));
 const TestResultsDemo = lazy(() => import('./TestResultsDemo'));
 const VoiceDemo = lazy(() => import('./VoiceDemo'));
 const GanttDemo = lazy(() => import('./GanttDemo'));
-const VideoDemo = lazy(() => import('./VideoDemo'));
+const TorrentDemo = lazy(() => import('./TorrentDemo'));
 
 function DemoLoader() {
   return (
@@ -79,7 +79,7 @@ const demoMap: Record<string, ComponentType> = {
   testresults: TestResultsDemo,
   voice: VoiceDemo,
   gantt: GanttDemo,
-  video: VideoDemo,
+  torrent: TorrentDemo,
 };
 
 export function DemoComponent({ demoType }: { demoType: string }) {

@@ -59,7 +59,7 @@ export default function Home() {
   ]);
 
   const { repos: ghRepos, followers: ghFollowers } = useGithubStats('jamescowx');
-  const projectCount = useCountUp(30);
+  const projectCount = useCountUp(1);
   const postCount = useCountUp(getAllPosts().length);
   const starCount = useCountUp(247);
   const yearCount = useCountUp(8);
@@ -276,7 +276,7 @@ export default function Home() {
           >
             <Link to="/projects">
               <Button variant="outline" accent="blue" size="lg">
-                Browse All 30 Projects
+                Browse All Projects
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </Button>
             </Link>
