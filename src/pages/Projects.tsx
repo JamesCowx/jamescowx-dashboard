@@ -16,7 +16,8 @@ const demoTypeLabels: Record<string, string> = {
   componentshowcase: 'Components', crypto: 'Crypto', mobilepreview: 'Mobile',
   map: 'Map', scanner: 'Scanner', document: 'Document', blockchain: 'Blockchain',
   iot: 'IoT', codereview: 'Review', minigame: 'Game', dorametrics: 'DORA',
-  journal: 'Journal', testresults: 'Tests', voice: 'Voice', gantt: 'Gantt',
+  journal: 'Journal', testresults: 'Tests', voice: 'Voice',   gantt: 'Gantt',
+  video: 'Video',
 };
 
 const allDemoTypes = ['All', ...Object.keys(demoTypeLabels)];
@@ -27,7 +28,8 @@ const demoIcons: Record<string, string> = {
   vision: '👁', monitor: '📈', aitext: '✍', pipelinebuilder: '🔧', invoice: '💰',
   componentshowcase: '🧩', crypto: '₿', mobilepreview: '📱', map: '🗺', scanner: '🛡',
   document: '📄', blockchain: '🔗', iot: '📡', codereview: '🔍', minigame: '🎮',
-  dorametrics: '📉', journal: '📓', testresults: '🧪', voice: '🎙', gantt: '📋',
+  dorametrics: '📉', journal: '📓', testresults: '🧪', voice: '🎙',   gantt: '📋',
+  video: '🎬',
 };
 
 const techColors: Record<string, string> = {

@@ -283,6 +283,17 @@ export const projects: Project[] = [
     image: '/projects/taskweaver.png',
     sourceUrl: 'https://github.com/jamescowx/taskweaver', featured: false, demoType: 'gantt',
   },
+  {
+    id: 31, title: 'VidTorret',
+    description: 'Self-hosted video streaming platform with transcoding, adaptive bitrate playback, and user management.',
+    longDescription: 'VidTorret is a full-featured self-hosted video streaming platform that gives you complete control over your content. It supports automatic transcoding to HLS with adaptive bitrate, user authentication and permissions, watch parties with synchronized playback, video comments and reactions, and analytics dashboards. Built with modern web technologies and optimized for both small communities and large-scale deployments.',
+    category: 'Web Apps', tags: ['Video', 'Streaming', 'Self-Hosted'],
+    tech: ['Next.js', 'TypeScript', 'FFmpeg', 'PostgreSQL', 'Redis', 'AWS S3', 'Docker'],
+    image: '/projects/vidtorret.png',
+    sourceUrl: 'https://github.com/jamescowx/vidtorret',
+    featured: true,
+    demoType: 'video',
+  },
 ];
 
 export const categories = ['All', 'Web Apps', 'Mobile', 'AI/ML', 'DevOps', 'Open Source'];
