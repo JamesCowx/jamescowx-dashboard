@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 
 const videos = [
-  { title: 'Getting Started with VidTorret', views: '2.4K', duration: '12:34', user: 'VidTorret', color: '#60a5fa' },
-  { title: 'Self-Hosted Streaming Guide', views: '1.8K', duration: '18:22', user: 'VidTorret', color: '#a78bfa' },
-  { title: 'Building a Video Pipeline', views: '892', duration: '24:15', user: 'VidTorret', color: '#f472b6' },
-  { title: 'Adaptive Bitrate Explained', views: '1.2K', duration: '9:47', user: 'VidTorret', color: '#34d399' },
+  { title: 'Getting Started with VoidTorrent', views: '2.4K', duration: '12:34', user: 'VoidTorrent', color: '#60a5fa' },
+  { title: 'Privacy-First Torrenting Guide', views: '1.8K', duration: '18:22', user: 'VoidTorrent', color: '#a78bfa' },
+  { title: 'Built-in VPN Kill Switch', views: '892', duration: '24:15', user: 'VoidTorrent', color: '#f472b6' },
+  { title: 'Streaming While Downloading', views: '1.2K', duration: '9:47', user: 'VoidTorrent', color: '#34d399' },
 ];
 
 export default function VideoDemo() {
@@ -36,7 +36,7 @@ export default function VideoDemo() {
             </svg>
           </motion.div>
           <div className="text-center">
-            <p className="text-xs text-[var(--color-text-muted)]">VidTorret Player</p>
+                    <p className="text-xs text-[var(--color-text-muted)]">VoidTorrent Player</p>
             <p className="text-[10px] text-[var(--color-text-muted)] opacity-60">Click to preview</p>
           </div>
         </motion.div>
