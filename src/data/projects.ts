@@ -39,6 +39,18 @@ export const projects: Project[] = [
     demoType: 'cryptomarket',
   },
   {
+    id: 34, title: 'CowxWallet',
+    description: 'Secure cryptocurrency wallet with multi-coin support, transaction history, and portfolio tracking.',
+    longDescription: 'CowxWallet is a modern cryptocurrency wallet designed for managing digital assets securely. It supports multiple blockchain networks, tracks transaction history, and provides real-time portfolio valuations. Built with a focus on security and usability, CowxWallet makes self-custody accessible to everyone.',
+    category: 'Web Apps', tags: ['Crypto', 'Wallet', 'Blockchain'],
+    tech: ['Next.js', 'TypeScript', 'React', 'PostgreSQL', 'Redis', 'Docker'],
+    image: '/projects/cowxwallet.png',
+    sourceUrl: 'https://cowxwallet.vercel.app/',
+    siteUrl: 'https://cowxwallet.vercel.app/',
+    featured: true,
+    demoType: 'wallet',
+  },
+  {
     id: 32, title: 'CowxPass',
     description: 'Zero-knowledge password manager with AES-256 encryption, cloud sync, and autofill.',
     longDescription: 'CowxPass is a modern password manager built with security and simplicity in mind. Every password is encrypted with AES-256-GCM before it leaves your device — zero-knowledge architecture means even we cannot access your data. Features include cloud sync across devices, one-click autofill, a cryptographically random password generator, secure notes, and dark web breach monitoring. No bloat, no lock-in, just serious security made simple.',

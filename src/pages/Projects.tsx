@@ -19,6 +19,7 @@ const demoTypeLabels: Record<string, string> = {
   torrent: 'Torrent Client',
   vault: 'Password Vault',
   cryptomarket: 'Crypto Market',
+  wallet: 'Crypto Wallet',
 };
 
 const demoIcons: Record<string, string> = {
@@ -31,6 +32,7 @@ const demoIcons: Record<string, string> = {
   torrent: '⬇',
   vault: '🔐',
   cryptomarket: '₿',
+  wallet: '💳',
 };
 
 const techColors: Record<string, string> = {
