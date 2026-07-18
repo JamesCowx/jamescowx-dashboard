@@ -58,7 +58,7 @@ export const projects: Project[] = [
     tech: ['JavaScript', 'TypeScript', 'Electron', 'Node.js', 'Python', 'CSS'],
     image: '/projects/cowxcode.png',
     sourceUrl: 'https://github.com/JamesCowx/cowxcode',
-    siteUrl: '',
+    siteUrl: 'https://jamescowx.github.io/cowxcode/',
     featured: true,
     demoType: 'codingagent',
   },
