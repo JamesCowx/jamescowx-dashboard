@@ -34,6 +34,7 @@ const VoiceDemo = lazy(() => import('./VoiceDemo'));
 const GanttDemo = lazy(() => import('./GanttDemo'));
 const TorrentDemo = lazy(() => import('./TorrentDemo'));
 const VaultDemo = lazy(() => import('./VaultDemo'));
+const CryptoMarketDemo = lazy(() => import('./CryptoMarketDemo'));
 
 function DemoLoader() {
   return (
@@ -82,6 +83,7 @@ const demoMap: Record<string, ComponentType> = {
   gantt: GanttDemo,
   torrent: TorrentDemo,
   vault: VaultDemo,
+  cryptomarket: CryptoMarketDemo,
 };
 
 export function DemoComponent({ demoType }: { demoType: string }) {
