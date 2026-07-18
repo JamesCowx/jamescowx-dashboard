@@ -20,6 +20,7 @@ const demoTypeLabels: Record<string, string> = {
   vault: 'Password Vault',
   cryptomarket: 'Crypto Market',
   wallet: 'Crypto Wallet',
+  codingagent: 'AI Coding Agent',
 };
 
 const demoIcons: Record<string, string> = {
@@ -33,6 +34,7 @@ const demoIcons: Record<string, string> = {
   vault: '🔐',
   cryptomarket: '₿',
   wallet: '💳',
+  codingagent: '⌨',
 };
 
 const techColors: Record<string, string> = {

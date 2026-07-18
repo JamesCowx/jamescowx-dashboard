@@ -51,6 +51,18 @@ export const projects: Project[] = [
     demoType: 'wallet',
   },
   {
+    id: 35, title: 'CowxCode',
+    description: 'Open source, provider-agnostic AI coding agent for Windows with a polished desktop app.',
+    longDescription: 'CowxCode is an open source AI coding agent that runs locally on your machine. It is provider-agnostic — supporting OpenAI, Anthropic, Google, Ollama, and more — and helps you write, edit, and understand code through a polished Electron desktop app. Features a modular architecture with a core agent engine, a black/grey/red themed UI, and a marketing site. Built for developers who want a sharp, local AI coding tool without vendor lock-in.',
+    category: 'Desktop Apps', tags: ['AI', 'Coding', 'Desktop'],
+    tech: ['JavaScript', 'TypeScript', 'Electron', 'Node.js', 'Python', 'CSS'],
+    image: '/projects/cowxcode.png',
+    sourceUrl: 'https://github.com/JamesCowx/cowxcode',
+    siteUrl: '',
+    featured: true,
+    demoType: 'codingagent',
+  },
+  {
     id: 32, title: 'CowxPass',
     description: 'Zero-knowledge password manager with AES-256 encryption, cloud sync, and autofill.',
     longDescription: 'CowxPass is a modern password manager built with security and simplicity in mind. Every password is encrypted with AES-256-GCM before it leaves your device — zero-knowledge architecture means even we cannot access your data. Features include cloud sync across devices, one-click autofill, a cryptographically random password generator, secure notes, and dark web breach monitoring. No bloat, no lock-in, just serious security made simple.',

@@ -36,6 +36,7 @@ const TorrentDemo = lazy(() => import('./TorrentDemo'));
 const VaultDemo = lazy(() => import('./VaultDemo'));
 const CryptoMarketDemo = lazy(() => import('./CryptoMarketDemo'));
 const WalletDemo = lazy(() => import('./WalletDemo'));
+const CodingAgentDemo = lazy(() => import('./CodingAgentDemo'));
 
 function DemoLoader() {
   return (
@@ -86,6 +87,7 @@ const demoMap: Record<string, ComponentType> = {
   vault: VaultDemo,
   cryptomarket: CryptoMarketDemo,
   wallet: WalletDemo,
+  codingagent: CodingAgentDemo,
 };
 
 export function DemoComponent({ demoType }: { demoType: string }) {
