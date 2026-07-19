@@ -238,6 +238,45 @@ body {
   pointer-events: none;
 }
 
+/* ===== HERO GRADIENT TEXT ===== */
+.hero-gradient-text {
+  background: linear-gradient(135deg, #60a5fa 0%, #818cf8 25%, #a78bfa 45%, #f472b6 70%, #60a5fa 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: heroGradientShift 6s ease-in-out infinite;
+}
+
+@keyframes heroGradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ===== HERO RING ===== */
+.hero-ring {
+  background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6, #60a5fa);
+  background-size: 200% 200%;
+  animation: heroGradientShift 6s ease-in-out infinite;
+  box-shadow:
+    0 0 40px rgba(96, 165, 250, 0.15),
+    0 0 80px rgba(167, 139, 250, 0.1),
+    0 0 120px rgba(244, 114, 182, 0.08);
+}
+
+/* ===== BUTTON GLOW ===== */
+.btn-glow-blue {
+  box-shadow:
+    0 4px 20px rgba(96, 165, 250, 0.25),
+    0 0 40px rgba(96, 165, 250, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+.btn-glow-blue:hover {
+  box-shadow:
+    0 6px 30px rgba(96, 165, 250, 0.35),
+    0 0 60px rgba(96, 165, 250, 0.15);
+}
+
 /* ===== ANIMATIONS ===== */
 @keyframes floatUpDown {
   0%, 100% { transform: translateY(0); }
