@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
@@ -139,6 +140,97 @@ function FloatingShapes() {
   );
 }
 
+function MouseSpotlight() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    function onMove(e: MouseEvent) {
+      setPos({ x: e.clientX, y: e.clientY });
+    }
+    window.addEventListener('mousemove', onMove, { passive: true });
+    return () => window.removeEventListener('mousemove', onMove);
+  }, []);
+
+  return (
+    <div ref={ref} className="absolute inset-0 overflow-hidden pointer-events-none z-[1]" aria-hidden="true">
+      <div
+        className="absolute w-[500px] h-[500px] rounded-full opacity-[0.04]"
+        style={{
+          background: 'radial-gradient(circle, #60a5fa, transparent 60%)',
+          left: pos.x - 250,
+          top: pos.y - 250,
+          transition: 'left 0.15s ease-out, top 0.15s ease-out',
+        }}
+      />
+    </div>
+  );
+}
+
+function FloatingCode() {
+  const snippets = [
+    { text: 'const app = createApp()', x: '70%', y: '20%', color: '#60a5fa', delay: 0 },
+    { text: 'async function build()', x: '75%', y: '55%', color: '#a78bfa', delay: 1.5 },
+    { text: 'export default {}', x: '65%', y: '75%', color: '#f472b6', delay: 3 },
+    { text: '<Component />', x: '80%', y: '35%', color: '#34d399', delay: 0.8 },
+  ];
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none hidden lg:block" aria-hidden="true">
+      {snippets.map((s, i) => (
+        <motion.div
+          key={i}
+          className="absolute font-mono text-[11px] px-3 py-1.5 rounded-lg border"
+          style={{
+            left: s.x,
+            top: s.y,
+            color: s.color + '40',
+            borderColor: s.color + '10',
+            background: s.color + '05',
+          }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{
+            opacity: [0, 0.6, 0.6, 0],
+            y: [20, 0, -10, -30],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            delay: s.delay,
+            ease: 'easeInOut',
+          }}
+        >
+          {s.text}
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
+function ScrollIndicator() {
+  return (
+    <motion.div
+      className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 1.5, duration: 0.5 }}
+    >
+      <span className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-[0.2em]">Scroll</span>
+      <motion.div
+        className="w-5 h-8 rounded-full border border-white/[0.1] flex justify-center pt-1.5"
+        animate={{ borderColor: ['rgba(255,255,255,0.1)', 'rgba(96,165,250,0.3)', 'rgba(255,255,255,0.1)'] }}
+        transition={{ duration: 2, repeat: Infinity }}
+      >
+        <motion.div
+          className="w-1 h-1.5 rounded-full bg-[var(--color-accent-blue)]"
+          animate={{ y: [0, 8, 0], opacity: [1, 0.3, 1] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+        />
+      </motion.div>
+    </motion.div>
+  );
+}
+
 function HeroGlow() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
@@ -204,6 +296,8 @@ export default function Home() {
         <HeroGlow />
         <HeroParticles />
         <FloatingShapes />
+        <FloatingCode />
+        <MouseSpotlight />
         <div className="max-w-6xl mx-auto w-full relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
             <motion.div
@@ -382,6 +476,7 @@ export default function Home() {
             </motion.div>
           </div>
         </div>
+        <ScrollIndicator />
       </section>
 
       <AnimatedLine />
