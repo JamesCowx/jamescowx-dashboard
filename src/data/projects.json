@@ -79,7 +79,7 @@
     "tech": ["Java", "Paper", "Node.js", "TypeScript", "React", "Docker"],
     "image": "/projects/blacktuesday.png",
     "sourceUrl": "https://github.com/JamesCowx/black-tuesday-mc",
-    "siteUrl": "https://www.blacktuesday.online",
+    "siteUrl": "http://blacktuesday.online",
     "featured": true,
     "demoType": "minecraft"
   },
