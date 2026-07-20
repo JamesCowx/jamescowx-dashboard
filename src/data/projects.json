@@ -68,5 +68,19 @@
     "siteUrl": "https://cowxpass-u48k.onrender.com/",
     "featured": true,
     "demoType": "vault"
+  },
+  {
+    "id": 36,
+    "title": "Black Tuesday MC",
+    "description": "Custom Minecraft server with a community hub, custom plugins, and a real-time player dashboard.",
+    "longDescription": "Black Tuesday is a custom Minecraft server featuring a community-driven survival experience with custom plugins, economy system, and a real-time web dashboard. Players can view live server status, player activity, and world stats from any browser. The server features custom enchantments, land claiming, PvP arenas, and a thriving community. Built with Paper/Spigot and a Node.js web frontend.",
+    "category": "Web Apps",
+    "tags": ["Minecraft", "Gaming", "Community"],
+    "tech": ["Java", "Paper", "Node.js", "TypeScript", "React", "Docker"],
+    "image": "/projects/blacktuesday.png",
+    "sourceUrl": "https://github.com/JamesCowx/black-tuesday-mc",
+    "siteUrl": "https://www.blacktuesday.online",
+    "featured": true,
+    "demoType": "minecraft"
   }
 ]
