@@ -288,20 +288,6 @@ export default function Home() {
                   </div>
                 </motion.div>
                 <motion.div
-                  className="absolute -bottom-3 -right-3 px-4 py-2.5 rounded-2xl liquid-glass text-[11px] font-medium shadow-lg"
-                  initial={{ opacity: 0, x: 12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.8, duration: 0.5 }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <div className="flex items-center gap-2">
-                    <span className="w-5 h-5 rounded-md bg-[#34d399]/15 flex items-center justify-center text-[10px]">⎈</span>
-                    <span className="text-[var(--color-text-secondary)]">{yearCount}+ yrs</span>
-                    <span className="w-px h-3 bg-white/[0.1]" />
-                    <span className="text-[#fbbf24]">★ {starCount}</span>
-                  </div>
-                </motion.div>
-                <motion.div
                   className="absolute -top-2 -left-4 px-3 py-1.5 rounded-xl liquid-glass text-[10px] font-medium"
                   initial={{ opacity: 0, x: -12 }}
                   animate={{ opacity: 1, x: 0 }}
