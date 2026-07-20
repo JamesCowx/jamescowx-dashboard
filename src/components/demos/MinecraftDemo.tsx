@@ -13,7 +13,7 @@ const onlinePlayers = [
 
 export default function MinecraftDemo() {
   const [tps, setTps] = useState(19.8);
-  const [playerCount, setPlayerCount] = useState(onlinePlayers.length);
+  const playerCount = onlinePlayers.length;
   const [uptime, setUptime] = useState(14);
 
   useEffect(() => {

@@ -135,7 +135,7 @@ export default function ProjectDetail() {
           </SlideUp>
         </div>
 
-        {project.id > 1 || project.id < projects.length ? (
+        {projects.length > 1 ? (
           <SlideUp>
             <div className="flex items-center justify-between pt-8 border-t border-[var(--color-border-subtle)]">
               {prev ? (
