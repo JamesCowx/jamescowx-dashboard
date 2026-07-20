@@ -57,15 +57,28 @@ const techStack = [
   { name: 'AWS', icon: '☁', color: '#ff9900' },
 ];
 
+function AnimatedLine() {
+  return (
+    <div className="w-full h-px relative overflow-hidden">
+      <motion.div
+        className="absolute inset-y-0 w-1/3"
+        style={{ background: 'linear-gradient(90deg, transparent, #60a5fa, #a78bfa, #f472b6, transparent)' }}
+        animate={{ x: ['-100%', '400%'] }}
+        transition={{ duration: 3, repeat: Infinity, ease: 'linear', repeatDelay: 2 }}
+      />
+    </div>
+  );
+}
+
 function HeroParticles() {
-  const particles = Array.from({ length: 25 }, (_, i) => ({
+  const particles = Array.from({ length: 30 }, (_, i) => ({
     id: i,
     x: Math.random() * 100,
     y: Math.random() * 100,
-    size: Math.random() * 2 + 0.5,
-    duration: Math.random() * 4 + 3,
-    delay: Math.random() * 3,
-    opacity: Math.random() * 0.3 + 0.05,
+    size: Math.random() * 2.5 + 0.5,
+    duration: Math.random() * 5 + 3,
+    delay: Math.random() * 4,
+    opacity: Math.random() * 0.4 + 0.1,
   }));
 
   return (
@@ -82,8 +95,9 @@ function HeroParticles() {
             background: p.id % 3 === 0 ? '#60a5fa' : p.id % 3 === 1 ? '#a78bfa' : '#f472b6',
           }}
           animate={{
-            opacity: [p.opacity, p.opacity * 2, p.opacity],
-            scale: [1, 1.5, 1],
+            opacity: [p.opacity, p.opacity * 2.5, p.opacity],
+            scale: [1, 1.8, 1],
+            y: [0, -20, 0],
           }}
           transition={{
             duration: p.duration,
@@ -97,25 +111,53 @@ function HeroParticles() {
   );
 }
 
+function FloatingShapes() {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <motion.div
+        className="absolute top-[15%] left-[8%] w-16 h-16 border border-[#60a5fa]/10 rounded-xl"
+        animate={{ rotate: [0, 90, 180, 270, 360], y: [0, -15, 0] }}
+        transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+      />
+      <motion.div
+        className="absolute top-[60%] right-[12%] w-10 h-10 border border-[#f472b6]/10 rounded-full"
+        animate={{ scale: [1, 1.3, 1], rotate: [0, 180, 360] }}
+        transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute top-[25%] right-[25%] w-8 h-8 border border-[#a78bfa]/10"
+        style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}
+        animate={{ rotate: [0, 120, 240, 360], y: [0, -10, 0] }}
+        transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
+      />
+      <motion.div
+        className="absolute bottom-[20%] left-[20%] w-12 h-12 border border-[#60a5fa]/8 rounded-lg"
+        animate={{ rotate: [0, 45, 0], scale: [1, 1.1, 1] }}
+        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+      />
+    </div>
+  );
+}
+
 function HeroGlow() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
       <motion.div
-        className="absolute top-[-10%] left-[-5%] w-[45vw] h-[45vw] max-w-[600px] max-h-[600px] rounded-full opacity-[0.06]"
+        className="absolute top-[-10%] left-[-5%] w-[45vw] h-[45vw] max-w-[600px] max-h-[600px] rounded-full opacity-[0.07]"
         style={{ background: 'radial-gradient(circle, #60a5fa, transparent 70%)' }}
-        animate={{ scale: [1, 1.1, 1] }}
+        animate={{ scale: [1, 1.15, 1], x: [0, 30, 0] }}
         transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
-        className="absolute bottom-[-10%] right-[5%] w-[35vw] h-[35vw] max-w-[500px] max-h-[500px] rounded-full opacity-[0.05]"
+        className="absolute bottom-[-10%] right-[5%] w-[35vw] h-[35vw] max-w-[500px] max-h-[500px] rounded-full opacity-[0.06]"
         style={{ background: 'radial-gradient(circle, #f472b6, transparent 70%)' }}
-        animate={{ scale: [1.05, 1, 1.05] }}
+        animate={{ scale: [1.05, 1, 1.05], x: [0, -20, 0] }}
         transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
-        className="absolute top-[30%] right-[15%] w-[25vw] h-[25vw] max-w-[400px] max-h-[400px] rounded-full opacity-[0.04]"
+        className="absolute top-[30%] right-[15%] w-[25vw] h-[25vw] max-w-[400px] max-h-[400px] rounded-full opacity-[0.05]"
         style={{ background: 'radial-gradient(circle, #a78bfa, transparent 70%)' }}
-        animate={{ scale: [1, 1.1, 1] }}
+        animate={{ scale: [1, 1.2, 1], y: [0, -25, 0] }}
         transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
       />
     </div>
@@ -131,10 +173,9 @@ export default function Home() {
     'Tech Blogger',
   ]);
 
-  const { repos: ghRepos, followers: ghFollowers, stars: ghStars } = useGithubStats('JamesCowx');
+  const { repos: ghRepos, followers: ghFollowers } = useGithubStats('JamesCowx');
   const projectCount = useCountUp(projects.length);
   const postCount = useCountUp(getAllPosts().length);
-  const starCount = useCountUp(ghStars || 0);
   const yearCount = useCountUp(8);
 
   const featured = projects.filter((p) => p.featured);
@@ -162,48 +203,70 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center px-4 overflow-hidden">
         <HeroGlow />
         <HeroParticles />
+        <FloatingShapes />
         <div className="max-w-6xl mx-auto w-full relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
             <motion.div
               className="lg:col-span-3"
-              initial={{ opacity: 0, y: 32 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
               <motion.div
                 className="flex items-center gap-3 mb-8"
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
               >
                 <motion.span
                   className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] font-medium liquid-glass"
                   whileHover={{ scale: 1.03 }}
+                  animate={{ boxShadow: ['0 0 0 0 rgba(74,222,128,0)', '0 0 0 4px rgba(74,222,128,0.1)', '0 0 0 0 rgba(74,222,128,0)'] }}
+                  transition={{ duration: 3, repeat: Infinity }}
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
                   <span className="text-[var(--color-text-secondary)]">Available for new projects</span>
                 </motion.span>
-                <span className="px-3.5 py-1.5 rounded-full text-[11px] font-medium bg-white/[0.02] border border-white/[0.04] text-[var(--color-text-muted)]">
+                <motion.span
+                  className="px-3.5 py-1.5 rounded-full text-[11px] font-medium bg-white/[0.02] border border-white/[0.04] text-[var(--color-text-muted)]"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.4, duration: 0.4 }}
+                >
                   Canada
-                </span>
+                </motion.span>
               </motion.div>
 
               <motion.h1
                 className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-extrabold leading-[1.04] mb-6 tracking-tight"
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ delay: 0.15, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               >
-                <span className="text-white">Hi, I'm</span>
+                <motion.span
+                  className="text-white inline-block"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2, duration: 0.6 }}
+                >
+                  Hi, I'm
+                </motion.span>
                 <br />
-                <span className="hero-gradient-text">James Cowx</span>
+                <motion.span
+                  className="hero-gradient-text inline-block"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.35, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  James Cowx
+                </motion.span>
               </motion.h1>
 
               <motion.div
                 className="text-lg sm:text-xl md:text-2xl text-[var(--color-text-secondary)] mb-4 h-9 font-medium"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.4, duration: 0.5 }}
+                transition={{ delay: 0.5, duration: 0.5 }}
               >
                 <span>{typedText}</span>
                 <motion.span
@@ -215,9 +278,9 @@ export default function Home() {
 
               <motion.p
                 className="text-[var(--color-text-muted)] max-w-lg text-base leading-relaxed mb-10"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5, duration: 0.5 }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.5 }}
               >
                 I build exceptional digital experiences with modern technologies.
                 Passionate about clean code, scalable architecture, and open source.
@@ -225,9 +288,9 @@ export default function Home() {
 
               <motion.div
                 className="flex flex-wrap gap-4 mb-12"
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.5 }}
+                transition={{ delay: 0.7, duration: 0.5 }}
               >
                 <Link to="/projects">
                   <Button accent="blue" size="lg" className="btn-glow-blue">
@@ -244,32 +307,42 @@ export default function Home() {
                 className="flex items-center gap-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.7, duration: 0.5 }}
+                transition={{ delay: 0.8, duration: 0.5 }}
               >
-                <a href="https://jamescowx.github.io/" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-white/[0.02] border border-white/[0.05] text-[11px] text-[var(--color-text-muted)] hover:text-white hover:border-white/[0.12] hover:bg-white/[0.04] transition-all group">
+                <motion.a
+                  href="https://jamescowx.github.io/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-white/[0.02] border border-white/[0.05] text-[11px] text-[var(--color-text-muted)] hover:text-white hover:border-white/[0.12] hover:bg-white/[0.04] transition-all group"
+                  whileHover={{ y: -2 }}
+                >
                   <span className="w-7 h-7 rounded-lg bg-white/[0.04] flex items-center justify-center text-[10px] font-bold group-hover:bg-white/[0.08] transition-colors">GH</span>
                   <div>
                     <span className="block font-medium">{ghRepos}+ repos</span>
-                    <span className="text-[10px] text-[var(--color-text-muted)]">{ghStars ?? 0} stars</span>
+                    <span className="text-[10px] text-[var(--color-text-muted)]">{ghFollowers} followers</span>
                   </div>
-                </a>
-                <a href="https://linkedin.com/in/jamescowx" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-white/[0.02] border border-white/[0.05] text-[11px] text-[var(--color-text-muted)] hover:text-white hover:border-white/[0.12] hover:bg-white/[0.04] transition-all group">
+                </motion.a>
+                <motion.a
+                  href="https://linkedin.com/in/jamescowx"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-white/[0.02] border border-white/[0.05] text-[11px] text-[var(--color-text-muted)] hover:text-white hover:border-white/[0.12] hover:bg-white/[0.04] transition-all group"
+                  whileHover={{ y: -2 }}
+                >
                   <span className="w-7 h-7 rounded-lg bg-white/[0.04] flex items-center justify-center text-[10px] font-bold group-hover:bg-white/[0.08] transition-colors">LI</span>
                   <div>
                     <span className="block font-medium">{ghFollowers}+ followers</span>
                     <span className="text-[10px] text-[var(--color-text-muted)]">Connect</span>
                   </div>
-                </a>
+                </motion.a>
               </motion.div>
             </motion.div>
 
             <motion.div
               className="lg:col-span-2 flex justify-center lg:justify-end"
-              initial={{ opacity: 0, scale: 0.88, rotate: -4 }}
+              initial={{ opacity: 0, scale: 0.85, rotate: -6 }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.9, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="relative">
                 <motion.div
@@ -280,8 +353,8 @@ export default function Home() {
                   <div className="w-full h-full rounded-full bg-[var(--color-bg-deep)] flex items-center justify-center">
                     <motion.span
                       className="text-8xl font-extrabold hero-gradient-text"
-                      animate={{ scale: [1, 1.03, 1] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                      animate={{ scale: [1, 1.04, 1], rotate: [0, 2, 0, -2, 0] }}
+                      transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
                     >
                       JC
                     </motion.span>
@@ -289,12 +362,21 @@ export default function Home() {
                 </motion.div>
                 <motion.div
                   className="absolute -top-2 -left-4 px-3 py-1.5 rounded-xl liquid-glass text-[10px] font-medium"
-                  initial={{ opacity: 0, x: -12 }}
+                  initial={{ opacity: 0, x: -16 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 1, duration: 0.5 }}
-                  whileHover={{ scale: 1.05 }}
+                  transition={{ delay: 1.1, duration: 0.5 }}
+                  whileHover={{ scale: 1.08, y: -2 }}
                 >
                   <span className="text-[#60a5fa]">Open Source</span>
+                </motion.div>
+                <motion.div
+                  className="absolute -bottom-2 -right-4 px-3 py-1.5 rounded-xl liquid-glass text-[10px] font-medium"
+                  initial={{ opacity: 0, x: 16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 1.3, duration: 0.5 }}
+                  whileHover={{ scale: 1.08, y: -2 }}
+                >
+                  <span className="text-[#f472b6]">Full-Stack</span>
                 </motion.div>
               </div>
             </motion.div>
@@ -302,9 +384,16 @@ export default function Home() {
         </div>
       </section>
 
+      <AnimatedLine />
+
       {/* ===== TECH STACK ===== */}
-      <section className="py-20 px-4 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/[0.005] to-transparent pointer-events-none" />
+      <section className="py-20 px-4 relative overflow-hidden">
+        <motion.div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{ background: 'radial-gradient(ellipse 80% 50% at 50% 50%, #60a5fa, transparent)' }}
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{ duration: 10, repeat: Infinity }}
+        />
         <div className="max-w-6xl mx-auto relative z-10">
           <SlideUp>
             <div className="text-center mb-12">
@@ -317,43 +406,68 @@ export default function Home() {
             </div>
           </SlideUp>
 
-          <div className="flex flex-wrap items-center justify-center gap-3 mb-16">
-            {techStack.map((t, i) => (
+          <motion.div
+            className="flex flex-wrap items-center justify-center gap-3 mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.05 } },
+            }}
+          >
+            {techStack.map((t) => (
               <motion.span
                 key={t.name}
-                initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.04 }}
-                whileHover={{ scale: 1.06, borderColor: t.color + '50', y: -2 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.02] border border-white/[0.04] text-[12px] font-mono font-medium text-[var(--color-text-muted)] transition-all"
+                variants={{
+                  hidden: { opacity: 0, y: 16, scale: 0.9 },
+                  visible: { opacity: 1, y: 0, scale: 1 },
+                }}
+                whileHover={{ scale: 1.08, borderColor: t.color + '50', y: -4, boxShadow: `0 4px 20px ${t.color}15` }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.02] border border-white/[0.04] text-[12px] font-mono font-medium text-[var(--color-text-muted)] transition-all cursor-default"
               >
-                <span className="text-[14px]" style={{ color: t.color }}>{t.icon}</span>
+                <motion.span
+                  className="text-[14px]"
+                  style={{ color: t.color }}
+                  animate={{ rotate: [0, 5, -5, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, delay: Math.random() * 2 }}
+                >
+                  {t.icon}
+                </motion.span>
                 {t.name}
               </motion.span>
             ))}
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[
               { label: 'Projects Built', value: projectCount, suffix: '+', color: '#60a5fa', icon: '◈' },
-              { label: 'GitHub Stars', value: starCount, suffix: '', color: '#fbbf24', icon: '★' },
+              { label: 'GitHub Stars', value: 0, suffix: '', color: '#fbbf24', icon: '★' },
               { label: 'Blog Posts', value: postCount, suffix: '+', color: '#f472b6', icon: '✎' },
               { label: 'Years Experience', value: yearCount, suffix: '+', color: '#a78bfa', icon: '⚡' },
-            ].map(({ label, value, suffix, color, icon }) => (
-              <SlideUp key={label}>
+            ].map(({ label, value, suffix, color, icon }, i) => (
+              <SlideUp key={label} delay={i * 0.08}>
                 <motion.div
                   className="liquid-glass rounded-2xl p-5 text-center border border-white/[0.04] relative overflow-hidden group"
-                  whileHover={{ scale: 1.03, borderColor: color + '30' }}
+                  whileHover={{ scale: 1.05, borderColor: color + '40', y: -4 }}
                   transition={{ type: 'spring', stiffness: 200, damping: 20 }}
                 >
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{ background: `radial-gradient(200px circle at 50% 50%, ${color}08, transparent)` }}
+                  <motion.div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{ background: `radial-gradient(200px circle at 50% 50%, ${color}10, transparent)` }}
+                  />
+                  <motion.div
+                    className="absolute top-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity"
+                    style={{ background: `linear-gradient(90deg, transparent, ${color}60, transparent)` }}
                   />
                   <div className="relative z-10">
-                    <div className="flex items-center justify-center gap-1.5 mb-3">
+                    <motion.div
+                      className="flex items-center justify-center gap-1.5 mb-3"
+                      animate={{ scale: [1, 1.1, 1] }}
+                      transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 }}
+                    >
                       <span className="text-xl opacity-50" style={{ color }}>{icon}</span>
-                    </div>
+                    </motion.div>
                     <div className="text-3xl sm:text-4xl font-extrabold mb-1" style={{ color }}>
                       {value}{suffix}
                     </div>
@@ -365,6 +479,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <AnimatedLine />
 
       {/* ===== FEATURED PROJECTS ===== */}
       <section className="py-28 px-4">
@@ -393,12 +509,20 @@ export default function Home() {
                     <div className="h-44 rounded-xl mb-5 flex items-center justify-center relative overflow-hidden"
                       style={{ background: 'linear-gradient(135deg, rgba(96,165,250,0.08) 0%, rgba(244,114,182,0.04) 50%, rgba(167,139,250,0.06) 100%)' }}
                     >
-                      <motion.span className="text-6xl opacity-15" animate={{ scale: [1, 1.04, 1] }} transition={{ duration: 3, repeat: Infinity }}>
+                      <motion.span
+                        className="text-6xl opacity-15"
+                        animate={{ scale: [1, 1.06, 1], rotate: [0, 5, 0] }}
+                        transition={{ duration: 4, repeat: Infinity }}
+                      >
                         {project.category === 'Web Apps' ? '◈' : project.category === 'Mobile' ? '◉' : project.category === 'AI/ML' ? '◬' : '⬡'}
                       </motion.span>
-                      <span className="absolute top-3 right-3 px-2.5 py-1 rounded-lg text-[10px] font-semibold bg-green-500/15 text-green-400 border border-green-500/20 backdrop-blur-sm">
+                      <motion.span
+                        className="absolute top-3 right-3 px-2.5 py-1 rounded-lg text-[10px] font-semibold bg-green-500/15 text-green-400 border border-green-500/20 backdrop-blur-sm"
+                        animate={{ opacity: [0.7, 1, 0.7] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      >
                         Interactive
-                      </span>
+                      </motion.span>
                       <div className="absolute bottom-3 left-3 flex gap-1.5">
                         {project.tech.slice(0, 3).map((t) => (
                           <span key={t} className="text-[9px] px-2 py-0.5 rounded-md bg-black/40 text-[var(--color-text-muted)]">
@@ -417,7 +541,13 @@ export default function Home() {
                     <p className="text-sm text-[var(--color-text-muted)] line-clamp-2 leading-relaxed">{project.description}</p>
                     <div className="flex items-center gap-3 mt-4 pt-3 border-t border-white/[0.04] text-[11px] text-[var(--color-text-muted)]">
                       <span className="flex items-center gap-1">⚡ {project.tech.length} tech</span>
-                      <span className="flex items-center gap-1 ml-auto">View demo →</span>
+                      <motion.span
+                        className="flex items-center gap-1 ml-auto"
+                        animate={{ x: [0, 3, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      >
+                        View demo →
+                      </motion.span>
                     </div>
                   </Card>
                 </Link>
@@ -440,6 +570,8 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      <AnimatedLine />
 
       {/* ===== BLOG ===== */}
       <section className="py-24 px-4 bg-white/[0.005]">
@@ -473,10 +605,14 @@ export default function Home() {
                       <span className="text-xs text-[var(--color-text-muted)]">
                         {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                       </span>
-                      <span className="text-sm font-medium text-[var(--color-accent-pink)] group-hover/card:translate-x-1 transition-transform inline-flex items-center gap-1">
+                      <motion.span
+                        className="text-sm font-medium text-[var(--color-accent-pink)] group-hover/card:translate-x-1 transition-transform inline-flex items-center gap-1"
+                        animate={{ x: [0, 3, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      >
                         Read more
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                      </span>
+                      </motion.span>
                     </div>
                   </Card>
                 </Link>
@@ -500,6 +636,8 @@ export default function Home() {
         </div>
       </section>
 
+      <AnimatedLine />
+
       {/* ===== CTA ===== */}
       <section className="py-32 px-4">
         <div className="max-w-3xl mx-auto text-center">
@@ -512,7 +650,7 @@ export default function Home() {
               <motion.div
                 className="absolute top-0 right-0 w-80 h-80 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 opacity-[0.08]"
                 style={{ background: 'radial-gradient(circle, #60a5fa, transparent)' }}
-                animate={{ scale: [1, 1.2, 1] }}
+                animate={{ scale: [1, 1.3, 1] }}
                 transition={{ duration: 8, repeat: Infinity }}
               />
               <motion.div
@@ -521,17 +659,41 @@ export default function Home() {
                 animate={{ scale: [1.1, 1, 1.1] }}
                 transition={{ duration: 7, repeat: Infinity }}
               />
+              <motion.div
+                className="absolute top-0 left-0 right-0 h-px"
+                style={{ background: 'linear-gradient(90deg, transparent, #60a5fa40, #a78bfa40, #f472b640, transparent)' }}
+                animate={{ opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 3, repeat: Infinity }}
+              />
               <div className="relative z-10">
-                <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+                <motion.h2
+                  className="text-3xl sm:text-4xl font-bold mb-4"
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                >
                   Let's <span className="hero-gradient-text">Work Together</span>
-                </h2>
-                <p className="text-[var(--color-text-muted)] text-lg mb-10 max-w-md mx-auto leading-relaxed">
+                </motion.h2>
+                <motion.p
+                  className="text-[var(--color-text-muted)] text-lg mb-10 max-w-md mx-auto leading-relaxed"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2, duration: 0.5 }}
+                >
                   Have a project in mind? Let's discuss how we can bring your ideas to life.
-                </p>
-                <div className="flex gap-4 justify-center flex-wrap">
+                </motion.p>
+                <motion.div
+                  className="flex gap-4 justify-center flex-wrap"
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3, duration: 0.5 }}
+                >
                   <Link to="/contact"><Button accent="mixed" size="lg" className="btn-glow-blue">Start a Conversation</Button></Link>
                   <Link to="/about"><Button variant="glass" size="lg">About Me</Button></Link>
-                </div>
+                </motion.div>
               </div>
             </motion.div>
           </SlideUp>
