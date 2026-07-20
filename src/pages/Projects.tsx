@@ -22,6 +22,7 @@ const demoTypeLabels: Record<string, string> = {
   wallet: 'Crypto Wallet',
   codingagent: 'AI Coding Agent',
   minecraft: 'Minecraft Server',
+  pokemon: 'Pokemon Emulator',
 };
 
 const demoIcons: Record<string, string> = {
@@ -37,6 +38,7 @@ const demoIcons: Record<string, string> = {
   wallet: '💳',
   codingagent: '⌨',
   minecraft: '⛏',
+  pokemon: '🔴',
 };
 
 const techColors: Record<string, string> = {

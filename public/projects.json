@@ -82,5 +82,19 @@
     "siteUrl": "https://www.blacktuesday.online",
     "featured": true,
     "demoType": "minecraft"
+  },
+  {
+    "id": 37,
+    "title": "PokeCloud",
+    "description": "Cloud-saved Pokemon gaming in the browser — play on any device, never lose progress.",
+    "longDescription": "PokeCloud lets you play Pokemon games directly in your browser with cloud-saved progress. No downloads, no emulators — just pure Pokemon in the cloud. Supports GBA, GB, GBC, and NDS ROMs. Features secure accounts with encrypted passwords, automatic cloud saves, and optimized controls. Pick up your adventure on any device and never lose your save data again.",
+    "category": "Web Apps",
+    "tags": ["Pokemon", "Gaming", "Cloud"],
+    "tech": ["Node.js", "TypeScript", "React", "PostgreSQL", "Docker", "Redis"],
+    "image": "/projects/pokecloud.png",
+    "sourceUrl": "https://github.com/JamesCowx/pokecloud",
+    "siteUrl": "https://pokecloud.onrender.com",
+    "featured": true,
+    "demoType": "pokemon"
   }
 ]
