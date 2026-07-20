@@ -5,7 +5,6 @@ export default function AnimatedBackground() {
       <div className="blob blob-2" />
       <div className="blob blob-3" />
       <div className="grid-overlay" />
-      <div className="glass-dots" />
     </>
   );
 }

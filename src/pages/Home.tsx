@@ -58,14 +58,14 @@ const techStack = [
 ];
 
 function HeroParticles() {
-  const particles = Array.from({ length: 40 }, (_, i) => ({
+  const particles = Array.from({ length: 25 }, (_, i) => ({
     id: i,
     x: Math.random() * 100,
     y: Math.random() * 100,
-    size: Math.random() * 2.5 + 0.5,
+    size: Math.random() * 2 + 0.5,
     duration: Math.random() * 4 + 3,
     delay: Math.random() * 3,
-    opacity: Math.random() * 0.4 + 0.1,
+    opacity: Math.random() * 0.3 + 0.05,
   }));
 
   return (
@@ -82,8 +82,8 @@ function HeroParticles() {
             background: p.id % 3 === 0 ? '#60a5fa' : p.id % 3 === 1 ? '#a78bfa' : '#f472b6',
           }}
           animate={{
-            opacity: [p.opacity, p.opacity * 2.5, p.opacity],
-            scale: [1, 1.8, 1],
+            opacity: [p.opacity, p.opacity * 2, p.opacity],
+            scale: [1, 1.5, 1],
           }}
           transition={{
             duration: p.duration,
@@ -101,24 +101,23 @@ function HeroGlow() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
       <motion.div
-        className="absolute top-[-30%] left-[-10%] w-[60vw] h-[60vw] max-w-[900px] max-h-[900px] rounded-full opacity-[0.07]"
+        className="absolute top-[-10%] left-[-5%] w-[45vw] h-[45vw] max-w-[600px] max-h-[600px] rounded-full opacity-[0.06]"
         style={{ background: 'radial-gradient(circle, #60a5fa, transparent 70%)' }}
-        animate={{ scale: [1, 1.15, 1], rotate: [0, 10, 0] }}
+        animate={{ scale: [1, 1.1, 1] }}
         transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
-        className="absolute bottom-[-20%] right-[-5%] w-[50vw] h-[50vw] max-w-[700px] max-h-[700px] rounded-full opacity-[0.06]"
+        className="absolute bottom-[-10%] right-[5%] w-[35vw] h-[35vw] max-w-[500px] max-h-[500px] rounded-full opacity-[0.05]"
         style={{ background: 'radial-gradient(circle, #f472b6, transparent 70%)' }}
-        animate={{ scale: [1.1, 1, 1.1], rotate: [0, -8, 0] }}
+        animate={{ scale: [1.05, 1, 1.05] }}
         transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
-        className="absolute top-[20%] right-[20%] w-[30vw] h-[30vw] max-w-[500px] max-h-[500px] rounded-full opacity-[0.05]"
+        className="absolute top-[30%] right-[15%] w-[25vw] h-[25vw] max-w-[400px] max-h-[400px] rounded-full opacity-[0.04]"
         style={{ background: 'radial-gradient(circle, #a78bfa, transparent 70%)' }}
-        animate={{ scale: [1, 1.2, 1], y: [0, -30, 0] }}
+        animate={{ scale: [1, 1.1, 1] }}
         transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
       />
-      <div className="absolute inset-0 grid-overlay" />
     </div>
   );
 }
