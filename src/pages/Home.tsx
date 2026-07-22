@@ -58,10 +58,6 @@ const techStack = [
   { name: 'AWS', icon: '☁', color: '#ff9900' },
 ];
 
-/* ============================
-   HERO COMPONENTS
-   ============================ */
-
 function MouseSpotlight() {
   const [pos, setPos] = useState({ x: 0, y: 0 });
   useEffect(() => {
@@ -69,16 +65,13 @@ function MouseSpotlight() {
     window.addEventListener('mousemove', onMove, { passive: true });
     return () => window.removeEventListener('mousemove', onMove);
   }, []);
-
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none z-[1]" aria-hidden="true">
-      <div
-        className="absolute w-[600px] h-[600px] rounded-full"
+    <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <div className="absolute w-[700px] h-[700px] rounded-full"
         style={{
-          background: 'radial-gradient(circle, rgba(96,165,250,0.06), transparent 60%)',
-          left: pos.x - 300,
-          top: pos.y - 300,
-          transition: 'left 0.2s ease-out, top 0.2s ease-out',
+          background: 'radial-gradient(circle, rgba(96,165,250,0.05), transparent 60%)',
+          left: pos.x - 350, top: pos.y - 350,
+          transition: 'left 0.25s ease-out, top 0.25s ease-out',
         }}
       />
     </div>
@@ -86,34 +79,18 @@ function MouseSpotlight() {
 }
 
 function HeroParticles() {
-  const particles = Array.from({ length: 35 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 2 + 0.5,
-    duration: Math.random() * 6 + 4,
-    delay: Math.random() * 5,
-    opacity: Math.random() * 0.35 + 0.05,
+  const items = Array.from({ length: 40 }, (_, i) => ({
+    id: i, x: Math.random() * 100, y: Math.random() * 100,
+    size: Math.random() * 2 + 0.5, duration: Math.random() * 7 + 4,
+    delay: Math.random() * 6, opacity: Math.random() * 0.3 + 0.05,
   }));
-
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-      {particles.map((p) => (
-        <motion.div
-          key={p.id}
-          className="absolute rounded-full"
-          style={{
-            left: `${p.x}%`,
-            top: `${p.y}%`,
-            width: p.size,
-            height: p.size,
-            background: p.id % 3 === 0 ? '#60a5fa' : p.id % 3 === 1 ? '#a78bfa' : '#f472b6',
-          }}
-          animate={{
-            opacity: [p.opacity, p.opacity * 2.5, p.opacity],
-            scale: [1, 2, 1],
-            y: [0, -30, 0],
-          }}
+      {items.map((p) => (
+        <motion.div key={p.id} className="absolute rounded-full"
+          style={{ left: `${p.x}%`, top: `${p.y}%`, width: p.size, height: p.size,
+            background: p.id % 4 === 0 ? '#60a5fa' : p.id % 4 === 1 ? '#a78bfa' : p.id % 4 === 2 ? '#f472b6' : '#34d399' }}
+          animate={{ opacity: [p.opacity, p.opacity * 3, p.opacity], scale: [1, 2, 1], y: [0, -40, 0] }}
           transition={{ duration: p.duration, repeat: Infinity, delay: p.delay, ease: 'easeInOut' }}
         />
       ))}
@@ -124,26 +101,26 @@ function HeroParticles() {
 function FloatingShapes() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-      <motion.div className="absolute top-[15%] left-[8%] w-20 h-20 border border-[#60a5fa]/[0.06] rounded-2xl"
-        animate={{ rotate: [0, 90, 180, 270, 360], y: [0, -20, 0] }}
-        transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+      <motion.div className="absolute top-[12%] left-[6%] w-24 h-24 border border-[#60a5fa]/[0.05] rounded-2xl"
+        animate={{ rotate: [0, 90, 180, 270, 360], y: [0, -25, 0] }}
+        transition={{ duration: 28, repeat: Infinity, ease: 'linear' }}
       />
-      <motion.div className="absolute top-[55%] right-[10%] w-12 h-12 border border-[#f472b6]/[0.06] rounded-full"
-        animate={{ scale: [1, 1.4, 1], rotate: [0, 180, 360] }}
-        transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+      <motion.div className="absolute top-[50%] right-[8%] w-14 h-14 border border-[#f472b6]/[0.05] rounded-full"
+        animate={{ scale: [1, 1.5, 1], rotate: [0, 180, 360] }}
+        transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
       />
-      <motion.div className="absolute top-[25%] right-[22%] w-10 h-10 border border-[#a78bfa]/[0.06]"
+      <motion.div className="absolute top-[22%] right-[20%] w-12 h-12 border border-[#a78bfa]/[0.05]"
         style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}
-        animate={{ rotate: [0, 120, 240, 360], y: [0, -15, 0] }}
-        transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+        animate={{ rotate: [0, 120, 240, 360], y: [0, -18, 0] }}
+        transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
       />
-      <motion.div className="absolute bottom-[25%] left-[18%] w-14 h-14 border border-[#60a5fa]/[0.05] rounded-xl"
-        animate={{ rotate: [0, 45, 0], scale: [1, 1.15, 1] }}
-        transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+      <motion.div className="absolute bottom-[22%] left-[15%] w-16 h-16 border border-[#60a5fa]/[0.04] rounded-xl"
+        animate={{ rotate: [0, 45, 0], scale: [1, 1.2, 1] }}
+        transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
       />
-      <motion.div className="absolute top-[70%] left-[60%] w-6 h-6 border border-[#f472b6]/[0.05] rounded-full"
-        animate={{ y: [0, -25, 0], opacity: [0.3, 0.8, 0.3] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+      <motion.div className="absolute bottom-[35%] right-[30%] w-8 h-8 border border-[#34d399]/[0.04] rounded-full"
+        animate={{ y: [0, -30, 0], opacity: [0.2, 0.7, 0.2] }}
+        transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
       />
     </div>
   );
@@ -151,22 +128,20 @@ function FloatingShapes() {
 
 function FloatingCode() {
   const snippets = [
-    { text: 'const app = createApp()', x: '72%', y: '18%', color: '#60a5fa', delay: 0 },
-    { text: 'async function build()', x: '76%', y: '52%', color: '#a78bfa', delay: 2 },
-    { text: 'export default {}', x: '68%', y: '72%', color: '#f472b6', delay: 4 },
-    { text: '<Component />', x: '82%', y: '35%', color: '#34d399', delay: 1 },
+    { text: 'const app = createApp()', x: '72%', y: '15%', c: '#60a5fa', d: 0 },
+    { text: 'async function build()', x: '76%', y: '50%', c: '#a78bfa', d: 2 },
+    { text: 'export default {}', x: '68%', y: '70%', c: '#f472b6', d: 4.5 },
+    { text: '<Component />', x: '82%', y: '32%', c: '#34d399', d: 1 },
+    { text: 'useEffect(() => {})', x: '70%', y: '60%', c: '#fbbf24', d: 3 },
   ];
-
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none hidden lg:block" aria-hidden="true">
       {snippets.map((s, i) => (
-        <motion.div
-          key={i}
-          className="absolute font-mono text-[11px] px-3 py-1.5 rounded-lg border"
-          style={{ left: s.x, top: s.y, color: s.color + '35', borderColor: s.color + '08', background: s.color + '03' }}
+        <motion.div key={i} className="absolute font-mono text-[12px] px-4 py-2 rounded-lg border"
+          style={{ left: s.x, top: s.y, color: s.c + '30', borderColor: s.c + '06', background: s.c + '02' }}
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: [0, 0.5, 0.5, 0], y: [20, 0, -10, -40] }}
-          transition={{ duration: 10, repeat: Infinity, delay: s.delay, ease: 'easeInOut' }}
+          animate={{ opacity: [0, 0.45, 0.45, 0], y: [20, 0, -10, -45] }}
+          transition={{ duration: 11, repeat: Infinity, delay: s.d, ease: 'easeInOut' }}
         >
           {s.text}
         </motion.div>
@@ -175,39 +150,17 @@ function FloatingCode() {
   );
 }
 
-function HeroGlow() {
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-      <motion.div className="absolute top-[-10%] left-[-5%] w-[50vw] h-[50vw] max-w-[700px] max-h-[700px] rounded-full opacity-[0.07]"
-        style={{ background: 'radial-gradient(circle, #60a5fa, transparent 65%)' }}
-        animate={{ scale: [1, 1.2, 1], x: [0, 40, 0] }}
-        transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.div className="absolute bottom-[-10%] right-[5%] w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] rounded-full opacity-[0.05]"
-        style={{ background: 'radial-gradient(circle, #f472b6, transparent 65%)' }}
-        animate={{ scale: [1.05, 1, 1.05], x: [0, -30, 0] }}
-        transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.div className="absolute top-[30%] right-[15%] w-[30vw] h-[30vw] max-w-[500px] max-h-[500px] rounded-full opacity-[0.04]"
-        style={{ background: 'radial-gradient(circle, #a78bfa, transparent 65%)' }}
-        animate={{ scale: [1, 1.25, 1], y: [0, -30, 0] }}
-        transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
-      />
-    </div>
-  );
-}
-
 function ScrollIndicator() {
   return (
-    <motion.div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
+    <motion.div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2, duration: 0.6 }}
     >
-      <span className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-[0.25em] font-medium">Scroll</span>
-      <motion.div className="w-5 h-8 rounded-full border border-white/[0.1] flex justify-center pt-1.5"
+      <span className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-[0.3em] font-semibold">Scroll</span>
+      <motion.div className="w-5 h-8 rounded-full border border-white/[0.08] flex justify-center pt-1.5"
         animate={{ borderColor: ['rgba(255,255,255,0.08)', 'rgba(96,165,250,0.25)', 'rgba(255,255,255,0.08)'] }}
-        transition={{ duration: 2.5, repeat: Infinity }}
+        transition={{ duration: 3, repeat: Infinity }}
       >
-        <motion.div className="w-1 h-1.5 rounded-full bg-[var(--color-accent-blue)]"
+        <motion.div className="w-1 h-2 rounded-full bg-[var(--color-accent-blue)]"
           animate={{ y: [0, 8, 0], opacity: [1, 0.2, 1] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
         />
@@ -219,18 +172,14 @@ function ScrollIndicator() {
 function AnimatedLine() {
   return (
     <div className="section-divider relative overflow-hidden">
-      <motion.div className="absolute inset-y-0 w-1/4"
+      <motion.div className="absolute inset-y-0 w-1/3"
         style={{ background: 'linear-gradient(90deg, transparent, #60a5fa, #a78bfa, #f472b6, transparent)' }}
-        animate={{ x: ['-100%', '500%'] }}
-        transition={{ duration: 4, repeat: Infinity, ease: 'linear', repeatDelay: 3 }}
+        animate={{ x: ['-100%', '450%'] }}
+        transition={{ duration: 4, repeat: Infinity, ease: 'linear', repeatDelay: 3.5 }}
       />
     </div>
   );
 }
-
-/* ============================
-   MAIN HOME PAGE
-   ============================ */
 
 export default function Home() {
   const typedText = useTypewriter([
@@ -240,12 +189,10 @@ export default function Home() {
     'UI/UX Designer',
     'Tech Blogger',
   ]);
-
   const { repos: ghRepos, followers: ghFollowers } = useGithubStats('JamesCowx');
   const projectCount = useCountUp(projects.length);
   const postCount = useCountUp(getAllPosts().length);
   const yearCount = useCountUp(8);
-
   const featured = projects.filter((p) => p.featured);
   const latestPosts = getAllPosts().slice(0, 2);
 
@@ -269,30 +216,26 @@ export default function Home() {
 
       {/* ===== HERO ===== */}
       <section className="relative min-h-screen flex items-center px-4 overflow-hidden">
-        <HeroGlow />
+        <div className="mesh-gradient" />
         <HeroParticles />
         <FloatingShapes />
         <FloatingCode />
         <MouseSpotlight />
-
         <div className="max-w-6xl mx-auto w-full relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-center">
-            {/* Left: Text Content */}
             <motion.div className="lg:col-span-3"
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             >
-              {/* Badges */}
               <motion.div className="flex items-center gap-3 mb-10"
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.25, duration: 0.6 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
               >
-                <motion.span
-                  className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-medium liquid-glass"
+                <motion.span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-medium liquid-glass"
                   whileHover={{ scale: 1.03 }}
-                  animate={{ boxShadow: ['0 0 0 0 rgba(74,222,128,0)', '0 0 0 4px rgba(74,222,128,0.08)', '0 0 0 0 rgba(74,222,128,0)'] }}
+                  animate={{ boxShadow: ['0 0 0 0 rgba(74,222,128,0)', '0 0 0 5px rgba(74,222,128,0.06)', '0 0 0 0 rgba(74,222,128,0)'] }}
                   transition={{ duration: 3, repeat: Infinity }}
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
@@ -303,58 +246,48 @@ export default function Home() {
                 </span>
               </motion.div>
 
-              {/* Heading */}
-              <motion.h1
-                className="text-5xl sm:text-7xl md:text-8xl lg:text-[6.5rem] font-extrabold leading-[0.98] mb-8 tracking-[-0.03em]"
+              <motion.h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] font-extrabold leading-[0.95] mb-8 tracking-[-0.04em]"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.15, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ delay: 0.15, duration: 1, ease: [0.22, 1, 0.36, 1] }}
               >
-                <motion.span className="text-white/90 inline-block"
-                  initial={{ opacity: 0, x: -24 }}
+                <motion.span className="text-white/85 inline-block"
+                  initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.25, duration: 0.7 }}
+                  transition={{ delay: 0.28, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 >
                   Hi, I'm
                 </motion.span>
                 <br />
                 <motion.span className="hero-gradient-text inline-block"
-                  initial={{ opacity: 0, y: 24 }}
+                  initial={{ opacity: 0, y: 28 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ delay: 0.45, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
                 >
                   James Cowx
                 </motion.span>
               </motion.h1>
 
-              {/* Typewriter */}
-              <motion.div className="text-lg sm:text-xl md:text-2xl text-[var(--color-text-secondary)] mb-5 h-9 font-medium"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.55, duration: 0.5 }}
+              <motion.div className="text-xl sm:text-2xl md:text-3xl text-[var(--color-text-secondary)] mb-5 h-10 font-medium"
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6, duration: 0.5 }}
               >
                 <span>{typedText}</span>
-                <motion.span className="inline-block w-[2px] h-5 bg-[var(--color-accent-blue)] ml-0.5 align-middle rounded-full"
-                  animate={{ opacity: [1, 0, 1] }}
-                  transition={{ duration: 0.8, repeat: Infinity }}
+                <motion.span className="inline-block w-[2px] h-6 bg-[var(--color-accent-blue)] ml-1 align-middle rounded-full"
+                  animate={{ opacity: [1, 0, 1] }} transition={{ duration: 0.8, repeat: Infinity }}
                 />
               </motion.div>
 
-              {/* Description */}
-              <motion.p className="text-[var(--color-text-muted)] max-w-lg text-base leading-relaxed mb-12"
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.65, duration: 0.5 }}
+              <motion.p className="text-[var(--color-text-muted)] max-w-lg text-lg leading-relaxed mb-14"
+                initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7, duration: 0.5 }}
               >
                 I build exceptional digital experiences with modern technologies.
                 Passionate about clean code, scalable architecture, and open source.
               </motion.p>
 
-              {/* CTA Buttons */}
-              <motion.div className="flex flex-wrap gap-4 mb-14"
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.75, duration: 0.5 }}
+              <motion.div className="flex flex-wrap gap-4 mb-16"
+                initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.5 }}
               >
                 <Link to="/projects">
                   <Button accent="blue" size="lg" className="btn-glow-blue">
@@ -367,27 +300,24 @@ export default function Home() {
                 </Link>
               </motion.div>
 
-              {/* Social Links */}
               <motion.div className="flex items-center gap-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.85, duration: 0.5 }}
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9, duration: 0.5 }}
               >
                 <motion.a href="https://jamescowx.github.io/" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-white/[0.02] border border-white/[0.05] text-[11px] text-[var(--color-text-muted)] hover:text-white hover:border-white/[0.12] hover:bg-white/[0.04] transition-all group"
-                  whileHover={{ y: -3, scale: 1.02 }}
+                  className="flex items-center gap-3 px-5 py-3 rounded-xl bg-white/[0.02] border border-white/[0.05] text-[11px] text-[var(--color-text-muted)] hover:text-white hover:border-white/[0.12] hover:bg-white/[0.04] transition-all group"
+                  whileHover={{ y: -4, scale: 1.03 }}
                 >
-                  <span className="w-7 h-7 rounded-lg bg-white/[0.04] flex items-center justify-center text-[10px] font-bold group-hover:bg-white/[0.08] transition-colors">GH</span>
+                  <span className="w-8 h-8 rounded-lg bg-white/[0.04] flex items-center justify-center text-[10px] font-bold group-hover:bg-white/[0.08] transition-colors">GH</span>
                   <div>
                     <span className="block font-medium">{ghRepos}+ repos</span>
                     <span className="text-[10px] text-[var(--color-text-muted)]">{ghFollowers} followers</span>
                   </div>
                 </motion.a>
                 <motion.a href="https://linkedin.com/in/jamescowx" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-white/[0.02] border border-white/[0.05] text-[11px] text-[var(--color-text-muted)] hover:text-white hover:border-white/[0.12] hover:bg-white/[0.04] transition-all group"
-                  whileHover={{ y: -3, scale: 1.02 }}
+                  className="flex items-center gap-3 px-5 py-3 rounded-xl bg-white/[0.02] border border-white/[0.05] text-[11px] text-[var(--color-text-muted)] hover:text-white hover:border-white/[0.12] hover:bg-white/[0.04] transition-all group"
+                  whileHover={{ y: -4, scale: 1.03 }}
                 >
-                  <span className="w-7 h-7 rounded-lg bg-white/[0.04] flex items-center justify-center text-[10px] font-bold group-hover:bg-white/[0.08] transition-colors">LI</span>
+                  <span className="w-8 h-8 rounded-lg bg-white/[0.04] flex items-center justify-center text-[10px] font-bold group-hover:bg-white/[0.08] transition-colors">LI</span>
                   <div>
                     <span className="block font-medium">{ghFollowers}+ followers</span>
                     <span className="text-[10px] text-[var(--color-text-muted)]">Connect</span>
@@ -396,39 +326,36 @@ export default function Home() {
               </motion.div>
             </motion.div>
 
-            {/* Right: Avatar */}
             <motion.div className="lg:col-span-2 flex justify-center lg:justify-end"
-              initial={{ opacity: 0, scale: 0.82, rotate: -8 }}
+              initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 1.1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="relative">
-                <motion.div className="w-64 h-64 sm:w-80 sm:h-80 rounded-full p-[3px] hero-ring"
+                <motion.div className="w-72 h-72 sm:w-80 sm:h-80 rounded-full p-[3px] hero-ring"
                   animate={{ rotate: 360 }}
                   transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
                 >
                   <div className="w-full h-full rounded-full bg-[var(--color-bg-deep)] flex items-center justify-center">
-                    <motion.span className="text-9xl font-extrabold hero-gradient-text"
-                      animate={{ scale: [1, 1.05, 1], rotate: [0, 2, 0, -2, 0] }}
-                      transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+                    <motion.span className="text-[7rem] sm:text-[8rem] font-extrabold hero-gradient-text"
+                      animate={{ scale: [1, 1.06, 1], rotate: [0, 3, 0, -3, 0] }}
+                      transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
                     >
                       JC
                     </motion.span>
                   </div>
                 </motion.div>
-                <motion.div className="absolute -top-3 -left-5 px-3.5 py-2 rounded-xl liquid-glass text-[10px] font-semibold shadow-lg"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 1.2, duration: 0.5 }}
-                  whileHover={{ scale: 1.1, y: -3 }}
+                <motion.div className="absolute -top-4 -left-6 px-4 py-2 rounded-xl liquid-glass text-[10px] font-semibold shadow-xl"
+                  initial={{ opacity: 0, x: -24 }} animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 1.3, duration: 0.5 }}
+                  whileHover={{ scale: 1.12, y: -4 }}
                 >
                   <span className="text-[#60a5fa]">Open Source</span>
                 </motion.div>
-                <motion.div className="absolute -bottom-3 -right-5 px-3.5 py-2 rounded-xl liquid-glass text-[10px] font-semibold shadow-lg"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 1.4, duration: 0.5 }}
-                  whileHover={{ scale: 1.1, y: -3 }}
+                <motion.div className="absolute -bottom-4 -right-6 px-4 py-2 rounded-xl liquid-glass text-[10px] font-semibold shadow-xl"
+                  initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 1.5, duration: 0.5 }}
+                  whileHover={{ scale: 1.12, y: -4 }}
                 >
                   <span className="text-[#f472b6]">Full-Stack</span>
                 </motion.div>
@@ -436,44 +363,43 @@ export default function Home() {
             </motion.div>
           </div>
         </div>
-
         <ScrollIndicator />
       </section>
 
       <AnimatedLine />
 
       {/* ===== TECH STACK ===== */}
-      <section className="py-24 px-4 relative overflow-hidden">
-        <motion.div className="absolute inset-0 opacity-[0.025]"
+      <section className="py-28 px-4 relative overflow-hidden">
+        <motion.div className="absolute inset-0 opacity-[0.02]"
           style={{ background: 'radial-gradient(ellipse 80% 50% at 50% 50%, #60a5fa, transparent)' }}
-          animate={{ scale: [1, 1.15, 1] }}
-          transition={{ duration: 12, repeat: Infinity }}
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{ duration: 14, repeat: Infinity }}
         />
         <div className="max-w-6xl mx-auto relative z-10">
           <SlideUp>
-            <div className="text-center mb-14">
+            <div className="text-center mb-16">
               <div className="flex items-center justify-center gap-2 mb-4">
-                <span className="h-px w-12 bg-gradient-to-r from-transparent to-[var(--color-accent-blue)]" />
-                <span className="text-[11px] text-[var(--color-accent-blue)] font-semibold uppercase tracking-[0.2em]">Tech Stack</span>
-                <span className="h-px w-12 bg-gradient-to-l from-transparent to-[var(--color-accent-blue)]" />
+                <span className="h-px w-14 bg-gradient-to-r from-transparent to-[var(--color-accent-blue)]" />
+                <span className="text-[11px] text-[var(--color-accent-blue)] font-semibold uppercase tracking-[0.25em]">Tech Stack</span>
+                <span className="h-px w-14 bg-gradient-to-l from-transparent to-[var(--color-accent-blue)]" />
               </div>
               <p className="text-[var(--color-text-muted)] text-sm">Technologies I work with daily</p>
             </div>
           </SlideUp>
 
-          <motion.div className="flex flex-wrap items-center justify-center gap-3 mb-20"
+          <motion.div className="flex flex-wrap items-center justify-center gap-3 mb-24"
             initial="hidden" whileInView="visible" viewport={{ once: true }}
             variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.06 } } }}
           >
             {techStack.map((t) => (
               <motion.span key={t.name}
-                variants={{ hidden: { opacity: 0, y: 20, scale: 0.9 }, visible: { opacity: 1, y: 0, scale: 1 } }}
-                whileHover={{ scale: 1.1, borderColor: t.color + '50', y: -6, boxShadow: `0 8px 30px ${t.color}15` }}
+                variants={{ hidden: { opacity: 0, y: 24, scale: 0.88 }, visible: { opacity: 1, y: 0, scale: 1 } }}
+                whileHover={{ scale: 1.12, borderColor: t.color + '60', y: -8, boxShadow: `0 10px 40px ${t.color}15` }}
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/[0.02] border border-white/[0.04] text-[12px] font-mono font-medium text-[var(--color-text-muted)] transition-all cursor-default"
               >
-                <motion.span className="text-[15px]" style={{ color: t.color }}
-                  animate={{ rotate: [0, 8, -8, 0] }}
-                  transition={{ duration: 5, repeat: Infinity, delay: Math.random() * 3 }}
+                <motion.span className="text-[16px]" style={{ color: t.color }}
+                  animate={{ rotate: [0, 10, -10, 0] }}
+                  transition={{ duration: 5, repeat: Infinity, delay: Math.random() * 4 }}
                 >
                   {t.icon}
                 </motion.span>
@@ -484,30 +410,30 @@ export default function Home() {
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
             {[
-              { label: 'Projects Built', value: projectCount, suffix: '+', color: '#60a5fa', icon: '◈' },
-              { label: 'GitHub Stars', value: 0, suffix: '', color: '#fbbf24', icon: '★' },
-              { label: 'Blog Posts', value: postCount, suffix: '+', color: '#f472b6', icon: '✎' },
-              { label: 'Years Experience', value: yearCount, suffix: '+', color: '#a78bfa', icon: '⚡' },
-            ].map(({ label, value, suffix, color, icon }, i) => (
+              { label: 'Projects Built', value: projectCount, suffix: '+', c: '#60a5fa', icon: '◈' },
+              { label: 'GitHub Stars', value: 0, suffix: '', c: '#fbbf24', icon: '★' },
+              { label: 'Blog Posts', value: postCount, suffix: '+', c: '#f472b6', icon: '✎' },
+              { label: 'Years Experience', value: yearCount, suffix: '+', c: '#a78bfa', icon: '⚡' },
+            ].map(({ label, value, suffix, c, icon }, i) => (
               <SlideUp key={label} delay={i * 0.1}>
-                <motion.div className="liquid-glass rounded-2xl p-6 text-center border border-white/[0.04] relative overflow-hidden group"
-                  whileHover={{ scale: 1.06, borderColor: color + '40', y: -6 }}
-                  transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+                <motion.div className="liquid-glass rounded-2xl p-7 text-center border border-white/[0.04] relative overflow-hidden group"
+                  whileHover={{ scale: 1.07, borderColor: c + '45', y: -8 }}
+                  transition={{ type: 'spring', stiffness: 180, damping: 18 }}
                 >
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{ background: `radial-gradient(200px circle at 50% 50%, ${color}10, transparent)` }}
+                    style={{ background: `radial-gradient(250px circle at 50% 50%, ${c}10, transparent)` }}
                   />
                   <div className="absolute top-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity"
-                    style={{ background: `linear-gradient(90deg, transparent, ${color}50, transparent)` }}
+                    style={{ background: `linear-gradient(90deg, transparent, ${c}50, transparent)` }}
                   />
                   <div className="relative z-10">
-                    <motion.div className="flex items-center justify-center gap-1.5 mb-3"
-                      animate={{ scale: [1, 1.15, 1] }}
-                      transition={{ duration: 3, repeat: Infinity, delay: i * 0.6 }}
+                    <motion.div className="flex items-center justify-center gap-1.5 mb-4"
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 3, repeat: Infinity, delay: i * 0.7 }}
                     >
-                      <span className="text-2xl opacity-50" style={{ color }}>{icon}</span>
+                      <span className="text-2xl opacity-50" style={{ color: c }}>{icon}</span>
                     </motion.div>
-                    <div className="text-4xl sm:text-5xl font-extrabold mb-1.5" style={{ color }}>
+                    <div className="text-4xl sm:text-5xl font-extrabold mb-2" style={{ color: c }}>
                       {value}{suffix}
                     </div>
                     <div className="text-xs text-[var(--color-text-muted)] font-medium tracking-wide">{label}</div>
@@ -527,9 +453,9 @@ export default function Home() {
           <SlideUp>
             <div className="text-center mb-20">
               <div className="flex items-center justify-center gap-2 mb-4">
-                <span className="h-px w-12 bg-gradient-to-r from-transparent to-[var(--color-accent-blue)]" />
-                <span className="text-[11px] text-[var(--color-accent-blue)] font-semibold uppercase tracking-[0.2em]">Portfolio</span>
-                <span className="h-px w-12 bg-gradient-to-l from-transparent to-[var(--color-accent-blue)]" />
+                <span className="h-px w-14 bg-gradient-to-r from-transparent to-[var(--color-accent-blue)]" />
+                <span className="text-[11px] text-[var(--color-accent-blue)] font-semibold uppercase tracking-[0.25em]">Portfolio</span>
+                <span className="h-px w-14 bg-gradient-to-l from-transparent to-[var(--color-accent-blue)]" />
               </div>
               <h2 className="text-4xl sm:text-6xl font-bold mb-5">
                 Featured <span className="gradient-text-blue">Projects</span>
@@ -540,38 +466,36 @@ export default function Home() {
             </div>
           </SlideUp>
 
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6" staggerDelay={0.1}>
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6" staggerDelay={0.12}>
             {featured.map((project) => (
               <StaggerItem key={project.id}>
                 <Link to={`/projects/${project.id}`}>
-                  <Card accent="blue">
+                  <Card accent="blue" tilt>
                     <div className="h-48 rounded-xl mb-5 flex items-center justify-center relative overflow-hidden"
-                      style={{ background: 'linear-gradient(135deg, rgba(96,165,250,0.08) 0%, rgba(244,114,182,0.04) 50%, rgba(167,139,250,0.06) 100%)' }}
+                      style={{ background: 'linear-gradient(135deg, rgba(96,165,250,0.06) 0%, rgba(244,114,182,0.03) 50%, rgba(167,139,250,0.04) 100%)' }}
                     >
-                      <motion.span className="text-7xl opacity-[0.08]"
-                        animate={{ scale: [1, 1.08, 1], rotate: [0, 5, 0] }}
-                        transition={{ duration: 5, repeat: Infinity }}
+                      <motion.span className="text-7xl opacity-[0.06]"
+                        animate={{ scale: [1, 1.1, 1], rotate: [0, 8, 0] }}
+                        transition={{ duration: 6, repeat: Infinity }}
                       >
-                        {project.category === 'Web Apps' ? '◈' : project.category === 'Mobile' ? '◉' : project.category === 'AI/ML' ? '◬' : '⬡'}
+                        {project.category === 'Web Apps' ? '◈' : project.category === 'Mobile' ? '◉' : '⬡'}
                       </motion.span>
-                      <motion.span className="absolute top-3 right-3 px-2.5 py-1 rounded-lg text-[10px] font-semibold bg-green-500/15 text-green-400 border border-green-500/20 backdrop-blur-sm"
-                        animate={{ opacity: [0.6, 1, 0.6] }}
-                        transition={{ duration: 2.5, repeat: Infinity }}
+                      <motion.span className="absolute top-3 right-3 px-2.5 py-1 rounded-lg text-[10px] font-semibold bg-green-500/10 text-green-400 border border-green-500/20 backdrop-blur-sm"
+                        animate={{ opacity: [0.5, 1, 0.5] }}
+                        transition={{ duration: 3, repeat: Infinity }}
                       >
                         Interactive
                       </motion.span>
-                      <div className="absolute bottom-3 left-3 flex gap-1.5">
-                        {project.tech.slice(0, 3).map((t) => (
-                          <span key={t} className="text-[9px] px-2 py-0.5 rounded-md bg-black/40 text-[var(--color-text-muted)]">
+                      <div className="absolute bottom-3 left-3 flex gap-1.5 flex-wrap">
+                        {project.tech.slice(0, 4).map((t) => (
+                          <span key={t} className="text-[9px] px-2 py-0.5 rounded-md bg-black/50 text-[var(--color-text-muted)]">
                             {t}
                           </span>
                         ))}
                       </div>
                     </div>
                     <div className="flex gap-2 mb-3 flex-wrap">
-                      {project.tags.slice(0, 2).map((tag) => (
-                        <Badge key={tag} variant="blue">{tag}</Badge>
-                      ))}
+                      {project.tags.slice(0, 2).map((tag) => (<Badge key={tag} variant="blue">{tag}</Badge>))}
                       <Badge variant="mixed">{project.category.slice(0, 3).toUpperCase()}</Badge>
                     </div>
                     <h3 className="text-lg font-semibold mb-2 group-hover/card:text-white transition-colors">{project.title}</h3>
@@ -579,7 +503,7 @@ export default function Home() {
                     <div className="flex items-center gap-3 mt-5 pt-3 border-t border-white/[0.04] text-[11px] text-[var(--color-text-muted)]">
                       <span className="flex items-center gap-1">⚡ {project.tech.length} tech</span>
                       <motion.span className="flex items-center gap-1 ml-auto"
-                        animate={{ x: [0, 4, 0] }}
+                        animate={{ x: [0, 5, 0] }}
                         transition={{ duration: 1.5, repeat: Infinity }}
                       >
                         View demo →
@@ -591,10 +515,8 @@ export default function Home() {
             ))}
           </StaggerContainer>
 
-          <motion.div className="text-center mt-14"
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <motion.div className="text-center mt-16"
+            initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           >
             <Link to="/projects">
               <Button variant="outline" accent="blue" size="lg">
@@ -614,9 +536,9 @@ export default function Home() {
           <SlideUp>
             <div className="text-center mb-16">
               <div className="flex items-center justify-center gap-2 mb-4">
-                <span className="h-px w-12 bg-gradient-to-r from-transparent to-[var(--color-accent-pink)]" />
-                <span className="text-[11px] text-[var(--color-accent-pink)] font-semibold uppercase tracking-[0.2em]">Insights</span>
-                <span className="h-px w-12 bg-gradient-to-l from-transparent to-[var(--color-accent-pink)]" />
+                <span className="h-px w-14 bg-gradient-to-r from-transparent to-[var(--color-accent-pink)]" />
+                <span className="text-[11px] text-[var(--color-accent-pink)] font-semibold uppercase tracking-[0.25em]">Insights</span>
+                <span className="h-px w-14 bg-gradient-to-l from-transparent to-[var(--color-accent-pink)]" />
               </div>
               <h2 className="text-4xl sm:text-6xl font-bold mb-5">
                 Latest <span className="gradient-text-pink">Blog Posts</span>
@@ -641,11 +563,10 @@ export default function Home() {
                         {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                       </span>
                       <motion.span className="text-sm font-medium text-[var(--color-accent-pink)] group-hover/card:translate-x-1 transition-transform inline-flex items-center gap-1"
-                        animate={{ x: [0, 4, 0] }}
+                        animate={{ x: [0, 5, 0] }}
                         transition={{ duration: 1.5, repeat: Infinity }}
                       >
-                        Read more
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        Read more →
                       </motion.span>
                     </div>
                   </Card>
@@ -654,10 +575,8 @@ export default function Home() {
             ))}
           </div>
 
-          <motion.div className="text-center mt-14"
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <motion.div className="text-center mt-16"
+            initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           >
             <Link to="/blog">
               <Button variant="outline" accent="pink" size="lg">
@@ -672,50 +591,41 @@ export default function Home() {
       <AnimatedLine />
 
       {/* ===== CTA ===== */}
-      <section className="py-36 px-4">
+      <section className="py-40 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <SlideUp>
             <motion.div className="liquid-glass-elevated rounded-3xl p-16 relative overflow-hidden"
               whileHover={{ scale: 1.01 }}
               transition={{ type: 'spring', stiffness: 200, damping: 20 }}
             >
-              <motion.div className="absolute top-0 right-0 w-96 h-96 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 opacity-[0.07]"
+              <motion.div className="absolute top-0 right-0 w-[30rem] h-[30rem] rounded-full blur-[140px] -translate-y-1/2 translate-x-1/2 opacity-[0.06]"
                 style={{ background: 'radial-gradient(circle, #60a5fa, transparent)' }}
-                animate={{ scale: [1, 1.3, 1] }}
-                transition={{ duration: 10, repeat: Infinity }}
+                animate={{ scale: [1, 1.4, 1] }} transition={{ duration: 12, repeat: Infinity }}
               />
-              <motion.div className="absolute bottom-0 left-0 w-80 h-80 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2 opacity-[0.05]"
+              <motion.div className="absolute bottom-0 left-0 w-[25rem] h-[25rem] rounded-full blur-[140px] translate-y-1/2 -translate-x-1/2 opacity-[0.04]"
                 style={{ background: 'radial-gradient(circle, #f472b6, transparent)' }}
-                animate={{ scale: [1.1, 1, 1.1] }}
-                transition={{ duration: 8, repeat: Infinity }}
+                animate={{ scale: [1.1, 1, 1.1] }} transition={{ duration: 10, repeat: Infinity }}
               />
               <motion.div className="absolute top-0 left-0 right-0 h-px"
                 style={{ background: 'linear-gradient(90deg, transparent, #60a5fa30, #a78bfa30, #f472b630, transparent)' }}
-                animate={{ opacity: [0.4, 1, 0.4] }}
-                transition={{ duration: 3, repeat: Infinity }}
+                animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 4, repeat: Infinity }}
               />
               <div className="relative z-10">
                 <motion.h2 className="text-4xl sm:text-5xl font-bold mb-5"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
+                  initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }} transition={{ duration: 0.6 }}
                 >
                   Let's <span className="hero-gradient-text">Work Together</span>
                 </motion.h2>
-                <motion.p className="text-[var(--color-text-muted)] text-lg mb-12 max-w-md mx-auto leading-relaxed"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2, duration: 0.5 }}
+                <motion.p className="text-[var(--color-text-muted)] text-lg mb-14 max-w-md mx-auto leading-relaxed"
+                  initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }} transition={{ delay: 0.2, duration: 0.5 }}
                 >
                   Have a project in mind? Let's discuss how we can bring your ideas to life.
                 </motion.p>
                 <motion.div className="flex gap-5 justify-center flex-wrap"
-                  initial={{ opacity: 0, y: 14 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.35, duration: 0.5 }}
+                  initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }} transition={{ delay: 0.4, duration: 0.5 }}
                 >
                   <Link to="/contact"><Button accent="mixed" size="lg" className="btn-glow-blue">Start a Conversation</Button></Link>
                   <Link to="/about"><Button variant="glass" size="lg">About Me</Button></Link>
