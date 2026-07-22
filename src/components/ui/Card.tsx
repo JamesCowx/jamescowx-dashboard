@@ -24,10 +24,10 @@ export default function Card({ children, className = '', hover = true, accent = 
   return (
     <motion.div
       ref={ref}
-      className={`liquid-glass rounded-2xl p-6 card-glow group/card cursor-pointer ${className}`}
+      className={`liquid-glass rounded-2xl p-6 card-glow premium-card group/card cursor-pointer ${className}`}
       onMouseMove={handleMouseMove}
-      whileHover={hover ? { y: -4, scale: 1.01 } : undefined}
-      transition={{ duration: 0.3, ease: 'easeOut' }}
+      whileHover={hover ? { y: -6, scale: 1.015 } : undefined}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       onClick={onClick}
     >
       <div className="relative z-10">{children}</div>
