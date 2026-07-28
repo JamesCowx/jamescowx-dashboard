@@ -26,15 +26,37 @@ const achievements = [
 ];
 
 export default function About() {
+  const aboutSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    mainEntity: {
+      '@type': 'Person',
+      name: 'James Cowx',
+      description: 'Full-stack web developer and open source enthusiast based in Canada.',
+      jobTitle: 'Full-Stack Developer',
+      url: 'https://jamescowx.com',
+      sameAs: [
+        'https://github.com/JamesCowx',
+        'https://linkedin.com/in/jamescowx',
+        'https://bsky.app/profile/jamescowx.bsky.social',
+      ],
+      knowsAbout: [
+        'React', 'Next.js', 'TypeScript', 'Node.js', 'Python',
+        'Docker', 'Kubernetes', 'PostgreSQL', 'AWS', 'System Design',
+      ],
+    },
+  };
   return (
     <>
       <Helmet>
         <title>About James Cowx — Full-Stack Web Developer Canada</title>
         <meta name="description" content="Learn about James Cowx, a full-stack web developer and open source enthusiast based in Canada with 8+ years of experience building scalable web applications." />
         <link rel="canonical" href="https://jamescowx.com/about" />
-        <meta property="og:title" content="About James Cowx — Full-Stack Web Developer" />
+        <meta property="og:title" content="About James Cowx — Full-Stack Web Developer Canada" />
         <meta property="og:description" content="Full-stack developer and open source enthusiast based in Canada with 8+ years of experience." />
         <meta property="og:url" content="https://jamescowx.com/about" />
+        <meta property="og:type" content="profile" />
+        <script type="application/ld+json">{JSON.stringify(aboutSchema)}</script>
       </Helmet>
       <div className="py-20 px-4">
       <div className="max-w-5xl mx-auto">

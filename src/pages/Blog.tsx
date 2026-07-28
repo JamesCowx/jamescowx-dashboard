@@ -22,6 +22,23 @@ export default function Blog() {
     });
   }, [activeCategory, search]);
 
+  const blogSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: 'James Cowx Blog',
+    description: 'Tech articles, tutorials, and insights by James Cowx on web development, DevOps, and open source.',
+    url: 'https://jamescowx.com/blog',
+    author: { '@type': 'Person', name: 'James Cowx', url: 'https://jamescowx.com' },
+    blogPost: posts.slice(0, 10).map((p) => ({
+      '@type': 'BlogPosting',
+      headline: p.title,
+      description: p.excerpt,
+      url: `https://jamescowx.com/blog/${p.slug}`,
+      datePublished: p.date,
+      author: { '@type': 'Person', name: p.author },
+    })),
+  };
+
   return (
     <>
       <Helmet>
@@ -31,6 +48,8 @@ export default function Blog() {
         <meta property="og:title" content="Blog — James Cowx | Tech Insights & Tutorials" />
         <meta property="og:description" content="Tech articles and tutorials by James Cowx on web development, DevOps, and open source." />
         <meta property="og:url" content="https://jamescowx.com/blog" />
+        <meta property="og:type" content="website" />
+        <script type="application/ld+json">{JSON.stringify(blogSchema)}</script>
       </Helmet>
       <div className="py-20 px-4">
       <div className="max-w-5xl mx-auto">

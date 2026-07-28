@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jamescowx.com/sitemap.xml

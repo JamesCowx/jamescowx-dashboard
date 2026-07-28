@@ -85,6 +85,7 @@ export default function Contact() {
         <meta property="og:title" content="Contact James Cowx — Web Developer Canada" />
         <meta property="og:description" content="Get in touch with James Cowx for web development projects, collaborations, or just to say hi." />
         <meta property="og:url" content="https://jamescowx.com/contact" />
+        <meta property="og:type" content="website" />
       </Helmet>
       <div className="py-20 px-4">
       <div className="max-w-5xl mx-auto">
