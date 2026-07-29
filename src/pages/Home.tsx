@@ -7,7 +7,6 @@ import { useCountUp } from '@/hooks/useCountUp';
 import { useGithubStats } from '@/hooks/useGithubStats';
 import { projects } from '@/data/projects';
 import { getAllPosts } from '@/lib/blog';
-import { StaggerContainer, StaggerItem } from '@/components/animations/ScrollReveal';
 import Card from '@/components/ui/Card';
 import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
@@ -22,15 +21,6 @@ const tech = [
   { n: 'Docker', i: '⎈', c: '#2496ed' }, { n: 'Kubernetes', i: '☸', c: '#326ce5' },
   { n: 'PostgreSQL', i: '🐘', c: '#336791' }, { n: 'Redis', i: '⚡', c: '#dc382d' },
   { n: 'GraphQL', i: '◈', c: '#e10098' }, { n: 'AWS', i: '☁', c: '#ff9900' },
-];
-
-const cardBgs = [
-  'linear-gradient(135deg, rgba(96,165,250,0.12), rgba(167,139,250,0.06))',
-  'linear-gradient(135deg, rgba(244,114,182,0.10), rgba(96,165,250,0.06))',
-  'linear-gradient(135deg, rgba(167,139,250,0.12), rgba(52,211,153,0.06))',
-  'linear-gradient(135deg, rgba(52,211,153,0.09), rgba(244,114,182,0.06))',
-  'linear-gradient(135deg, rgba(250,204,21,0.09), rgba(96,165,250,0.06))',
-  'linear-gradient(135deg, rgba(96,165,250,0.11), rgba(56,189,248,0.05))',
 ];
 
 function MouseGlow() {
@@ -89,7 +79,6 @@ export default function Home() {
   const { repos: ghRepos, followers: ghFollowers } = useGithubStats('JamesCowx');
   const projectCount = useCountUp(projects.length);
   const postCount = useCountUp(getAllPosts().length);
-  const featured = projects.filter(p => p.featured).slice(0, 6);
   const latestPosts = getAllPosts().slice(0, 2);
 
   return (<>
@@ -208,42 +197,6 @@ export default function Home() {
           <StatCard label="Years Exp." value={8} color="#a78bfa" icon="⚡" />
           <StatCard label="Open Source" value="17+" color="#34d399" icon="⌨" />
         </div>
-      </div>
-    </section>
-
-    {/* ═══════ PROJECTS ═══════ */}
-    <section className="py-28 px-4 border-t border-white/[0.03]">
-      <div className="max-w-7xl mx-auto">
-        <motion.div className="mb-20" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <span className="text-[11px] text-[var(--color-accent-blue)] font-semibold uppercase tracking-[0.25em]">Recent work</span>
-          <h2 className="text-4xl sm:text-6xl font-bold mt-3 mb-4">Featured <span className="gradient-text-blue">Projects</span></h2>
-          <p className="text-[var(--color-text-muted)] text-lg">Hand-picked from {projects.length}+ open source repos.</p>
-        </motion.div>
-
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-5" staggerDelay={0.1}>
-          {featured.map((p, i) => (
-            <StaggerItem key={p.id}>
-              <Link to={`/projects/${p.id}`}>
-                <Card accent={i % 3 === 0 ? 'blue' : i % 3 === 1 ? 'pink' : 'none'} tilt className="living-border">
-                  <div className="h-44 rounded-xl mb-5 flex items-center justify-center relative overflow-hidden" style={{ background: cardBgs[i % cardBgs.length] }}>
-                    <div className="flex flex-wrap gap-1.5 p-4 justify-center z-10">
-                      {p.tech.slice(0, 4).map(t => <span key={t} className="text-[10px] px-2.5 py-1 rounded-md bg-black/40 text-[var(--color-text-muted)] border border-white/[0.04]">{t}</span>)}
-                    </div>
-                    <span className="absolute top-3 right-3 px-2.5 py-1 rounded-lg text-[10px] font-semibold bg-green-500/10 text-green-400 border border-green-500/20">Demo</span>
-                    {p.siteUrl && <span className="absolute bottom-3 right-3 text-[10px] text-green-400/60">🌐 live</span>}
-                  </div>
-                  <div className="flex gap-2 mb-3 flex-wrap">{p.tags.slice(0, 2).map(t => <Badge key={t} variant="blue">{t}</Badge>)}<Badge variant="mixed">{p.category.split(' ')[0]}</Badge></div>
-                  <h3 className="text-lg font-semibold mb-2 group-hover/card:text-white transition-colors">{p.title}</h3>
-                  <p className="text-sm text-[var(--color-text-muted)] line-clamp-2 leading-relaxed">{p.description}</p>
-                </Card>
-              </Link>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
-
-        <motion.div className="text-center mt-16" initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <Link to="/projects"><Button variant="outline" accent="blue" size="lg">Browse all {projects.length} projects →</Button></Link>
-        </motion.div>
       </div>
     </section>
 
