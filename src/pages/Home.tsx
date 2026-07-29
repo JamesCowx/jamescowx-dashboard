@@ -13,39 +13,72 @@ import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
 
 const SITE_URL = 'https://jamescowx.com';
-
-const personSchema = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    { '@type': 'Person', '@id': `${SITE_URL}/#person`, name: 'James Cowx', url: SITE_URL, sameAs: ['https://github.com/JamesCowx', 'https://linkedin.com/in/jamescowx', 'https://bsky.app/profile/jamescowx.bsky.social', 'https://jamescowx.github.io/'], jobTitle: 'Full-Stack Developer', description: 'Full-stack web developer and open source enthusiast based in Canada. Specializing in React, TypeScript, Node.js, and cloud infrastructure.' },
-    { '@type': 'WebSite', '@id': `${SITE_URL}/#website`, url: SITE_URL, name: 'James Cowx — Full-Stack Developer', description: 'Portfolio and blog of James Cowx, a full-stack developer and open source enthusiast based in Canada.', publisher: { '@id': `${SITE_URL}/#person` } },
-  ],
-};
+const personSchema = { '@context': 'https://schema.org', '@graph': [{ '@type': 'Person', '@id': `${SITE_URL}/#person`, name: 'James Cowx', url: SITE_URL, sameAs: ['https://github.com/JamesCowx', 'https://linkedin.com/in/jamescowx'], jobTitle: 'Full-Stack Developer', description: 'Full-stack developer and open source enthusiast from Vancouver, Canada.' }, { '@type': 'WebSite', '@id': `${SITE_URL}/#website`, url: SITE_URL, name: 'James Cowx', publisher: { '@id': `${SITE_URL}/#person` } }] };
 
 const techStack = [
-  { name: 'React', icon: '⚛', color: '#61dafb' },
-  { name: 'TypeScript', icon: 'TS', color: '#3178c6' },
-  { name: 'Next.js', icon: 'N', color: '#fff' },
-  { name: 'Node.js', icon: '◉', color: '#339933' },
-  { name: 'Python', icon: '🐍', color: '#3776ab' },
-  { name: 'Go', icon: 'Go', color: '#00add8' },
-  { name: 'Docker', icon: '⎈', color: '#2496ed' },
-  { name: 'Kubernetes', icon: '☸', color: '#326ce5' },
-  { name: 'PostgreSQL', icon: '🐘', color: '#336791' },
-  { name: 'Redis', icon: '⚡', color: '#dc382d' },
-  { name: 'GraphQL', icon: '◈', color: '#e10098' },
-  { name: 'AWS', icon: '☁', color: '#ff9900' },
+  { name: 'React', icon: '⚛', c: '#61dafb' }, { name: 'TypeScript', icon: 'TS', c: '#3178c6' },
+  { name: 'Next.js', icon: 'N', c: '#fff' }, { name: 'Node.js', icon: '◉', c: '#339933' },
+  { name: 'Python', icon: '🐍', c: '#3776ab' }, { name: 'Go', icon: 'Go', c: '#00add8' },
+  { name: 'Docker', icon: '⎈', c: '#2496ed' }, { name: 'Kubernetes', icon: '☸', c: '#326ce5' },
+  { name: 'PostgreSQL', icon: '🐘', c: '#336791' }, { name: 'Redis', icon: '⚡', c: '#dc382d' },
+  { name: 'GraphQL', icon: '◈', c: '#e10098' }, { name: 'AWS', icon: '☁', c: '#ff9900' },
 ];
 
-function MouseSpotlight() {
-  const [pos, setPos] = useState({ x: -999, y: -999 });
-  useEffect(() => { const on = (e: MouseEvent) => setPos({ x: e.clientX, y: e.clientY }); window.addEventListener('mousemove', on, { passive: true }); return () => window.removeEventListener('mousemove', on); }, []);
-  return <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true"><div className="absolute w-[500px] h-[500px] rounded-full opacity-[0.04]" style={{ background: 'radial-gradient(circle, #60a5fa, transparent 55%)', left: pos.x - 250, top: pos.y - 250, transition: 'left 0.3s ease-out, top 0.3s ease-out' }} /></div>;
-}
+const cardAccents = [
+  'linear-gradient(135deg, rgba(96,165,250,0.12) 0%, rgba(167,139,250,0.05) 100%)',
+  'linear-gradient(135deg, rgba(244,114,182,0.10) 0%, rgba(96,165,250,0.06) 100%)',
+  'linear-gradient(135deg, rgba(167,139,250,0.12) 0%, rgba(52,211,153,0.05) 100%)',
+  'linear-gradient(135deg, rgba(52,211,153,0.08) 0%, rgba(244,114,182,0.06) 100%)',
+  'linear-gradient(135deg, rgba(250,204,21,0.08) 0%, rgba(96,165,250,0.06) 100%)',
+  'linear-gradient(135deg, rgba(96,165,250,0.10) 0%, rgba(56,189,248,0.05) 100%)',
+];
+
+/* ─── HERO COMPONENTS ─── */
 
 function HeroParticles() {
-  const items = Array.from({ length: 20 }, (_, i) => ({ id: i, x: Math.random() * 100, y: Math.random() * 100, s: Math.random() * 1.5 + 0.5, d: Math.random() * 8 + 5, delay: Math.random() * 5, o: Math.random() * 0.25 + 0.03 }));
-  return <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">{items.map(p => <motion.div key={p.id} className="absolute rounded-full" style={{ left: `${p.x}%`, top: `${p.y}%`, width: p.s, height: p.s, background: p.id % 4 === 0 ? '#60a5fa' : p.id % 4 === 1 ? '#a78bfa' : p.id % 4 === 2 ? '#f472b6' : '#34d399' }} animate={{ opacity: [p.o, p.o * 3, p.o], scale: [1, 2.5, 1], y: [0, -40, 0] }} transition={{ duration: p.d, repeat: Infinity, delay: p.delay, ease: 'easeInOut' }} />)}</div>;
+  const items = Array.from({ length: 30 }, (_, i) => ({
+    id: i, x: Math.random() * 100, y: Math.random() * 100,
+    s: Math.random() * 2 + 0.5, d: Math.random() * 10 + 6,
+    delay: Math.random() * 6, o: Math.random() * 0.3 + 0.04,
+  }));
+  return <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    {items.map(p => <motion.div key={p.id} className="absolute rounded-full"
+      style={{ left: `${p.x}%`, top: `${p.y}%`, width: p.s, height: p.s,
+        background: p.id % 5 === 0 ? '#60a5fa' : p.id % 5 === 1 ? '#a78bfa' : p.id % 5 === 2 ? '#f472b6' : p.id % 5 === 3 ? '#34d399' : '#fbbf24' }}
+      animate={{ opacity: [p.o, p.o * 4, p.o], scale: [1, 3, 1], y: [0, -60, 0] }}
+      transition={{ duration: p.d, repeat: Infinity, delay: p.delay, ease: 'easeInOut' }} />)}
+  </div>;
+}
+
+function MouseGlow() {
+  const [pos, setPos] = useState({ x: -999, y: -999 });
+  useEffect(() => { const h = (e: MouseEvent) => setPos({ x: e.clientX, y: e.clientY }); window.addEventListener('mousemove', h, { passive: true }); return () => window.removeEventListener('mousemove', h); }, []);
+  return <div className="fixed inset-0 overflow-hidden pointer-events-none z-0" aria-hidden="true">
+    <div className="absolute w-[600px] h-[600px] rounded-full" style={{
+      background: 'radial-gradient(circle, rgba(96,165,250,0.05), transparent 60%)',
+      left: pos.x - 300, top: pos.y - 300,
+      transition: 'left 0.4s cubic-bezier(0.22, 1, 0.36, 1), top 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
+    }} />
+    <div className="absolute w-[400px] h-[400px] rounded-full" style={{
+      background: 'radial-gradient(circle, rgba(244,114,182,0.03), transparent 60%)',
+      left: pos.x - 200, top: pos.y - 200,
+      transition: 'left 0.6s cubic-bezier(0.22, 1, 0.36, 1), top 0.6s cubic-bezier(0.22, 1, 0.36, 1)',
+    }} />
+  </div>;
+}
+
+function StatCard({ label, value, color, icon }: { label: string; value: string | number; color: string; icon: string }) {
+  return (
+    <motion.div className="relative p-6 rounded-2xl bg-white/[0.015] border border-white/[0.04] text-center overflow-hidden group"
+      initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+      whileHover={{ y: -6, borderColor: color + '40', scale: 1.03 }}>
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: `radial-gradient(200px circle at 50% 50%, ${color}08, transparent)` }} />
+      <div className="absolute top-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity" style={{ background: `linear-gradient(90deg, transparent, ${color}40, transparent)` }} />
+      <span className="text-2xl opacity-40 mb-3 block">{icon}</span>
+      <div className="text-3xl sm:text-4xl font-extrabold text-white mb-1">{value}</div>
+      <div className="text-xs text-[var(--color-text-muted)] font-medium">{label}</div>
+    </motion.div>
+  );
 }
 
 export default function Home() {
@@ -63,7 +96,7 @@ export default function Home() {
         <meta name="description" content="James Cowx is a full-stack developer from Vancouver, Canada. Building open source tools, web apps, and cloud infrastructure. React, TypeScript, Node.js." />
         <link rel="canonical" href={SITE_URL} />
         <meta property="og:title" content="James Cowx — Full-Stack Developer" />
-        <meta property="og:description" content="Full-stack developer from Vancouver, Canada. Open source builder." />
+        <meta property="og:description" content="Full-stack developer from Vancouver, Canada. 17+ open source projects." />
         <meta property="og:url" content={SITE_URL} />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -72,112 +105,151 @@ export default function Home() {
         <script type="application/ld+json">{JSON.stringify(personSchema)}</script>
       </Helmet>
 
-      {/* HERO */}
+      <MouseGlow />
+
+      {/* ═══ HERO ═══ */}
       <section className="relative min-h-screen flex items-center px-4 sm:px-8 overflow-hidden">
-        <MouseSpotlight />
         <HeroParticles />
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full opacity-[0.04]" style={{ background: 'radial-gradient(circle, #60a5fa, transparent 65%)' }} />
-          <div className="absolute bottom-[-15%] right-[-5%] w-[400px] h-[400px] rounded-full opacity-[0.03]" style={{ background: 'radial-gradient(circle, #f472b6, transparent 65%)' }} />
+          <div className="absolute top-[-15%] left-[-5%] w-[50vw] max-w-[700px] h-[50vw] max-h-[700px] rounded-full opacity-[0.05]" style={{ background: 'radial-gradient(circle, #60a5fa, transparent 65%)' }} />
+          <div className="absolute bottom-[-10%] right-[-5%] w-[40vw] max-w-[500px] h-[40vw] max-h-[500px] rounded-full opacity-[0.04]" style={{ background: 'radial-gradient(circle, #f472b6, transparent 65%)' }} />
         </div>
+
         <div className="max-w-6xl mx-auto w-full relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-20 items-center">
-            <motion.div className="lg:col-span-3" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
-              <motion.div className="flex items-center gap-3 mb-8" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}>
-                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] font-medium bg-white/[0.03] border border-white/[0.06]">
+            
+            <motion.div className="lg:col-span-3"
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+              transition={{ duration: 0.6 }}>
+              
+              <motion.div className="flex items-center gap-3 mb-10"
+                initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[12px] font-medium bg-white/[0.04] border border-white/[0.06]">
                   <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                  <span className="text-[var(--color-text-secondary)]">Available for work</span>
+                  <span className="text-[var(--color-text-secondary)]">Open to opportunities</span>
                 </span>
-                <span className="text-[11px] text-[var(--color-text-muted)] font-medium">📍 Vancouver, CA</span>
+                <span className="text-[12px] text-[var(--color-text-muted)]">📍 Vancouver, CA</span>
               </motion.div>
 
-              <motion.h1 className="text-5xl sm:text-7xl md:text-8xl font-extrabold leading-[0.94] mb-6 tracking-[-0.04em]" initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
-                <span className="text-white/80 block">Hey,</span>
-                <span className="hero-gradient-text">I'm James</span>
-              </motion.h1>
+              <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[6rem] font-bold leading-[0.92] mb-6 tracking-[-0.04em]">
+                <motion.span className="text-white/70 block"
+                  initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25, duration: 0.7 }}>
+                  Building the
+                </motion.span>
+                <motion.span className="hero-gradient-text block"
+                  initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }}>
+                  open web.
+                </motion.span>
+              </h1>
 
-              <motion.div className="text-xl sm:text-2xl md:text-3xl text-[var(--color-text-muted)] mb-6 h-9 font-medium" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
+              <motion.div className="text-xl sm:text-2xl text-[var(--color-text-muted)] mb-5 h-9 font-medium"
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}>
                 <span>{typedText}</span>
-                <span className="inline-block w-[2px] h-6 bg-[var(--color-accent-blue)] ml-1 align-middle rounded-full animate-pulse" />
+                <span className="inline-block w-[2px] h-5 bg-[var(--color-accent-blue)] ml-1 align-middle rounded-full animate-pulse" />
               </motion.div>
 
-              <motion.p className="text-[var(--color-text-muted)] max-w-md text-base leading-relaxed mb-10" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}>
-                I ship open source tools and build production infrastructure.
-                Currently hacking on 17+ projects across web, desktop, and cloud.
+              <motion.p className="text-[var(--color-text-muted)] max-w-lg leading-relaxed mb-10"
+                initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }}>
+                I'm James Cowx — I ship open source tools and build production infrastructure.
+                17+ projects across the web, desktop, and cloud. Self-taught. Canada-based.
               </motion.p>
 
-              <motion.div className="flex flex-wrap items-center gap-4 mb-14" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }}>
-                <Link to="/projects"><Button accent="blue" size="lg">See my work →</Button></Link>
+              <motion.div className="flex flex-wrap items-center gap-4 mb-16"
+                initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }}>
+                <Link to="/projects"><Button accent="blue" size="lg">See my work</Button></Link>
                 <Link to="/contact"><Button variant="glass" size="lg">Get in touch</Button></Link>
-                <a href="https://github.com/JamesCowx" target="_blank" rel="noopener noreferrer" className="hidden sm:flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-white transition-colors ml-2">
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0a12 12 0 0 0-3.8 23.4c.6.1.82-.26.82-.58v-2.2c-3.34.72-4.04-1.6-4.04-1.6-.54-1.38-1.32-1.74-1.32-1.74-1.08-.74.08-.72.08-.72 1.2.08 1.82 1.22 1.82 1.22 1.06 1.82 2.78 1.3 3.46.98.1-.76.42-1.3.76-1.6-2.66-.3-5.46-1.33-5.46-5.92 0-1.3.46-2.38 1.22-3.22-.12-.3-.54-1.52.12-3.16 0 0 1-.32 3.3 1.22a11.3 11.3 0 0 1 6 0c2.3-1.54 3.3-1.22 3.3-1.22.66 1.64.24 2.86.12 3.16.76.84 1.22 1.9 1.22 3.22 0 4.6-2.8 5.62-5.48 5.92.44.38.82 1.12.82 2.26v3.36c0 .32.22.7.84.58A12 12 0 0 0 12 0"/></svg>
+                <a href="https://github.com/JamesCowx" target="_blank" rel="noopener noreferrer"
+                  className="hidden sm:flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-white transition-colors ml-2 group">
+                  <svg className="w-5 h-5 group-hover:text-[#60a5fa] transition-colors" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0a12 12 0 0 0-3.8 23.4c.6.1.82-.26.82-.58v-2.2c-3.34.72-4.04-1.6-4.04-1.6-.54-1.38-1.32-1.74-1.32-1.74-1.08-.74.08-.72.08-.72 1.2.08 1.82 1.22 1.82 1.22 1.06 1.82 2.78 1.3 3.46.98.1-.76.42-1.3.76-1.6-2.66-.3-5.46-1.33-5.46-5.92 0-1.3.46-2.38 1.22-3.22-.12-.3-.54-1.52.12-3.16 0 0 1-.32 3.3 1.22a11.3 11.3 0 0 1 6 0c2.3-1.54 3.3-1.22 3.3-1.22.66 1.64.24 2.86.12 3.16.76.84 1.22 1.9 1.22 3.22 0 4.6-2.8 5.62-5.48 5.92.44.38.82 1.12.82 2.26v3.36c0 .32.22.7.84.58A12 12 0 0 0 12 0"/></svg>
                   {ghRepos} repos · {ghFollowers} followers
                 </a>
               </motion.div>
             </motion.div>
 
-            <motion.div className="lg:col-span-2 flex justify-center lg:justify-end" initial={{ opacity: 0, scale: 0.8, rotate: -6 }} animate={{ opacity: 1, scale: 1, rotate: 0 }} transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}>
+            <motion.div className="lg:col-span-2 flex justify-center lg:justify-end"
+              initial={{ opacity: 0, scale: 0.75, rotate: -8 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: 1.1, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}>
               <div className="relative">
-                <div className="w-64 h-64 sm:w-80 sm:h-80 rounded-full p-[3px] hero-ring">
+                <div className="w-72 h-72 sm:w-80 sm:h-80 rounded-full p-[3px] hero-ring shadow-2xl">
                   <div className="w-full h-full rounded-full bg-[var(--color-bg-deep)] flex items-center justify-center">
-                    <span className="text-[7rem] sm:text-[8rem] font-extrabold hero-gradient-text">JC</span>
+                    <span className="text-[8rem] sm:text-[9rem] font-black hero-gradient-text select-none">JC</span>
                   </div>
                 </div>
-                <div className="absolute -bottom-2 -right-2 px-4 py-2 rounded-xl bg-white/[0.03] border border-white/[0.06] text-[11px] font-semibold text-[var(--color-text-secondary)] backdrop-blur-xl">
-                  {projectCount} projects shipped
-                </div>
+                <motion.div className="absolute -bottom-3 -right-3 px-5 py-2.5 rounded-2xl bg-white/[0.04] border border-white/[0.08] text-[12px] font-bold text-white backdrop-blur-xl shadow-xl"
+                  initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1 }}>
+                  {projectCount}+ projects
+                </motion.div>
+                <motion.div className="absolute -top-3 -left-6 px-4 py-2 rounded-xl bg-white/[0.03] border border-white/[0.06] text-[11px] font-semibold text-[var(--color-text-secondary)] backdrop-blur-xl shadow-lg"
+                  initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1.2 }}>
+                  <span className="text-[#60a5fa]">Open Source</span>
+                </motion.div>
               </div>
             </motion.div>
           </div>
         </div>
+        
+        {/* Scroll indicator */}
+        <motion.div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }}>
+          <span className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-[0.3em] font-semibold">Explore</span>
+          <motion.div className="w-5 h-8 rounded-full border border-white/[0.08] flex justify-center pt-1.5"
+            animate={{ borderColor: ['rgba(255,255,255,0.08)', 'rgba(96,165,250,0.3)', 'rgba(255,255,255,0.08)'] }}
+            transition={{ duration: 3, repeat: Infinity }}>
+            <motion.div className="w-1 h-2 rounded-full bg-[var(--color-accent-blue)]"
+              animate={{ y: [0, 7, 0], opacity: [1, 0.1, 1] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }} />
+          </motion.div>
+        </motion.div>
       </section>
 
-      {/* TECH + STATS */}
-      <section className="py-20 px-4 border-t border-white/[0.04]">
+      {/* ═══ TECH + STATS ═══ */}
+      <section className="py-24 px-4 border-t border-white/[0.04]">
         <div className="max-w-6xl mx-auto">
-          <div className="flex flex-wrap items-center justify-center gap-2 mb-16">
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-20">
             {techStack.map((t, i) => (
-              <motion.span key={t.name} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.03 }}
-                whileHover={{ scale: 1.08, borderColor: t.color + '50', y: -4 }}
+              <motion.span key={t.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.03 }}
+                whileHover={{ scale: 1.1, borderColor: t.c + '60', y: -5, boxShadow: `0 6px 20px ${t.c}10` }}
                 className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white/[0.02] border border-white/[0.04] text-[12px] font-mono font-medium text-[var(--color-text-muted)] transition-all cursor-default">
-                <span className="text-[14px]" style={{ color: t.color }}>{t.icon}</span> {t.name}
+                <span className="text-[14px]" style={{ color: t.c }}>{t.icon}</span> {t.name}
               </motion.span>
             ))}
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {[{ label: 'Projects Built', value: projectCount, color: '#60a5fa', icon: '⚙' }, { label: 'Blog Posts', value: postCount, color: '#f472b6', icon: '✎' }, { label: 'Years Exp.', value: 8, color: '#a78bfa', icon: '⚡' }, { label: 'Open Source', value: '17+', color: '#34d399', icon: '⌨' }].map((s, i) => (
-              <motion.div key={s.label} className="text-center p-6 rounded-2xl bg-white/[0.02] border border-white/[0.04] group hover:border-white/[0.08] transition-all" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }} whileHover={{ y: -4 }}>
-                <div className="text-2xl mb-2 opacity-40">{s.icon}</div>
-                <div className="text-3xl sm:text-4xl font-extrabold mb-1 text-white">{typeof s.value === 'number' ? s.value : s.value}</div>
-                <div className="text-xs text-[var(--color-text-muted)] font-medium">{s.label}</div>
-              </motion.div>
-            ))}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
+            <StatCard label="Projects Built" value={projectCount} color="#60a5fa" icon="⚙" />
+            <StatCard label="Blog Posts" value={postCount} color="#f472b6" icon="✎" />
+            <StatCard label="Years Exp." value={8} color="#a78bfa" icon="⚡" />
+            <StatCard label="Open Source" value="17+" color="#34d399" icon="⌨" />
           </div>
         </div>
       </section>
 
-      {/* FEATURED PROJECTS */}
+      {/* ═══ FEATURED PROJECTS ═══ */}
       <section className="py-24 px-4 border-t border-white/[0.04]">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16">
-            <span className="text-[11px] text-[var(--color-accent-blue)] font-semibold uppercase tracking-[0.2em]">Recent work</span>
-            <h2 className="text-3xl sm:text-5xl font-bold mt-3 mb-4">Featured <span className="gradient-text-blue">Projects</span></h2>
-            <div className="h-px w-16 bg-gradient-to-r from-[var(--color-accent-blue)] to-transparent mt-2" />
+            <span className="text-[11px] text-[var(--color-accent-blue)] font-semibold uppercase tracking-[0.25em]">Recent work</span>
+            <h2 className="text-4xl sm:text-6xl font-bold mt-3 mb-4">
+              Featured <span className="gradient-text-blue">Projects</span>
+            </h2>
+            <p className="text-[var(--color-text-muted)] text-lg">Highlights from {projects.length}+ open source repos.</p>
           </div>
 
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-5" staggerDelay={0.08}>
-            {featured.map(p => (
+            {featured.map((p, i) => (
               <StaggerItem key={p.id}>
                 <Link to={`/projects/${p.id}`}>
-                  <Card accent="blue" tilt>
-                    <div className="h-44 rounded-xl mb-5 flex items-center justify-center relative overflow-hidden" style={{ background: `linear-gradient(135deg, ${p.id % 3 === 0 ? 'rgba(96,165,250,0.1)' : p.id % 3 === 1 ? 'rgba(244,114,182,0.07)' : 'rgba(167,139,250,0.08)'} 0%, rgba(255,255,255,0.01) 50%, ${p.id % 3 === 0 ? 'rgba(244,114,182,0.05)' : p.id % 3 === 1 ? 'rgba(96,165,250,0.06)' : 'rgba(244,114,182,0.04)'} 100%)` }}>
+                  <Card accent={i % 3 === 0 ? 'blue' : i % 3 === 1 ? 'pink' : 'none'} tilt>
+                    <div className="h-44 rounded-xl mb-5 flex items-center justify-center relative overflow-hidden"
+                      style={{ background: cardAccents[i % cardAccents.length] }}>
                       <div className="flex flex-wrap gap-1.5 p-4 justify-center z-10">
                         {p.tech.slice(0, 4).map(t => <span key={t} className="text-[10px] px-2.5 py-1 rounded-md bg-black/40 text-[var(--color-text-muted)] border border-white/[0.04]">{t}</span>)}
                       </div>
                       <span className="absolute top-3 right-3 px-2.5 py-1 rounded-lg text-[10px] font-semibold bg-green-500/10 text-green-400 border border-green-500/20">Demo</span>
+                      {p.siteUrl && <span className="absolute bottom-3 right-3 text-[10px] text-green-400/60">🌐 live</span>}
                     </div>
-                    <div className="flex gap-2 mb-3">{p.tags.slice(0, 2).map(t => <Badge key={t} variant="blue">{t}</Badge>)}</div>
+                    <div className="flex gap-2 mb-3 flex-wrap">{p.tags.slice(0, 2).map(t => <Badge key={t} variant="blue">{t}</Badge>)}<Badge variant="mixed">{p.category.split(' ')[0]}</Badge></div>
                     <h3 className="text-lg font-semibold mb-2 group-hover/card:text-white transition-colors">{p.title}</h3>
                     <p className="text-sm text-[var(--color-text-muted)] line-clamp-2 leading-relaxed">{p.description}</p>
                   </Card>
@@ -186,27 +258,27 @@ export default function Home() {
             ))}
           </StaggerContainer>
 
-          <div className="text-center mt-12">
+          <div className="text-center mt-14">
             <Link to="/projects"><Button variant="outline" accent="blue" size="lg">Browse all {projects.length} projects →</Button></Link>
           </div>
         </div>
       </section>
 
-      {/* BLOG */}
+      {/* ═══ BLOG ═══ */}
       <section className="py-24 px-4 border-t border-white/[0.04]">
         <div className="max-w-4xl mx-auto">
           <div className="mb-16">
-            <span className="text-[11px] text-[var(--color-accent-pink)] font-semibold uppercase tracking-[0.2em]">Writing</span>
-            <h2 className="text-3xl sm:text-5xl font-bold mt-3 mb-4">Latest <span className="gradient-text-pink">Posts</span></h2>
-            <div className="h-px w-16 bg-gradient-to-r from-[var(--color-accent-pink)] to-transparent mt-2" />
+            <span className="text-[11px] text-[var(--color-accent-pink)] font-semibold uppercase tracking-[0.25em]">Writing</span>
+            <h2 className="text-4xl sm:text-6xl font-bold mt-3 mb-4">Latest <span className="gradient-text-pink">Posts</span></h2>
+            <p className="text-[var(--color-text-muted)] text-lg">Tutorials, deep dives, and open source stories.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {latestPosts.map((post, i) => (
-              <motion.div key={post.slug} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
+              <motion.div key={post.slug} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
                 <Link to={`/blog/${post.slug}`}>
                   <Card accent="pink">
-                    <div className="flex items-center gap-2 mb-4"><Badge variant="pink">{post.category}</Badge><span className="text-xs text-[var(--color-text-muted)]">{post.readTime} min</span></div>
+                    <div className="flex items-center gap-2 mb-4"><Badge variant="pink">{post.category}</Badge><span className="text-xs text-[var(--color-text-muted)]">{post.readTime} min read</span></div>
                     <h3 className="text-lg font-semibold mb-2 group-hover/card:text-white transition-colors">{post.title}</h3>
                     <p className="text-sm text-[var(--color-text-muted)] line-clamp-2 mb-4 leading-relaxed">{post.excerpt}</p>
                     <div className="flex items-center justify-between text-xs text-[var(--color-text-muted)]">
@@ -218,19 +290,29 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
-          <div className="text-center mt-10"><Link to="/blog"><Button variant="outline" accent="pink" size="lg">All posts →</Button></Link></div>
+
+          <div className="text-center mt-12">
+            <Link to="/blog"><Button variant="outline" accent="pink" size="lg">All posts →</Button></Link>
+          </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-32 px-4 border-t border-white/[0.04]">
+      {/* ═══ CTA ═══ */}
+      <section className="py-36 px-4 border-t border-white/[0.04]">
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-5xl font-bold mb-5">Let's <span className="hero-gradient-text">build something</span></h2>
-          <p className="text-[var(--color-text-muted)] text-lg mb-10 max-w-md mx-auto leading-relaxed">Have a project you want to get off the ground? I'm currently taking on select freelance work.</p>
-          <div className="flex gap-4 justify-center">
+          <motion.h2 className="text-4xl sm:text-6xl font-bold mb-5"
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            Let's <span className="hero-gradient-text">build something</span>
+          </motion.h2>
+          <motion.p className="text-[var(--color-text-muted)] text-lg mb-10 max-w-md mx-auto leading-relaxed"
+            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
+            Have a project you want to get off the ground? I'm currently taking on select freelance work.
+          </motion.p>
+          <motion.div className="flex gap-4 justify-center"
+            initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
             <Link to="/contact"><Button accent="mixed" size="lg">Start a conversation</Button></Link>
             <Link to="/about"><Button variant="glass" size="lg">More about me</Button></Link>
-          </div>
+          </motion.div>
         </div>
       </section>
     </>
