@@ -194,5 +194,47 @@
     "siteUrl": "",
     "featured": false,
     "demoType": "minecraft"
+  },
+  {
+    "id": 45,
+    "title": "OpenApiVault",
+    "description": "A secure vault for storing, organizing, and exploring OpenAPI/Swagger specifications.",
+    "longDescription": "OpenApiVault is a centralized repository for managing OpenAPI and Swagger API specifications. It provides a clean interface for storing, organizing, searching, and versioning API definitions. Features include syntax highlighting, schema validation, API documentation preview, and export to multiple formats. Ideal for teams that need a single source of truth for their API contracts.",
+    "category": "Web Apps",
+    "tags": ["APIs", "OpenAPI", "Documentation"],
+    "tech": ["TypeScript", "React", "Node.js", "PostgreSQL", "Docker"],
+    "image": "/projects/openapivault.png",
+    "sourceUrl": "https://github.com/JamesCowx/OpenApiVault",
+    "siteUrl": "",
+    "featured": false,
+    "demoType": "document"
+  },
+  {
+    "id": 46,
+    "title": "CouponCore",
+    "description": "A community-driven coupon and discount code sharing site with verified deals.",
+    "longDescription": "CouponCore is a community-driven platform for sharing and discovering coupon codes and discount deals. Users can submit, vote, and verify coupon codes for thousands of online stores. Features include deal expiration tracking, success rate indicators, category browsing, and a browser extension for automatic coupon application at checkout. Built to help shoppers save money with confidence.",
+    "category": "Web Apps",
+    "tags": ["E-Commerce", "Community", "Savings"],
+    "tech": ["TypeScript", "React", "Node.js", "PostgreSQL", "Redis", "Docker"],
+    "image": "/projects/couponcore.png",
+    "sourceUrl": "https://github.com/JamesCowx/CouponCore",
+    "siteUrl": "",
+    "featured": false,
+    "demoType": "componentshowcase"
+  },
+  {
+    "id": 47,
+    "title": "Cowx Foundation",
+    "description": "A modern foundation and boilerplate for building scalable web applications.",
+    "longDescription": "Cowx Foundation is a modern project boilerplate and foundation library for rapidly building scalable web applications. It includes pre-configured authentication, database setup, API routing, monitoring, and deployment configurations. Built with best practices for TypeScript monorepos, it provides a consistent starting point for new projects with CI/CD pipelines, testing frameworks, and documentation templates included out of the box.",
+    "category": "Web Apps",
+    "tags": ["Boilerplate", "Foundation", "Tooling"],
+    "tech": ["TypeScript", "Node.js", "React", "Docker", "PostgreSQL", "CI/CD"],
+    "image": "/projects/cowxfoundation.png",
+    "sourceUrl": "https://github.com/JamesCowx/cowx-foundation",
+    "siteUrl": "",
+    "featured": false,
+    "demoType": "codeplayground"
   }
 ]
