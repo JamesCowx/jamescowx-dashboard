@@ -49,11 +49,12 @@ export default function About() {
   return (
     <>
       <Helmet>
-        <title>About James Cowx — Full-Stack Web Developer Canada</title>
-        <meta name="description" content="Learn about James Cowx, a full-stack web developer and open source enthusiast based in Canada with 8+ years of experience building scalable web applications." />
+        <title>About James Cowx — Full-Stack Developer | Vancouver, Canada</title>
+        <meta name="description" content="James Cowx is a full-stack developer with 8+ years of experience in React, TypeScript, Node.js, Docker, PostgreSQL, and AWS. Based in Vancouver, Canada. Building open source tools and scalable web apps." />
+        <meta name="keywords" content="James Cowx, about, full-stack developer, Vancouver, Canada, React, TypeScript, Node.js, open source" />
         <link rel="canonical" href="https://jamescowx.com/about" />
-        <meta property="og:title" content="About James Cowx — Full-Stack Web Developer Canada" />
-        <meta property="og:description" content="Full-stack developer and open source enthusiast based in Canada with 8+ years of experience." />
+        <meta property="og:title" content="About James Cowx — Full-Stack Developer | Vancouver, Canada" />
+        <meta property="og:description" content="Full-stack developer with 8+ years experience in React, TypeScript, Node.js. Based in Vancouver." />
         <meta property="og:url" content="https://jamescowx.com/about" />
         <meta property="og:type" content="profile" />
         <script type="application/ld+json">{JSON.stringify(aboutSchema)}</script>

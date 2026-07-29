@@ -79,11 +79,12 @@ export default function Contact() {
   return (
     <>
       <Helmet>
-        <title>Contact James Cowx — Web Developer Canada</title>
-        <meta name="description" content="Get in touch with James Cowx. Have a project idea or collaboration opportunity? Send a message and I'll respond within 24 hours." />
+        <title>Contact James Cowx — Hire a Full-Stack Developer | Vancouver, Canada</title>
+        <meta name="description" content="Get in touch with James Cowx for web development, freelance projects, or collaborations. Full-stack developer in Vancouver, Canada. React, TypeScript, Node.js. Fast response." />
+        <meta name="keywords" content="contact James Cowx, hire developer, Vancouver web developer, freelance React developer, TypeScript developer" />
         <link rel="canonical" href="https://jamescowx.com/contact" />
-        <meta property="og:title" content="Contact James Cowx — Web Developer Canada" />
-        <meta property="og:description" content="Get in touch with James Cowx for web development projects, collaborations, or just to say hi." />
+        <meta property="og:title" content="Contact James Cowx — Hire a Full-Stack Developer" />
+        <meta property="og:description" content="Get in touch with James Cowx for web development, freelance projects, or collaborations." />
         <meta property="og:url" content="https://jamescowx.com/contact" />
         <meta property="og:type" content="website" />
       </Helmet>

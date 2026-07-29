@@ -72,7 +72,7 @@ function Particles() {
 
 function StatCard({ label, value, color, icon }: { label: string; value: string | number; color: string; icon: string }) {
   return (
-    <motion.div className="relative p-6 rounded-2xl bg-white/[0.015] border border-white/[0.04] text-center overflow-hidden group"
+    <motion.div className="relative p-6 rounded-2xl bg-white/[0.015] border border-white/[0.04] text-center overflow-hidden group living-border"
       initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
       whileHover={{ y: -8, borderColor: color + '50', scale: 1.04 }} transition={{ type: 'spring', stiffness: 200, damping: 20 }}>
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: `radial-gradient(200px circle at 50% 50%, ${color}08, transparent)` }} />
@@ -224,7 +224,7 @@ export default function Home() {
           {featured.map((p, i) => (
             <StaggerItem key={p.id}>
               <Link to={`/projects/${p.id}`}>
-                <Card accent={i % 3 === 0 ? 'blue' : i % 3 === 1 ? 'pink' : 'none'} tilt>
+                <Card accent={i % 3 === 0 ? 'blue' : i % 3 === 1 ? 'pink' : 'none'} tilt className="living-border">
                   <div className="h-44 rounded-xl mb-5 flex items-center justify-center relative overflow-hidden" style={{ background: cardBgs[i % cardBgs.length] }}>
                     <div className="flex flex-wrap gap-1.5 p-4 justify-center z-10">
                       {p.tech.slice(0, 4).map(t => <span key={t} className="text-[10px] px-2.5 py-1 rounded-md bg-black/40 text-[var(--color-text-muted)] border border-white/[0.04]">{t}</span>)}

@@ -50,7 +50,6 @@ body {
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
 }
-
 .liquid-glass-deep {
   background: rgba(8, 10, 20, 0.8);
   backdrop-filter: blur(40px) saturate(180%);
@@ -98,6 +97,18 @@ body {
 }
 .tilt-card:hover::after { opacity: 1; }
 
+/* ─── LIVING BORDER ─── */
+@keyframes livingBorder { 0% { background-position: 0% 0%; } 50% { background-position: 100% 100%; } 100% { background-position: 0% 0%; } }
+.living-border { position: relative; }
+.living-border::before {
+  content: ''; position: absolute; inset: -1px; border-radius: inherit; padding: 1px;
+  background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6, #60a5fa);
+  background-size: 300% 300%; animation: livingBorder 4s linear infinite; opacity: 0; transition: opacity 0.4s;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor;
+  mask-composite: exclude; pointer-events: none;
+}
+.living-border:hover::before { opacity: 1; }
+
 /* ─── BACKGROUNDS ─── */
 .grid-overlay {
   position: fixed; inset: 0; z-index: 0; pointer-events: none;
@@ -111,20 +122,23 @@ body {
 @keyframes blob2 { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(-10%,6%) scale(1.08); } 66% { transform: translate(7%,-8%) scale(0.93); } }
 @keyframes blob3 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(8%,6%) scale(1.1); } }
 .blob { position: fixed; border-radius: 50%; filter: blur(100px); pointer-events: none; z-index: 0; }
-.blob-1 { width: 50vw; max-width: 700px; height: 50vw; max-height: 700px; background: #60a5fa; top: -12%; left: -8%; animation: blob1 24s ease-in-out infinite; opacity: 0.06; }
-.blob-2 { width: 40vw; max-width: 550px; height: 40vw; max-height: 550px; background: #f472b6; top: 45%; right: -10%; animation: blob2 28s ease-in-out infinite; opacity: 0.05; }
-.blob-3 { width: 45vw; max-width: 650px; height: 45vw; max-height: 650px; background: #a78bfa; bottom: -18%; left: 20%; animation: blob3 22s ease-in-out infinite; opacity: 0.05; }
+.blob-1 { width: 50vw; max-width: 700px; height: 50vw; max-height: 700px; background: #60a5fa; top: -12%; left: -8%; animation: blob1 24s ease-in-out infinite; opacity: 0.05; }
+.blob-2 { width: 40vw; max-width: 550px; height: 40vw; max-height: 550px; background: #f472b6; top: 45%; right: -10%; animation: blob2 28s ease-in-out infinite; opacity: 0.04; }
+.blob-3 { width: 45vw; max-width: 650px; height: 45vw; max-height: 650px; background: #a78bfa; bottom: -18%; left: 20%; animation: blob3 22s ease-in-out infinite; opacity: 0.04; }
 
-/* ─── ISOMETRIC SHAPES ─── */
-@keyframes isoFloat1 { 0%,100% { transform: translate(0,0) rotate(0deg); } 33% { transform: translate(8px,-12px) rotate(5deg); } 66% { transform: translate(-6px,8px) rotate(-5deg); } }
-@keyframes isoFloat2 { 0%,100% { transform: translate(0,0) rotate(0deg); } 50% { transform: translate(-10px,-8px) rotate(-8deg); } }
-@keyframes isoFloat3 { 0%,100% { transform: translate(0,0) rotate(0deg); } 25% { transform: translate(6px,-16px) rotate(3deg); } 75% { transform: translate(-8px,10px) rotate(-3deg); } }
+/* ─── SCROLL PROGRESS ─── */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; height: 2px; z-index: 100;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6);
+  transition: width 0.1s linear;
+}
+
+/* ─── SECTION HEADER ─── */
+.section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; }
+.section-underline { height: 2px; background: linear-gradient(90deg, var(--color-accent-blue), transparent); width: 4rem; margin-top: 0.5rem; }
 
 /* ─── NOISE ─── */
-body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.01; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-repeat: repeat; background-size: 128px 128px; }
-
-/* ─── ANIMATED BORDER ─── */
-@keyframes borderFlow { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.008; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-repeat: repeat; background-size: 128px 128px; }
 
 /* ─── SKELETON ─── */
 @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }

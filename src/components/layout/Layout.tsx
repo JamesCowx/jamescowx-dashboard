@@ -1,13 +1,11 @@
-import { type ReactNode } from 'react';
+import { type ReactNode, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import AnimatedBackground from './AnimatedBackground';
 
-interface LayoutProps {
-  children: ReactNode;
-}
+interface LayoutProps { children: ReactNode; }
 
 const variants = {
   initial: { opacity: 0, y: 8, filter: 'blur(3px)' },
@@ -15,23 +13,26 @@ const variants = {
   exit: { opacity: 0, y: -8, filter: 'blur(2px)' },
 };
 
+function ScrollProgress() {
+  const [width, setWidth] = useState(0);
+  useEffect(() => {
+    const onScroll = () => { const h = document.documentElement.scrollHeight - window.innerHeight; setWidth(h > 0 ? (window.scrollY / h) * 100 : 0); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+  return <div className="scroll-progress" style={{ width: `${width}%` }} />;
+}
+
 export default function Layout({ children }: LayoutProps) {
   const location = useLocation();
 
   return (
     <div className="relative min-h-screen bg-[var(--color-bg-deep)] text-[var(--color-text-primary)]">
+      <ScrollProgress />
       <AnimatedBackground />
       <Navbar />
       <AnimatePresence mode="wait">
-        <motion.main
-          className="relative z-10 pt-16"
-          key={location.pathname}
-          variants={variants}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-          transition={{ duration: 0.3, ease: 'easeOut' }}
-        >
+        <motion.main className="relative z-10 pt-16" key={location.pathname} variants={variants} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.3, ease: 'easeOut' }}>
           {children}
         </motion.main>
       </AnimatePresence>
