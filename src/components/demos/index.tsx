@@ -39,6 +39,7 @@ const WalletDemo = lazy(() => import('./WalletDemo'));
 const CodingAgentDemo = lazy(() => import('./CodingAgentDemo'));
 const MinecraftDemo = lazy(() => import('./MinecraftDemo'));
 const PokemonDemo = lazy(() => import('./PokemonDemo'));
+const ContactsDemo = lazy(() => import('./ContactsDemo'));
 
 function DemoLoader() {
   return (
@@ -92,6 +93,7 @@ const demoMap: Record<string, ComponentType> = {
   codingagent: CodingAgentDemo,
   minecraft: MinecraftDemo,
   pokemon: PokemonDemo,
+  contacts: ContactsDemo,
 };
 
 export function DemoComponent({ demoType }: { demoType: string }) {
