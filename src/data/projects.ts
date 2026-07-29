@@ -15,6 +15,6 @@ export interface Project {
   demoType: string;
 }
 
-export const projects: Project[] = projectsData;
+export const projects: Project[] = projectsData.sort((a, b) => b.id - a.id);
 
 export const categories = ['All', 'Web Apps', 'Desktop Apps'];

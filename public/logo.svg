@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="48" viewBox="0 0 200 48">
+  <defs>
+    <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="40%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#f472b6"/>
+    </linearGradient>
+  </defs>
+  <!-- JC Monogram -->
+  <rect x="0" y="0" width="44" height="44" rx="12" fill="none" stroke="url(#logo-grad)" stroke-width="2.5"/>
+  <text x="22" y="30" font-family="Inter, system-ui, sans-serif" font-size="22" font-weight="800" fill="url(#logo-grad)" text-anchor="middle">JC</text>
+  <!-- Name -->
+  <text x="56" y="20" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#eef2ff" letter-spacing="-0.3">James Cowx</text>
+  <text x="56" y="38" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="500" fill="#64748b" letter-spacing="1.2">FULL-STACK DEVELOPER</text>
+</svg>
