@@ -2,16 +2,16 @@
   {
     "id": 49,
     "title": "OpenSauce",
-    "description": "An open source project template and toolkit with modern tooling and best practices built in.",
-    "longDescription": "OpenSauce is an open source project starter template designed to help developers ship quality software faster. It includes pre-configured linting, formatting, CI/CD pipelines, testing frameworks, and documentation templates. Built for the modern developer who wants to focus on code, not configuration.",
+    "description": "An open source tool dashboard — discover, browse, and launch development tools in one place.",
+    "longDescription": "OpenSauce is a curated dashboard of open source development tools and utilities. Browse, search, and discover tools for web development, DevOps, design, productivity, and more. Each tool includes descriptions, links, and setup instructions. Built to help developers find the right open source tools without digging through endless search results.",
     "category": "Web Apps",
-    "tags": ["Template", "Tooling", "CI/CD"],
-    "tech": ["TypeScript", "Node.js", "Docker", "GitHub Actions"],
+    "tags": ["Open Source", "Tools", "Dashboard"],
+    "tech": ["TypeScript", "React", "Node.js", "CSS", "Vite"],
     "image": "/projects/opensauce.png",
     "sourceUrl": "https://github.com/JamesCowx/OpenSauce",
-    "siteUrl": "",
+    "siteUrl": "https://jamescowx.github.io/OpenSauce/",
     "featured": false,
-    "demoType": ""
+    "demoType": "componentshowcase"
   },
   {
     "id": 48,
