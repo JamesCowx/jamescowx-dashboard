@@ -53,13 +53,13 @@
   {
     "id": 46,
     "title": "CouponCore",
-    "description": "A community-driven coupon and discount code sharing site with verified deals.",
-    "longDescription": "CouponCore is a community-driven platform for sharing and discovering coupon codes and discount deals. Users can submit, vote, and verify coupon codes for thousands of online stores. Features include deal expiration tracking, success rate indicators, category browsing, and a browser extension for automatic coupon application at checkout. Built to help shoppers save money with confidence.",
+    "description": "A coupon clipping webapp — collect, organize, and apply discount codes from thousands of stores.",
+    "longDescription": "CouponCore is a coupon clipping webapp that lets users collect, organize, and apply discount codes from thousands of online stores. Clip coupons with one click, track expiration dates, organize by store or category, and get notified before deals expire. Built for savvy shoppers who want to save money without the hassle of searching for codes at checkout.",
     "category": "Web Apps",
     "tags": [
-      "E-Commerce",
-      "Community",
-      "Savings"
+      "Coupons",
+      "Deals",
+      "Shopping"
     ],
     "tech": [
       "TypeScript",
