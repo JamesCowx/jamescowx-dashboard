@@ -15,8 +15,9 @@ const demoLabels: Record<string, string> = {
   iot: 'IoT', codereview: 'Review', minigame: 'Game', dorametrics: 'DORA',
   journal: 'Journal', testresults: 'Tests', voice: 'Voice', gantt: 'Gantt',
   torrent: 'Torrent', vault: 'Password Vault', cryptomarket: 'Crypto Market',
-  wallet: 'Crypto Wallet', codingagent: 'AI Agent', minecraft: 'Minecraft',
+  wallet: 'Crypto Wallet',   codingagent: 'AI Agent', minecraft: 'Minecraft',
   pokemon: 'Pokemon', contacts: 'Contacts',
+  shop: 'Online Store',
 };
 
 const demoIcons: Record<string, string> = {
@@ -28,6 +29,7 @@ const demoIcons: Record<string, string> = {
   dorametrics: '📉', journal: '📓', testresults: '🧪', voice: '🎙', gantt: '📋',
   torrent: '⬇', vault: '🔐', cryptomarket: '₿', wallet: '💳',
   codingagent: '⌨', minecraft: '⛏', pokemon: '🔴', contacts: '👥',
+  shop: '🛒',
 };
 
 const techColors: Record<string, string> = {
