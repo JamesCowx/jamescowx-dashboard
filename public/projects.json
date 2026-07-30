@@ -1,5 +1,33 @@
 [
   {
+    "id": 49,
+    "title": "OpenSauce",
+    "description": "An open source project template and toolkit with modern tooling and best practices built in.",
+    "longDescription": "OpenSauce is an open source project starter template designed to help developers ship quality software faster. It includes pre-configured linting, formatting, CI/CD pipelines, testing frameworks, and documentation templates. Built for the modern developer who wants to focus on code, not configuration.",
+    "category": "Web Apps",
+    "tags": ["Template", "Tooling", "CI/CD"],
+    "tech": ["TypeScript", "Node.js", "Docker", "GitHub Actions"],
+    "image": "/projects/opensauce.png",
+    "sourceUrl": "https://github.com/JamesCowx/OpenSauce",
+    "siteUrl": "",
+    "featured": false,
+    "demoType": "codeplayground"
+  },
+  {
+    "id": 48,
+    "title": "AccessNode",
+    "description": "Self-hosted password & account manager with AES-256 encryption, Docker-ready, and a beautiful UI.",
+    "longDescription": "AccessNode is a self-hosted password and account management platform built for teams and individuals. It features AES-256 encryption, Docker-ready deployment, role-based access control, shared vaults, audit logging, and a beautiful modern UI. Perfect for organizations that need a secure, self-hosted alternative to cloud password managers.",
+    "category": "Web Apps",
+    "tags": ["Security", "Self-Hosted", "Password Manager"],
+    "tech": ["Node.js", "TypeScript", "React", "Docker", "PostgreSQL", "Redis"],
+    "image": "/projects/accessnode.png",
+    "sourceUrl": "https://github.com/JamesCowx/AccessNode",
+    "siteUrl": "",
+    "featured": false,
+    "demoType": "vault"
+  },
+  {
     "id": 47,
     "title": "Cowx Foundation",
     "description": "A modern foundation and boilerplate for building scalable web applications.",
