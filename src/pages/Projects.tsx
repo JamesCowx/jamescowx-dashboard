@@ -90,7 +90,7 @@ export default function Projects() {
                   <p className="text-sm text-[var(--color-text-muted)] line-clamp-2 leading-relaxed mb-3">{p.description}</p>
                   <div className="flex items-center gap-2 pt-3 border-t border-white/[0.04] text-[11px] text-[var(--color-text-muted)]">
                     <span>⚡ {p.tech.length} tech</span>
-                    <span className="ml-auto">{demoIcons[p.demoType] || '◈'} {demoLabels[p.demoType] || p.demoType}</span>
+                    {p.demoType && <span className="ml-auto">{demoIcons[p.demoType] || '◈'} {demoLabels[p.demoType] || p.demoType}</span>}
                   </div>
                 </Card>
               </Link>

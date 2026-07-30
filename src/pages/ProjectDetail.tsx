@@ -57,6 +57,7 @@ export default function ProjectDetail() {
           </Link>
         </FadeIn>
 
+        {project.demoType && (
         <FadeIn delay={0.15}>
           <div className="mb-10">
             <div className="flex items-center gap-2 mb-4">
@@ -67,6 +68,7 @@ export default function ProjectDetail() {
             <DemoComponent demoType={project.demoType} />
           </div>
         </FadeIn>
+        )}
 
         <FadeIn delay={0.2}>
           <div className="flex flex-wrap gap-2 mb-6">
