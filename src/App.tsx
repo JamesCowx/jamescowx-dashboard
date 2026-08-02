@@ -5,6 +5,8 @@ import Layout from '@/components/layout/Layout';
 const Home = lazy(() => import('@/pages/Home'));
 const Projects = lazy(() => import('@/pages/Projects'));
 const ProjectDetail = lazy(() => import('@/pages/ProjectDetail'));
+const Services = lazy(() => import('@/pages/Services'));
+const ServiceDetail = lazy(() => import('@/pages/ServiceDetail'));
 const Blog = lazy(() => import('@/pages/Blog'));
 const BlogPost = lazy(() => import('@/pages/BlogPost'));
 const Contact = lazy(() => import('@/pages/Contact'));
@@ -32,6 +34,8 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:id" element={<ProjectDetail />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/services/:slug" element={<ServiceDetail />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/contact" element={<Contact />} />
