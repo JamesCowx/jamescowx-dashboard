@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
@@ -78,8 +78,9 @@ export default function Home() {
   const typedText = useTypewriter(['Full-Stack Developer', 'Open Source Builder', 'DevOps Engineer', 'UI Designer', 'Creator']);
   const { repos: ghRepos, followers: ghFollowers } = useGithubStats('JamesCowx');
   const projectCount = useCountUp(projects.length);
-  const postCount = useCountUp(getAllPosts().length);
-  const latestPosts = getAllPosts().slice(0, 2);
+  const allPosts = useMemo(() => getAllPosts(), []);
+  const postCount = useCountUp(allPosts.length);
+  const latestPosts = allPosts.slice(0, 2);
 
   return (<>
     <Helmet>
@@ -218,7 +219,7 @@ export default function Home() {
                   <h3 className="text-lg font-semibold mb-2 group-hover/card:text-white transition-colors">{post.title}</h3>
                   <p className="text-sm text-[var(--color-text-muted)] line-clamp-2 mb-4 leading-relaxed">{post.excerpt}</p>
                   <div className="flex items-center justify-between text-xs text-[var(--color-text-muted)]">
-                    <span>{new Date(post.date).toLocaleDateString('en-CA', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+                    <span>{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
                     <span className="text-[var(--color-accent-pink)] group-hover/card:translate-x-1 transition-transform">Read →</span>
                   </div>
                 </Card>

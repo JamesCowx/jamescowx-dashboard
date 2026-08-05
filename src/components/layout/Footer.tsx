@@ -12,7 +12,7 @@ const footerLinks = [
 ];
 
 const socials = [
-  { label: 'GitHub', icon: 'GH', href: 'https://jamescowx.github.io/', stats: 'Open source' },
+  { label: 'GitHub', icon: 'GH', href: 'https://github.com/JamesCowx', stats: 'Open source' },
   { label: 'LinkedIn', icon: 'LI', href: 'https://linkedin.com/in/jamescowx', stats: 'Connect' },
   { label: 'Buy Me a Coffee', icon: '☕', href: 'https://buymeacoffee.com/jamescowx', stats: 'Support' },
 ];
@@ -96,9 +96,19 @@ export default function Footer() {
           <p className="text-xs text-[var(--color-text-muted)]">
             &copy; {new Date().getFullYear()} James Cowx. All rights reserved.
           </p>
-          <p className="text-xs text-[var(--color-text-muted)]">
-            Built with <span className="text-[#60a5fa] font-medium">React</span> · <span className="text-[#f472b6] font-medium">TypeScript</span> · <span className="text-[#a78bfa] font-medium">Framer Motion</span>
-          </p>
+          <div className="flex items-center gap-5">
+            <p className="text-xs text-[var(--color-text-muted)]">
+              Built with <span className="text-[#60a5fa] font-medium">React</span> · <span className="text-[#f472b6] font-medium">TypeScript</span> · <span className="text-[#a78bfa] font-medium">Framer Motion</span>
+            </p>
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              aria-label="Scroll to top"
+              className="text-xs text-[var(--color-text-muted)] hover:text-white transition-colors cursor-pointer flex items-center gap-1"
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+              Top
+            </button>
+          </div>
         </div>
       </div>
     </footer>

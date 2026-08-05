@@ -8,7 +8,6 @@ export interface Project {
   category: string;
   tags: string[];
   tech: string[];
-  image: string;
   sourceUrl: string;
   siteUrl?: string;
   featured: boolean;
@@ -16,5 +15,3 @@ export interface Project {
 }
 
 export const projects: Project[] = projectsData.sort((a, b) => b.id - a.id);
-
-export const categories = ['All', 'Web Apps', 'Desktop Apps'];

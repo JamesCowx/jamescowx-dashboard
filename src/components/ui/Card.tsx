@@ -40,15 +40,16 @@ export default function Card({ children, className = '', hover = true, accent = 
   return (
     <motion.div
       ref={ref}
-      className={`liquid-glass rounded-2xl p-6 card-glow premium-card group/card cursor-pointer ${tilt ? 'tilt-card' : ''} ${className}`}
+      className={`liquid-glass rounded-2xl p-6 card-glow premium-card living-border group/card cursor-pointer backface-hidden ${tilt ? 'tilt-card' : ''} ${className}`}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      whileHover={hover ? { y: -6, scale: 1.015 } : undefined}
-      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={hover ? { y: -8, scale: 1.016 } : undefined}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       onClick={onClick}
     >
       <div className="relative z-10">{children}</div>
-      <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 pointer-events-none ${
+      <div className="absolute top-0 left-[8%] right-[8%] h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent pointer-events-none" />
+      <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-700 pointer-events-none ${
         accent === 'blue' ? 'glass-bleed-blue' :
         accent === 'pink' ? 'glass-bleed-pink' : ''
       }`} />

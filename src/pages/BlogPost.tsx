@@ -40,6 +40,19 @@ export default function BlogPost() {
         <meta property="og:description" content={post.excerpt} />
         <meta property="og:url" content={`https://jamescowx.com/blog/${post.slug}`} />
         <meta name="author" content="James Cowx" />
+        <meta property="og:type" content="article" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BlogPosting',
+            headline: post.title,
+            description: post.excerpt,
+            url: `https://jamescowx.com/blog/${post.slug}`,
+            datePublished: post.date,
+            author: { '@type': 'Person', name: post.author, url: 'https://jamescowx.com' },
+            keywords: post.tags,
+          })}
+        </script>
       </Helmet>
       <div className="py-20 px-4">
       <div className="max-w-3xl mx-auto">

@@ -41,12 +41,12 @@ export default function Button({
     <motion.button
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
-      className={`${base} ${sizes[size]} ${variants[variant]} ${className}`}
+      className={`group/btn ${base} ${sizes[size]} ${variants[variant]} ${className}`}
       {...(props as object)}
     >
       <span className="relative z-10">{children}</span>
       {variant === 'primary' && (
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-700 pointer-events-none" />
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700 pointer-events-none" />
       )}
     </motion.button>
   );

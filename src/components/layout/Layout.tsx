@@ -23,6 +23,34 @@ function ScrollProgress() {
   return <div className="scroll-progress" style={{ width: `${width}%` }} />;
 }
 
+function ScrollToTop() {
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    const h = () => setShow(window.scrollY > 500);
+    window.addEventListener('scroll', h, { passive: true });
+    return () => window.removeEventListener('scroll', h);
+  }, []);
+  return (
+    <AnimatePresence>
+      {show && (
+        <motion.button
+          initial={{ opacity: 0, scale: 0.5, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.5, y: 20 }}
+          transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="fixed bottom-6 right-6 z-50 w-11 h-11 rounded-xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-xl flex items-center justify-center text-[var(--color-text-muted)] hover:text-white hover:bg-white/[0.08] hover:border-[#60a5fa]/30 transition-all cursor-pointer"
+          aria-label="Scroll to top"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
+            <path d="M12 19V5M5 12l7-7 7 7" />
+          </svg>
+        </motion.button>
+      )}
+    </AnimatePresence>
+  );
+}
+
 export default function Layout({ children }: LayoutProps) {
   const location = useLocation();
 
@@ -36,6 +64,7 @@ export default function Layout({ children }: LayoutProps) {
           {children}
         </motion.main>
       </AnimatePresence>
+      <ScrollToTop />
       <Footer />
     </div>
   );

@@ -58,16 +58,18 @@ export default function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center gap-2">
-            <a href="https://github.com/JamesCowx" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-lg bg-white/[0.02] border border-white/[0.04] flex items-center justify-center text-[10px] font-bold text-[var(--color-text-muted)] hover:text-white hover:border-white/[0.1] transition-all">GH</a>
-            <a href="https://linkedin.com/in/jamescowx" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-lg bg-white/[0.02] border border-white/[0.04] flex items-center justify-center text-[10px] font-bold text-[var(--color-text-muted)] hover:text-white hover:border-white/[0.1] transition-all">LI</a>
+            <a href="https://github.com/JamesCowx" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" className="w-8 h-8 rounded-lg bg-white/[0.02] border border-white/[0.04] flex items-center justify-center text-[10px] font-bold text-[var(--color-text-muted)] hover:text-white hover:border-white/[0.1] transition-all">GH</a>
+            <a href="https://linkedin.com/in/jamescowx" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" className="w-8 h-8 rounded-lg bg-white/[0.02] border border-white/[0.04] flex items-center justify-center text-[10px] font-bold text-[var(--color-text-muted)] hover:text-white hover:border-white/[0.1] transition-all">LI</a>
             <div className="w-px h-5 bg-white/[0.06] mx-1" />
-            <Link to="/contact" className="px-4 py-2 rounded-xl text-[12px] font-semibold bg-white/[0.06] hover:bg-white/[0.10] text-white border border-white/[0.08] transition-all">
+            <Link to="/contact" className="px-5 py-2 rounded-xl text-[12px] font-semibold bg-gradient-to-r from-[#60a5fa]/[0.12] to-[#f472b6]/[0.12] text-white border border-white/[0.08] hover:border-[#60a5fa]/30 hover:shadow-[0_0_24px_rgba(96,165,250,0.15)] transition-all duration-300">
               Hire me
             </Link>
           </div>
 
           <button className="md:hidden p-2 text-[var(--color-text-secondary)] hover:text-white transition-colors"
-            onClick={() => setMobileOpen(!mobileOpen)}>
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle navigation menu"
+            aria-expanded={mobileOpen}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               {mobileOpen ? <path d="M18 6L6 18M6 6l12 12" /> : <path d="M3 12h18M3 6h18M3 18h18" />}
             </svg>
@@ -80,21 +82,41 @@ export default function Navbar() {
           <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }}
             className="md:hidden mx-4 mt-2 rounded-2xl bg-white/[0.04] backdrop-blur-2xl border border-white/[0.06] overflow-hidden">
             <div className="px-3 py-3 space-y-0.5">
-              {links.map(link => (
-                <NavLink key={link.to} to={link.to} end={link.to === '/'} onClick={() => setMobileOpen(false)}
-                  className={({ isActive }) => `block px-5 py-3.5 rounded-xl text-sm font-medium transition-all ${isActive ? 'text-white bg-white/[0.08]' : 'text-[var(--color-text-muted)] hover:text-white hover:bg-white/[0.04]'}`}>
-                  {link.label}
-                </NavLink>
+              {links.map((link, i) => (
+                <motion.div
+                  key={link.to}
+                  initial={{ opacity: 0, x: -16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.05 + i * 0.04, duration: 0.25 }}
+                >
+                  <NavLink to={link.to} end={link.to === '/'} onClick={() => setMobileOpen(false)}
+                    className={({ isActive }) => `block px-5 py-3.5 rounded-xl text-sm font-medium transition-all ${isActive ? 'text-white bg-white/[0.08]' : 'text-[var(--color-text-muted)] hover:text-white hover:bg-white/[0.04]'}`}>
+                    {link.label}
+                  </NavLink>
+                </motion.div>
               ))}
-              <div className="border-t border-white/[0.06] pt-3 mt-2 px-1 flex gap-2">
-                <a href="https://github.com/JamesCowx" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center text-[11px] font-bold text-[var(--color-text-muted)]">GH</a>
-                <a href="https://linkedin.com/in/jamescowx" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center text-[11px] font-bold text-[var(--color-text-muted)]">LI</a>
-                <Link to="/contact" onClick={() => setMobileOpen(false)} className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold bg-white/[0.06] text-white border border-white/[0.08]">Hire me</Link>
-              </div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.05 + links.length * 0.04 + 0.08, duration: 0.3 }}
+              >
+                <div className="border-t border-white/[0.06] pt-3 mt-2 px-1 flex gap-2">
+                  <a href="https://github.com/JamesCowx" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center text-[11px] font-bold text-[var(--color-text-muted)]">GH</a>
+                  <a href="https://linkedin.com/in/jamescowx" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center text-[11px] font-bold text-[var(--color-text-muted)]">LI</a>
+                  <Link to="/contact" onClick={() => setMobileOpen(false)} className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold bg-gradient-to-r from-[#60a5fa]/[0.12] to-[#f472b6]/[0.12] text-white border border-white/[0.08] hover:border-[#60a5fa]/30 transition-all">Hire me</Link>
+                </div>
+              </motion.div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
+
+    <motion.div
+      className="absolute bottom-0 left-0 right-0 h-px pointer-events-none"
+      style={{ background: 'linear-gradient(90deg, transparent 5%, rgba(96,165,250,0.2), rgba(167,139,250,0.15), rgba(244,114,182,0.2), transparent 95%)' }}
+      animate={{ opacity: scrolled ? 1 : 0 }}
+      transition={{ duration: 0.5 }}
+    />
     </motion.nav>
   );
 }
